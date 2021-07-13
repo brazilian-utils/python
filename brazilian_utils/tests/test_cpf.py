@@ -1,11 +1,11 @@
 from unittest import TestCase
 from brazilian_utils import cpf
-from constant import BLACKLIST
+from constant import BLOCKLIST
 
 
 class TestCPF(TestCase):
-    def test_cpf_in_blacklist(self):
-        for c in BLACKLIST:
+    def test_cpf_in_blocklist(self):
+        for c in BLOCKLIST:
             with self.subTest():
                 self.assertFalse(cpf.is_valid(c))
 
