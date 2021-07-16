@@ -2,7 +2,8 @@
 <h1>🇧🇷 Brazilian Utils</h1>
 
 <p>Utils library for Brazilian-specific businesses.</p>
-
+</div>
+  
 # Getting Started
 
 Brazilian Utils is a library focused on solving problems that we face daily in the development of applications for the Brazilian business.
