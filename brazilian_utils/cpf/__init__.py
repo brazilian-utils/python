@@ -2,14 +2,14 @@
 # which returns True or False to indicate whether a given cpf
 # is valid according with Ministério da Fazenda specification.
 
-from constant import BLACKLIST
+from constant import BLOCKLIST
 
 
 def is_valid(cpf):
     if not isinstance(cpf, str):
         return False
 
-    if cpf in BLACKLIST or not cpf.isdigit():
+    if cpf in BLOCKLIST or not cpf.isdigit():
         return False
 
     if len(cpf) != 11:
