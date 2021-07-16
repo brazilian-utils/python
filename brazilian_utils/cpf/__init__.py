@@ -1,4 +1,4 @@
-# This module provides a single method, is_valid_cpf(),
+# This module provides a single method, is_valid(),
 # which returns True or False to indicate whether a given cpf
 # is valid according with Ministério da Fazenda specification.
 

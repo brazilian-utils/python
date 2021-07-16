@@ -20,9 +20,12 @@ pip install brazilian-utils
 To use one of our utilities you just need to import the required function as in the example below:
 
 ```python
-from brazilian_utils.cpf import is_valid
+from brazilian_utils import is_valid_cpf
 
-is_valid("1232454233345") # False
+is_valid_cpf("1232454233345") # False
 ```
 
+You can check the list containing all utilities [here][utilities].
+
 [pip-installation]: https://pip.pypa.io/en/stable/installing/
+[utilities]: https://github.com/brazilian-utils/python/blob/master/brazilian_utils/__init__.py
