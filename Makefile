@@ -27,3 +27,17 @@ ifeq ($(OS),Windows_NT)
 else
 	@PYTHONDONTWRITEBYTECODE=1 poetry run python3 -m unittest discover tests/ -v
 endif
+
+changelog:
+	@command -v git-cliff >/dev/null 2>&1 || { \
+		echo "Error: git-cliff is not installed."; \
+		echo ""; \
+		echo "To install git-cliff, visit: https://git-cliff.org/docs/installation"; \
+		echo ""; \
+		echo "Quick install options:"; \
+		echo "  - cargo install git-cliff"; \
+		echo "  - brew install git-cliff (macOS)"; \
+		echo "  - Or download from: https://github.com/orhun/git-cliff/releases"; \
+		exit 1; \
+	}
+	@git cliff -o CHANGELOG.md

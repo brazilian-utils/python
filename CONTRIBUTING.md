@@ -19,20 +19,52 @@ O importante é que você saiba: sua participação é muito bem-vinda, e cada c
 
 Como fazer a sua primeira contribuição:
 
-- [1. Crie uma Conta no GitHub](#1-crie-uma-conta-no-github)
-- [2. Encontre uma Issue para Trabalhar](#2-encontre-uma-issue-para-trabalhar)
-- [3. Instale o Git](#3-instale-o-git)
-- [4. Faça um Fork do Projeto](#4-faça-um-fork-do-projeto)
-- [5. Clone o Seu Fork](#5-clone-o-seu-fork)
-- [6. Crie um Novo Branch](#6-crie-um-novo-branch)
-- [7. Execute o brutils Localmente](#7-execute-o-brutils-localmente)
-- [8. Faça as Suas Alterações](#8-faça-as-suas-alterações)
-- [9. Teste as Suas Alterações](#9-teste-as-suas-alterações)
-- [10. Atualizar READMEs](#10-atualizar-readmes)
-- [11. Faça o Commit e Envie as Suas Alterações](#11-faça-o-commit-e-envie-as-suas-alterações)
-- [12. Adicione Entradas no CHANGELOG.md](#12-adicione-entradas-no-changelogmd)
-- [13. Crie um PR no GitHub](#13-crie-um-pr-no-github)
-- [14. Atualizar a Sua Branch se Necessário](#14-atualizar-a-sua-branch-se-necessário)
+- [Contribuindo](#contribuindo)
+  - [💌 Quer contribuir, mas não se sente à vontade?](#-quer-contribuir-mas-não-se-sente-à-vontade)
+  - [Primeira Contribuição](#primeira-contribuição)
+    - [1. Crie uma Conta no GitHub](#1-crie-uma-conta-no-github)
+    - [2. Encontre uma Issue para Trabalhar](#2-encontre-uma-issue-para-trabalhar)
+    - [3. Instale o Git](#3-instale-o-git)
+    - [4. Faça um Fork do Projeto](#4-faça-um-fork-do-projeto)
+    - [5. Clone o Seu Fork](#5-clone-o-seu-fork)
+    - [6. Crie um Novo Branch](#6-crie-um-novo-branch)
+    - [7. Execute o brutils Localmente](#7-execute-o-brutils-localmente)
+      - [Instalação com poetry](#instalação-com-poetry)
+        - [Requisitos](#requisitos)
+      - [Instalação com pip](#instalação-com-pip)
+        - [Requisitos](#requisitos-1)
+      - [Utilizando Localmente](#utilizando-localmente)
+  - [Testes](#testes)
+  - [Testes no Windows](#testes-no-windows)
+    - [Instalar o Chocolatey](#instalar-o-chocolatey)
+    - [Instalar o `make`](#instalar-o-make)
+    - [Instalar o Poetry](#instalar-o-poetry)
+    - [Instalar as dependências do projeto](#instalar-as-dependências-do-projeto)
+    - [Verificar e configurar o `Makefile`](#verificar-e-configurar-o-makefile)
+    - [8. Faça as Suas Alterações](#8-faça-as-suas-alterações)
+    - [9. Teste as Suas Alterações](#9-teste-as-suas-alterações)
+      - [Escreva Novos Testes](#escreva-novos-testes)
+      - [Certifique-se de que Todos os Testes Passam](#certifique-se-de-que-todos-os-testes-passam)
+      - [Teste manualmente](#teste-manualmente)
+    - [10. Atualizar READMEs](#10-atualizar-readmes)
+    - [11. Faça o Commit e Envie as Suas Alterações](#11-faça-o-commit-e-envie-as-suas-alterações)
+    - [12. Crie um PR no GitHub](#12-crie-um-pr-no-github)
+      - [Escreva um Título Descritivo para o PR](#escreva-um-título-descritivo-para-o-pr)
+      - [Forneça uma Descrição Detalhada do PR](#forneça-uma-descrição-detalhada-do-pr)
+      - [Vincule o PR à Issue Relacionada](#vincule-o-pr-à-issue-relacionada)
+      - [Verifique o Template de Descrição do PR](#verifique-o-template-de-descrição-do-pr)
+    - [13. Atualizar a Sua Branch se Necessário](#13-atualizar-a-sua-branch-se-necessário)
+  - [Lançar uma Nova Versão](#lançar-uma-nova-versão)
+    - [1. Criar uma Issue de Release](#1-criar-uma-issue-de-release)
+      - [Crie a Issue](#crie-a-issue)
+      - [Crie uma Branch](#crie-uma-branch)
+      - [Faça o Commit](#faça-o-commit)
+    - [2. Criar um Release PR](#2-criar-um-release-pr)
+      - [Atualizar a Versão da Biblioteca](#atualizar-a-versão-da-biblioteca)
+      - [Atualizar o CHANGELOG.md](#atualizar-o-changelogmd)
+      - [Crie o PR](#crie-o-pr)
+      - [Faça o Merge do PR](#faça-o-merge-do-pr)
+    - [3. Deploy via GitHub](#3-deploy-via-github)
 
 ### 1. Crie uma Conta no GitHub
 
@@ -492,162 +524,14 @@ To github.com:brazilian-utils/brutils-python.git
 
 Faça as alterações e commits necessários e envie-os quando estiverem prontos.
 
-### 12. Adicione Entradas no CHANGELOG.md
+**Observação sobre o CHANGELOG:** O CHANGELOG.md é gerado automaticamente a partir dos commits usando [git-cliff](https://git-cliff.org/). Quando seu PR for mesclado na branch `main`, as mudanças aparecerão automaticamente na seção `[Unreleased]` do CHANGELOG. Por isso, é importante seguir o padrão de [Conventional Commits](https://www.conventionalcommits.org/) nas suas mensagens de commit:
 
-#### O que é um changelog?
+- `feat:` para novas funcionalidades (aparecerá em "Added")
+- `fix:` para correções de bugs (aparecerá em "Fixed")
+- `refactor:` ou `perf:` para mudanças em funcionalidades existentes (aparecerá em "Changed")
+- `docs:`, `test:`, `ci:`, `chore:` são ignorados no changelog
 
-Um changelog é um arquivo que contém uma lista organizada cronologicamente de mudanças notáveis para cada versão de um projeto.
-
-#### Por que manter um changelog?
-
-Para facilitar para usuários e contribuintes verem exatamente quais mudanças notáveis foram feitas entre cada release (ou versão) do projeto.
-
-#### Quem precisa de um changelog?
-
-Pessoas. Sejam consumidores ou desenvolvedores, os usuários finais de software são seres humanos que se importam com o que está no software. Quando o software muda, as pessoas querem saber por que e como.
-
-#### Onde está o changelog do brutils?
-
-O changelog do brutils está disponível em [CHANGELOG.md][changelog]
-
-#### Princípios orientadores
-
-- Changelogs são para humanos, não máquinas.
-- Deve haver uma entrada para cada versão.
-- Os mesmos tipos de mudanças devem ser agrupados.
-- Versões e seções devem ser linkáveis.
-- A versão mais recente vem primeiro.
-- A data de lançamento de cada versão é exibida.
-
-#### O que justifica uma entrada no changelog?
-
-- Correções de segurança: Devem ser documentadas com o tipo definido como "segurança" para alertar os usuários sobre questões de segurança resolvidas.
-Exemplo: “Corrigido um vulnerabilidade crítica que permitia a execução remota de código.”
-
-- Mudanças voltadas ao usuário: Alterações que afetam diretamente a forma como os usuários interagem com o software, incluindo novas funcionalidades, alterações em funcionalidades existentes ou melhorias na interface.
-Exemplo: “Adicionada uma nova opção de filtro na página de resultados para facilitar a busca.”
-
-- Melhorias significativas de desempenho: Devem ser registradas quando resultam em melhorias notáveis na velocidade ou na eficiência do software que impactam a experiência do usuário.
-Exemplo: “O tempo de carregamento da página inicial foi reduzido em 40% após a otimização do backend.”
-
-- Alterações que afetam a compatibilidade: Mudanças que ajustam o software para manter a compatibilidade com outras ferramentas, sistemas ou versões.
-Exemplo: “Atualizada a biblioteca X para a versão 2.0 para suportar a nova versão do Python.”
-
-- Mudanças na API pública:
-Alterações que afetam como os desenvolvedores interagem com a API pública do software, seja adicionando novas rotas ou alterando as existentes.
-Exemplo: “Adicionada uma nova rota /api/v1/users para gerenciamento de usuários.”
-
-- Alterações nas dependências: Atualizações ou mudanças nas dependências do projeto que podem afetar o comportamento ou a compatibilidade do software.
-Exemplo: “Atualizado o pacote de dependência Y para a versão 3.1.4, que inclui correções importantes de segurança.”
-
-#### O quê NÃO deve ir no changelog
-
-Embora o changelog seja uma ferramenta valiosa para documentar mudanças, algumas informações não devem ser incluídas. Aqui estão alguns exemplos do que não deve aparecer no changelog:
-
-- Mudanças Internas de Código: Alterações que não afetam o comportamento do usuário final, como refatorações de código interno que não alteram a funcionalidade, não precisam ser documentadas no changelog. Exemplo: “Refatoração de funções internas” ou “Correção testes inconsistentes.”
-
-- Melhorias de Desempenho Não Notáveis: Melhorias de desempenho que não resultam em mudanças perceptíveis ou benefícios claros para o usuário final não precisam de uma entrada específica. Exemplo: “Otimização de algoritmos internos.”
-
-- Correções de Bugs Menores: Correções para bugs que não afetam o uso geral ou a experiência do usuário final podem ser omitidas. Exemplo: “Correção de um pequeno erro de digitação no código.”
-
-- Mudanças Somente de Documentação: Alterações que afetam apenas a documentação, sem modificar o comportamento do software, geralmente não precisam ser incluídas no changelog. Exemplo: “Atualização do README.md para refletir novas dependências.”
-
-- Detalhes Técnicos Excessivos: Informações excessivamente técnicas que não são relevantes para o usuário final ou não oferecem contexto sobre o impacto da mudança devem ser evitadas. Exemplo: “Mudança no gerenciamento de memória na classe X.”
-
-- Entradas de Mantenedor: Mudanças que são relacionadas apenas ao processo de desenvolvimento ou manutenção interna, como ajustes de configuração de ferramentas de CI/CD, geralmente não são relevantes para o changelog. Exemplo: “Atualização na configuração do GitHub Actions.”
-
-- Uma correção de bug introduzida e corrigida na mesma release não precisa de uma entrada no changelog.
-
-Evite incluir essas informações no changelog para manter o documento focado e útil para os usuários e contribuintes do projeto.
-
-#### Escrevendo boas entradas no changelog
-
-Uma boa entrada no changelog deve ser descritiva e concisa. Deve explicar a mudança a um leitor que não tem nenhum contexto sobre a mudança. Se for difícil ser ao mesmo tempo conciso e descritivo, opte por ser mais descritivo.
-
-- **Ruim**: Ir para a ordem do projeto.
-- **Bom**: Mostrar os projetos estrelados do usuário no topo do dropdown “Ir para o projeto”.
-
-O primeiro exemplo não dá contexto sobre onde a mudança foi feita, nem por que, nem como beneficia o usuário.
-
-- **Ruim**: Copiar (algum texto) para a área de transferência.
-- **Bom**: Atualizar o tooltip de “Copiar para a área de transferência” para indicar o que está sendo copiado.
-
-Novamente, o primeiro exemplo é muito vago e não fornece contexto.
-
-- **Ruim**: Corrige e melhora problemas de CSS e HTML no gráfico de mini pipeline e dropdown de builds.
-- **Bom**: Corrigir tooltips e estados de hover no gráfico de mini pipeline e dropdown de builds.
-
-O primeiro exemplo está muito focado nos detalhes de implementação. O usuário não se importa que mudamos CSS e HTML, ele se importa com o resultado final dessas mudanças.
-
-- **Ruim**: Remover valores nulos no Array de objetos Commit retornados por find_commits_by_message_with_elastic
-- **Bom**: Corrigir erros 500 causados por resultados do Elasticsearch referenciando commits já recolhidos pelo garbage collector.
-
-O primeiro exemplo foca em como corrigimos algo, não no que foi corrigido. A versão reescrita descreve claramente o benefício final para o usuário (menos erros 500) e quando isso acontece (ao buscar commits com Elasticsearch).
-
-Use seu melhor julgamento e tente se colocar na posição de alguém lendo o changelog compilado. Essa entrada agrega valor? Oferece contexto sobre onde e por que a mudança foi feita?
-
-### Como adicionar uma entrada no changelog
-
-O changelog está disponível no arquivo [CHANGELOG.md][changelog].
-
-Primeiro, você precisa identificar o tipo da sua mudança. Tipos de mudanças:
-
-- `Added` para novas funcionalidades.
-- `Changed` para mudanças em funcionalidades existentes.
-- `Deprecated` para funcionalidades que serão removidas em breve.
-- `Fixed` para qualquer correção de bugs.
-- `Removed` para funcionalidades que foram removidas.
-- `Security` em caso de vulnerabilidades.
-
-Você deve sempre adicionar novas entradas no changelog na seção `Unreleased`. No momento do release, moveremos as mudanças da seção `Unreleased` para uma nova seção de versão.
-
-Portanto, dentro da seção `Unreleased`, você deve adicionar sua entrada na seção apropriada por tipo. Se ainda não houver uma seção para o tipo da sua mudança, você deve adicioná-la.
-
-Vamos ver alguns exemplos. Suponhamos que você tenha uma nova mudança `Fixed` para adicionar, e o arquivo atual do CHANGELOG.md está assim:
-
-```md
-## [Unreleased]
-### Added
-- Utilitário `get_address_from_cep` [#358](https://github.com/brazilian-utils/brutils-python/pull/358)
-
-### Changed
-- Utilitário `fmt_voter_id` renomeado  para `format_voter_id` [#221](https://github.com/brazilian-utils/brutils-python/issues/221)
-```
-
-Você precisará adicionar uma nova seção `Fixed` e incluir a nova entrada lá:
-
-```md
-## [Unreleased]
-### Added
-- Utilitário `get_address_from_cep` [#358](https://github.com/brazilian-utils/brutils-python/pull/358)
-
-### Changed
-- Utilitário `fmt_voter_id` renomeado  para `format_voter_id` [#221](https://github.com/brazilian-utils/brutils-python/issues/221)
-
-### Fixed
-- Minha mensagem de changelog aqui. [#<número_da_issue>](<link_da_issue>)
-```
-
-Note que a ordem das seções por tipo importa. Temos um lint que verifica isso, então as seções devem ser ordenadas alfabeticamente. Primeiro `Added`, depois `Changed`, terceiro `Deprecated` e assim por diante.
-
-Agora, digamos que você tem mais uma entrada para adicionar e o tipo dela é `Added`. Como já temos uma seção para isso, você devve apenas adicionar uma nova linha:
-
-```md
-## [Unreleased]
-### Added
-- Utilitário `get_address_from_cep` [#358](https://github.com/brazilian-utils/brutils-python/pull/358)
-- Minha outra mensagem de changelog aqui. [#<número_da_issue>](<link_da_issue>)
-
-### Changed
-- Utilitário `fmt_voter_id` renomeado  para `format_voter_id` [#221](https://github.com/brazilian-utils/brutils-python/issues/221)
-
-### Fixed
-- Minha mensagem de changelog aqui. [#<número_da_issue>](<link_da_issue>)
-```
-
-_Este conteúdo é baseado no [site do keep a changelog][keep-a-changelog], já que seguimos suas diretrizes._
-
-### 13. Crie um PR no GitHub
+### 12. Crie um PR no GitHub
 
 [Crie um PR no GitHub][github-creating-a-pr] para enviar suas alterações para revisão. Para garantir que seu Pull Request (PR) seja claro, eficaz e revisado rapidamente, siga estas boas práticas:
 
@@ -678,18 +562,18 @@ Este PR adiciona o utilitário convert_uf_to_text para converter códigos de est
 - Para mais detalhes, consulte a [documentação do GitHub sobre fechamento automático de issues](https://docs.github.com/pt/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue).
 
 #### Verifique o Template de Descrição do PR
-- Certifique-se de que seu PR segue o template de descrição do repositório. Verifique todos os itens obrigatórios, como cobertura de testes, atualizações de documentação ou entradas no changelog.
+- Certifique-se de que seu PR segue o template de descrição do repositório. Verifique todos os itens obrigatórios, como cobertura de testes e atualizações de documentação.
 - **Exemplo de Checklist**: (mostrando como fica quando preenchido):
 - [x] Alterações no código foram testadas.
 - [x] Documentação (READMEs) foi atualizada.
-- [ ] Entrada no changelog foi adicionada (marque apenas se aplicável).
+- [x] Mensagens de commit seguem o padrão Conventional Commits.
 - **Nota sobre a Sintaxe**:
 - Use [x] para marcar itens concluídos e [ ] para itens não concluídos, sem espaços dentro dos colchetes (ex.: [ x ] ou [x ] não será renderizado corretamente no GitHub).
 - **Benefícios**:
 - Seguir o template garante que o PR esteja completo e pronto para revisão.
 - Reduz a necessidade de idas e vindas com revisores, acelerando o processo de mesclagem.
 
-### 14. Atualizar a Sua Branch se Necessário
+### 13. Atualizar a Sua Branch se Necessário
 
 [Certifique-se de que sua branch esteja atualizado com o main][github-sync-pr]
 
@@ -728,10 +612,7 @@ no arquivo `pyproject.toml`:
 
 #### Atualizar o CHANGELOG.md
 
-Adicione um título para a nova versão com o novo número e a data atual, como
-[neste exemplo](https://github.com/brazilian-utils/brutils-python/blob/main/CHANGELOG.md?plain=1#L9).
-
-E adicione os links da versão, como [neste exemplo](https://github.com/antoniamaia/brutils-python/blob/eac770e8b213532d2bb5948d117f6f4684f65be2/CHANGELOG.md?plain=1#L76)
+Execute `git cliff --bump --output CHANGELOG.md`
 
 #### Crie o PR
 
