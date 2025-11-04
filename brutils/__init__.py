@@ -8,6 +8,9 @@ from brutils.cep import generate as generate_cep
 from brutils.cep import is_valid as is_valid_cep
 from brutils.cep import remove_symbols as remove_symbols_cep
 
+# CNH Imports
+from brutils.cnh import is_valid_cnh as is_valid_cnh
+
 # CNPJ Imports
 from brutils.cnpj import format_cnpj
 from brutils.cnpj import generate as generate_cnpj
@@ -95,6 +98,8 @@ __all__ = [
     "generate_cpf",
     "is_valid_cpf",
     "remove_symbols_cpf",
+    # CNH
+    "is_valid_cnh",
     # Email
     "is_valid_email",
     # Legal Process

@@ -1,7 +1,7 @@
 from random import randint
 
 
-def is_valid(voter_id):  # type: (str) -> bool
+def is_valid(voter_id: str) -> bool:
     """
     Check if a Brazilian voter id number is valid.
     It does not verify if the voter id actually exists.
@@ -50,7 +50,7 @@ def is_valid(voter_id):  # type: (str) -> bool
     return True
 
 
-def _is_length_valid(voter_id):  # type: (str) -> bool
+def _is_length_valid(voter_id: str) -> bool:
     """
     Check if the length of the provided voter id is valid.
     Typically, the length should be 12, but there are cases for SP and MG where
@@ -73,7 +73,7 @@ def _is_length_valid(voter_id):  # type: (str) -> bool
     return len(voter_id) == 13 and federative_union in ["01", "02"]
 
 
-def _get_sequential_number(voter_id):  # type: (str) -> str
+def _get_sequential_number(voter_id: str) -> str:
     """
     Some voter ids in São Paulo and Minas Gerais may have nine digits in their
     sequential number instead of eight. This fact does not compromise the
@@ -91,7 +91,7 @@ def _get_sequential_number(voter_id):  # type: (str) -> str
     return voter_id[:8]
 
 
-def _get_federative_union(voter_id):  # type: (str) -> str
+def _get_federative_union(voter_id: str) -> str:
     """
     Returns the two digits that represent the federative union for the given
     voter id. Indexing it backwards, as the sequential_number can have eight
@@ -107,7 +107,7 @@ def _get_federative_union(voter_id):  # type: (str) -> str
     return voter_id[-4:-2]
 
 
-def _get_verifying_digits(voter_id):  # type: (str) -> str
+def _get_verifying_digits(voter_id: str) -> str:
     """
     Returns the two verifying digits for the given voter id. Indexing it
     backwards, as the sequential_number can have eight or nine digits.
@@ -122,7 +122,7 @@ def _get_verifying_digits(voter_id):  # type: (str) -> str
     return voter_id[-2:]
 
 
-def _is_federative_union_valid(federative_union):  # type: (str) -> bool
+def _is_federative_union_valid(federative_union: str) -> bool:
     """
     Check if the federative union is valid.
 
@@ -137,7 +137,7 @@ def _is_federative_union_valid(federative_union):  # type: (str) -> bool
     return federative_union in ["{:02d}".format(i) for i in range(1, 29)]
 
 
-def _calculate_vd1(sequential_number, federative_union):  # type: (str, str) -> bool
+def _calculate_vd1(sequential_number: str, federative_union: str) -> int:
     """
     Calculate the first verifying digit.
 
@@ -178,7 +178,7 @@ def _calculate_vd1(sequential_number, federative_union):  # type: (str, str) -> 
     return vd1
 
 
-def _calculate_vd2(federative_union, vd1):  # type: (str, int) -> str
+def _calculate_vd2(federative_union: str, vd1: int) -> int:
     """
     Calculate the second verifying digit.
 
@@ -214,7 +214,7 @@ def _calculate_vd2(federative_union, vd1):  # type: (str, int) -> str
     return vd2
 
 
-def generate(federative_union="ZZ") -> str:
+def generate(federative_union: str = "ZZ") -> str | None:
     """
     Generates a random valid Brazilian voter registration.
 
@@ -263,9 +263,10 @@ def generate(federative_union="ZZ") -> str:
             vd1 = _calculate_vd1(sequential_number, uf_number)
             vd2 = _calculate_vd2(uf_number, vd1)
             return f"{sequential_number}{uf_number}{vd1}{vd2}"
+    return None
 
 
-def format_voter_id(voter_id):  # type: (str) -> str
+def format_voter_id(voter_id: str) -> str | None:
     """
     Format a voter ID for display with visual spaces.
 

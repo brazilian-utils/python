@@ -20,6 +20,10 @@ class TestLegalProcess(TestCase):
             format_legal_process("00000000000000000000"),
             ("0000000-00.0000.0.00.0000"),
         )
+        self.assertIsInstance(
+            format_legal_process("00000000000000000000"),
+            str,
+        )
         self.assertIsNone(format_legal_process("2314194582005507"))
         self.assertIsNone(format_legal_process("0000000000000000000000000"))
         self.assertIsNone(format_legal_process("0000000000000000000asdasd"))
@@ -45,18 +49,21 @@ class TestLegalProcess(TestCase):
         )
         self.assertEqual(remove_symbols("@...---...#"), "@#")
         self.assertEqual(remove_symbols("...---..."), "")
+        self.assertIsInstance(remove_symbols("...---..."), str)
 
     def test_generate(self):
         self.assertEqual(generate()[9:13], str(datetime.now().year))
         self.assertEqual(generate(year=3000)[9:13], "3000")
         self.assertEqual(generate(orgao=4)[13:14], "4")
         self.assertEqual(generate(year=3000, orgao=4)[9:13], "3000")
+        self.assertIsInstance(generate(year=3000, orgao=4)[9:13], str)
         self.assertIsNone(generate(year=1000, orgao=4))
         self.assertIsNone(generate(orgao=0))
 
     def test_check_sum(self):
         self.assertEqual(_checksum(546611720238150014), "77")
         self.assertEqual(_checksum(403818720238230498), "50")
+        self.assertIsInstance(_checksum(403818720238230498), str)
 
     def test_is_valid(self):
         self.assertIs(is_valid("10188748220234018200"), True)
@@ -66,6 +73,7 @@ class TestLegalProcess(TestCase):
         self.assertIs(is_valid("455323469202340251"), False)
         self.assertIs(is_valid("455323469202340257123123123"), False)
         self.assertIs(is_valid("455323423QQWEQWSsasd&*(()"), False)
+        self.assertIsInstance(is_valid("455323423QQWEQWSsasd&*(()"), bool)
 
 
 if __name__ == "__main__":
