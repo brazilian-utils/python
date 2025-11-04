@@ -69,6 +69,8 @@ False
   - [is\_valid\_email](#is_valid_email)
 - [Data](#date)
   - [convert\_date\_to_text](#convert_date_to_text)
+- [CNH](#cnh)
+  - [is\_valid\_cnh](#is_valid_cnh)
 - [Placa de Carro](#placa-de-carro)
   - [is\_valid\_license\_plate](#is_valid_license_plate)
   - [format\_license\_plate](#format_license_plate)
@@ -665,6 +667,37 @@ None
 >>> convert_date_to_text("1/08/2024")
 "Primeiro de agosto de dois mil e vinte e quatro"
 ````
+
+## CNH
+
+### is_valid_cnh
+
+Verifica se o número de registro de CNH (Carteira de Habilitação Nacional) brasileiro é válido.
+Para que um número de CNH seja considerado válido, a entrada deve ser uma string contendo
+exatamente 11 dígitos numéricos. Esta função não verifica se o número da CNH é real, apenas
+valida os dígitos verificadores.
+
+Argumentos:
+
+- cnh (str): A string contendo o número de registro de CNH a ser verificado.
+
+Retorno:
+
+- bool: True se o número de registro da CNHN for válido (11 dígitos), False caso contrário.
+
+Exemplo:
+
+```python
+>>> from brutils import is_valid_cnh
+>>> is_valid_cnh("12345678901")
+False
+>>> is_valid_cnh("A2C45678901")
+False
+>>> is_valid_cnh("98765432100")
+True
+>>> is_valid_cnh("987654321-00")
+True
+```
 
 
 ## Placa de Carro

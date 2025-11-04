@@ -68,6 +68,8 @@ False
   - [generate\_phone](#generate_phone)
 - [Email](#email)
   - [is\_valid\_email](#is_valid_email)
+- [CNH](#cnh)
+  - [is\_valid\_cnh](#is_valid_cnh)
 - [License Plate](#license-plate)
   - [is\_valid\_license\_plate](#is_valid_license_plate)
   - [format\_license\_plate](#format_license_plate)
@@ -658,6 +660,37 @@ False
 >>> is_valid_email("joao ninguem@gmail.com")
 False
 ```
+
+
+## CNH
+
+### is_valid_cnh
+
+Checks if the registration number of a brazilian CNH (Carteira de Habilitação Nacional or Driver's License in En.) is valid.
+To be considered valid, the input must be a string containing exactly 11 digits. This function does not verify if the registration number of the CNH is a real one, it only validates it's verification numbers.
+
+Argumentos:
+
+- cnh (str): A string containing the registration nunber of the CNH to be checked.
+
+Retorno:
+
+- bool: True if the CNH number is valid (11 digits), False otherwise.
+
+Exemplo:
+
+```python
+>>> from brutils import is_valid_cnh
+>>> is_valid_cnh("123456789")
+False
+>>> is_valid_cnh("A2C45678901")
+False
+>>> is_valid_cnh("98765432100")
+True
+>>> is_valid_cnh("987654321-00")
+True
+```
+
 
 ## License Plate
 

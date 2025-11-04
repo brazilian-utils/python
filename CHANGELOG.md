@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Utilitário `convert_name_to_uf`
+- Utilitário `is_valid_cnh` [#651](https://github.com/brazilian-utils/brutils-python/pull/651)
+
+### Fixed
+
+- Suporte a anotações modernas no `brutils/cep.py` [#637](https://github.com/brazilian-utils/python/pull/637)
 
 ### Fixed
 
