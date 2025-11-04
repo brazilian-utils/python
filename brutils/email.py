@@ -1,7 +1,7 @@
 import re
 
 
-def is_valid(email):  # type: (str) -> bool
+def is_valid(email: str) -> bool:
     """
     Check if a string corresponds to a valid email address.
 

@@ -1,3 +1,5 @@
+import unicodedata
+
 from brutils.data.enums.uf import UF, UF_CODE
 
 
@@ -59,3 +61,60 @@ def convert_uf_to_name(uf: str) -> str | None:
     result = UF[federal_unit].value
 
     return result
+
+
+def _normalize_text(text: str) -> str:
+    """
+    Normalize text by removing accents and normalizing whitespace.
+
+    Args:
+        text (str): The text to normalize.
+
+    Returns:
+        str: The normalized text in uppercase.
+    """
+    nfd = unicodedata.normalize("NFD", text)
+    without_accents = "".join(
+        char for char in nfd if unicodedata.category(char) != "Mn"
+    )
+
+    normalized_spaces = " ".join(without_accents.split())
+    return normalized_spaces.upper()
+
+
+def convert_name_to_uf(state_name: str) -> str | None:
+    """
+    Convert a Brazilian state name to its UF code.
+
+    This function takes the full name of a Brazilian state and returns its
+    corresponding two-letter UF code. The comparison is case-insensitive and
+    ignores accents.
+
+    Args:
+        state_name (str): The full name of the state (e.g., 'São Paulo', 'sao paulo').
+
+    Returns:
+        str | None: The UF code if found, or None if the state name is invalid.
+
+    Examples:
+        >>> convert_name_to_uf('São Paulo')
+        'SP'
+        >>> convert_name_to_uf('sao paulo')
+        'SP'
+        >>> convert_name_to_uf('Rio de Janeiro')
+        'RJ'
+        >>> convert_name_to_uf('rio de janeiro')
+        'RJ'
+        >>> convert_name_to_uf('Estado Inválido')
+        >>>
+    """
+    if not state_name or not isinstance(state_name, str):
+        return None
+
+    normalized_input = _normalize_text(state_name.strip())
+
+    for uf in UF:
+        if _normalize_text(uf.value) == normalized_input:
+            return uf.name
+
+    return None

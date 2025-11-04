@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Utilitário `convert_name_to_uf`
+
 ## [2.3.0] - 2025-10-07
 
 ### Added

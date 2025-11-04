@@ -5,7 +5,7 @@ from urllib.request import urlopen
 
 from brutils.data.enums import UF
 from brutils.exceptions import CEPNotFound, InvalidCEP
-from brutils.types import Address
+from brutils.schemas import Address
 
 # FORMATTING
 ############

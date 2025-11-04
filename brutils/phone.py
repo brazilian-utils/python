@@ -4,7 +4,7 @@ from random import choice, randint
 
 # FORMATTING
 ############
-def format_phone(phone):  # type: (str) -> str
+def format_phone(phone: str) -> str | None:
     """
     Function responsible for formatting a telephone number
 
@@ -34,7 +34,7 @@ def format_phone(phone):  # type: (str) -> str
 ############
 
 
-def is_valid(phone_number, type=None):  # type: (str, str) -> bool
+def is_valid(phone_number: str, type: str = None) -> bool:
     """
     Returns if a Brazilian phone number is valid.
     It does not verify if the number actually exists.
@@ -58,7 +58,7 @@ def is_valid(phone_number, type=None):  # type: (str, str) -> bool
     return _is_valid_landline(phone_number) or _is_valid_mobile(phone_number)
 
 
-def remove_symbols_phone(phone_number):  # type: (str) -> str
+def remove_symbols_phone(phone_number: str) -> str:
     """
     Removes common symbols from a Brazilian phone number string.
 
@@ -80,7 +80,7 @@ def remove_symbols_phone(phone_number):  # type: (str) -> str
     return cleaned_phone
 
 
-def generate(type=None):  # type: (str) -> str
+def generate(type: str = None) -> str:
     """
     Generate a valid and random phone number.
 
@@ -110,7 +110,7 @@ def generate(type=None):  # type: (str) -> str
     return choice(generate_functions)()
 
 
-def remove_international_dialing_code(phone_number):  # type: (str) -> str
+def remove_international_dialing_code(phone_number: str) -> str:
     """
     Function responsible for remove a international code phone
 
@@ -141,7 +141,7 @@ def remove_international_dialing_code(phone_number):  # type: (str) -> str
         return phone_number
 
 
-def _is_valid_mobile(phone_number: str):  # type: (str) -> bool
+def _is_valid_mobile(phone_number: str) -> bool:
     """
     Returns if a Brazilian mobile number is valid.
     It does not verify if the number actually exists.
@@ -162,7 +162,7 @@ def _is_valid_mobile(phone_number: str):  # type: (str) -> bool
     )
 
 
-def _is_valid_landline(phone_number: str):  # type: (str) -> bool
+def _is_valid_landline(phone_number: str) -> bool:
     """
     Returns if a Brazilian landline number is valid.
     It does not verify if the number actually exists.
@@ -183,14 +183,14 @@ def _is_valid_landline(phone_number: str):  # type: (str) -> bool
     )
 
 
-def _generate_ddd_number():  # type() -> str
+def _generate_ddd_number() -> str:
     """
     Generate a valid DDD number.
     """
     return f'{"".join([str(randint(1, 9)) for i in range(2)])}'
 
 
-def _generate_mobile_phone():
+def _generate_mobile_phone() -> str:
     """
     Generate a valid and random mobile phone number
     """
@@ -202,7 +202,7 @@ def _generate_mobile_phone():
     return phone_number
 
 
-def _generate_landline_phone():  # type () -> str
+def _generate_landline_phone() -> str:
     """
     Generate a valid and random landline phone number.
     """

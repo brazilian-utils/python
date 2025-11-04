@@ -91,9 +91,10 @@ False
   - [generate_voter_id](#generate_voter_id)
 - [IBGE](#ibge)
   - [convert_code_to_uf](#convert_code_to_uf)
+  - [convert_uf_to_name](#convert_uf_to_name)
+  - [convert_name_to_uf](#convert_name_to_uf)
   - [get_code_by_municipality_name](#get_code_by_municipality_name)
   - [get\_municipality\_by\_code](#get_municipality_by_code)
-  - [convert_uf_to_name](#convert_uf_to_name)
 - [Holidays](#holidays)
   - [is_holiday](#is_holiday)
 - [Monetary](#monetary)
@@ -1220,6 +1221,33 @@ Example:
 'São Paulo'
 >>> convert_uf_to_name('rj')
 'Rio de Janeiro'
+```
+
+### convert_name_to_uf
+Converts a Brazilian state name to its UF code.
+
+This function takes the full name of a Brazilian state and returns its corresponding two-letter UF code. The comparison is case-insensitive and ignores accents.
+
+Args:
+  * state_name (str): The full name of the state (e.g., 'São Paulo', 'sao paulo').
+
+Returns:
+  * str | None: The UF code if found, or None if the state name is invalid.
+
+Example:
+
+```python
+>>> from brutils.ibge.uf import convert_name_to_uf
+>>> convert_name_to_uf('São Paulo')
+'SP'
+>>> convert_name_to_uf('sao paulo')
+'SP'
+>>> convert_name_to_uf('Rio de Janeiro')
+'RJ'
+>>> convert_name_to_uf('rio de janeiro')
+'RJ'
+>>> convert_name_to_uf('Invalid State')
+>>>
 ```
 
 ## Holidays
