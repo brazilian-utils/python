@@ -1,13 +1,13 @@
 import re
 from random import choice, randint
 from string import ascii_uppercase
-from typing import Optional
+from typing import Literal
 
 # FORMATTING
 ############
 
 
-def convert_to_mercosul(license_plate: str) -> Optional[str]:
+def convert_to_mercosul(license_plate: str) -> str | None:
     """
     Converts an old pattern license plate (LLLNNNN) to a Mercosul format
     (LLLNLNN).
@@ -17,7 +17,7 @@ def convert_to_mercosul(license_plate: str) -> Optional[str]:
                              old pattern license plate.
 
     Returns:
-        Optional[str]: The converted Mercosul license plate (LLLNLNN) or
+        str | None: The converted Mercosul license plate (LLLNLNN) or
                        'None' if the input is invalid.
 
     Example:
@@ -34,7 +34,7 @@ def convert_to_mercosul(license_plate: str) -> Optional[str]:
     return "".join(digits)
 
 
-def format_license_plate(license_plate: str) -> Optional[str]:
+def format_license_plate(license_plate: str) -> str | None:
     """
     Formats a license plate into the correct pattern.
     This function receives a license plate in any pattern (LLLNNNN or LLLNLNN)
@@ -44,7 +44,7 @@ def format_license_plate(license_plate: str) -> Optional[str]:
         license_plate (str): A license plate string.
 
     Returns:
-        Optional[str]: The formatted license plate string or 'None' if the
+        str | None: The formatted license plate string or 'None' if the
                        input is invalid.
 
     Example:
@@ -69,14 +69,16 @@ def format_license_plate(license_plate: str) -> Optional[str]:
 ############
 
 
-def is_valid(license_plate, type=None):  # type: (str, str) -> bool
+def is_valid(
+    license_plate: str, type: Literal["old_format", "mercosul"] | None = None
+) -> bool:
     """
     Returns if a Brazilian license plate number is valid.
     It does not verify if the plate actually exists.
 
     Args:
         license_plate (str): The license plate number to be validated.
-        type (str): "old_format" or "mercosul".
+        type (Literal["old_format", "mercosul"] | None): "old_format" or "mercosul".
                     If not specified, checks for one or another.
     Returns:
         bool: True if the plate number is valid. False otherwise.
@@ -101,7 +103,7 @@ def remove_symbols(license_plate_number: str) -> str:
                                     be removed.
 
     Returns:
-        str: The license plate number with the specified symbols removed.
+        str | None: The license plate number with the specified symbols removed.
 
     Example:
         >>> remove_symbols("ABC-123")
@@ -115,7 +117,7 @@ def remove_symbols(license_plate_number: str) -> str:
     return license_plate_number.replace("-", "")
 
 
-def get_format(license_plate: str) -> Optional[str]:
+def get_format(license_plate: str) -> str | None:
     """
     Return the format of a license plate. 'LLLNNNN' for the old pattern and
     'LLLNLNN' for the Mercosul one.
@@ -124,7 +126,7 @@ def get_format(license_plate: str) -> Optional[str]:
         license_plate (str): A license plate string without symbols.
 
     Returns:
-        str: The format of the license plate (LLLNNNN, LLLNLNN) or
+        str | None: The format of the license plate (LLLNNNN, LLLNLNN) or
              'None' if the format is invalid.
 
     Example:
@@ -145,7 +147,7 @@ def get_format(license_plate: str) -> Optional[str]:
     return None
 
 
-def generate(format="LLLNLNN"):  # type: (str) -> str | None
+def generate(format: str = "LLLNLNN") -> str | None:
     """
     Generate a valid license plate in the given format. In case no format is
     provided, it will return a license plate in the Mercosul format.
@@ -156,7 +158,7 @@ def generate(format="LLLNLNN"):  # type: (str) -> str | None
                       Mercosul one. Default is 'LLLNLNN'
 
     Returns:
-        str: A randomly generated license plate number or
+        str | None: A randomly generated license plate number or
              'None' if the format is invalid.
 
     Example:
