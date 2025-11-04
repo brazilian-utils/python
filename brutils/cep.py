@@ -11,7 +11,7 @@ from brutils.schemas import Address
 ############
 
 
-def remove_symbols(dirty):  # type: (str) -> str
+def remove_symbols(dirty: str) -> str:
     """
     Removes specific symbols from a given CEP (Postal Code).
 
@@ -34,7 +34,7 @@ def remove_symbols(dirty):  # type: (str) -> str
     return "".join(filter(lambda char: char not in ".-", dirty))
 
 
-def format_cep(cep):  # type: (str) -> str | None
+def format_cep(cep: str) -> str | None:
     """
     Formats a Brazilian CEP (Postal Code) into a standard format.
 
@@ -62,7 +62,7 @@ def format_cep(cep):  # type: (str) -> str | None
 ############
 
 
-def is_valid(cep):  # type: (str) -> bool
+def is_valid(cep: str) -> bool:
     """
     Checks if a CEP (Postal Code) is valid.
 
@@ -92,7 +92,7 @@ def is_valid(cep):  # type: (str) -> bool
     return isinstance(cep, str) and len(cep) == 8 and cep.isdigit()
 
 
-def generate():  # type: () -> str
+def generate() -> str:
     """
     Generates a random 8-digit CEP (Postal Code) number as a string.
 
@@ -113,7 +113,9 @@ def generate():  # type: () -> str
 
 
 # Reference: https://viacep.com.br/
-def get_address_from_cep(cep, raise_exceptions=False):  # type: (str, bool) -> Address | None
+def get_address_from_cep(
+    cep: str, raise_exceptions: bool = False
+) -> Address | None:
     """
     Fetches address information from a given CEP (Postal Code) using the ViaCEP API.
 
@@ -181,8 +183,8 @@ def get_address_from_cep(cep, raise_exceptions=False):  # type: (str, bool) -> A
 
 
 def get_cep_information_from_address(
-    federal_unit, city, street, raise_exceptions=False
-):  # type: (str, str, str, bool) -> list[Address] | None
+    federal_unit: str, city: str, street: str, raise_exceptions: bool = False
+) -> list[Address] | None:
     """
     Fetches CEP (Postal Code) options from a given address using the ViaCEP API.
 
