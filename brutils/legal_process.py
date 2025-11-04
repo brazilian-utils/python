@@ -3,16 +3,17 @@ import os
 import re
 from datetime import datetime
 from random import randint
+from typing import Final
 
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR = f"{ROOT_DIR}/data"
-VALID_IDS_FILE = f"{DATA_DIR}/legal_process_ids.json"
+ROOT_DIR: Final[str] = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR: Final[str] = f"{ROOT_DIR}/data"
+VALID_IDS_FILE: Final[str] = f"{DATA_DIR}/legal_process_ids.json"
 
 # FORMATTING
 ############
 
 
-def remove_symbols(legal_process: str):  # type: (str) -> str
+def remove_symbols(legal_process: str) -> str:
     """
     Removes specific symbols from a given legal process.
 
@@ -35,7 +36,7 @@ def remove_symbols(legal_process: str):  # type: (str) -> str
     return legal_process.replace(".", "").replace("-", "")
 
 
-def format_legal_process(legal_process_id):  # type: (str) -> (str)
+def format_legal_process(legal_process_id: str) -> str | None:
     """
     Format a legal process ID into a standard format.
 
@@ -68,7 +69,7 @@ def format_legal_process(legal_process_id):  # type: (str) -> (str)
 ############
 
 
-def is_valid(legal_process_id):  # type: (str) -> bool
+def is_valid(legal_process_id: str) -> bool:
     """
     Check if a legal process ID is valid.
 
@@ -112,7 +113,9 @@ def is_valid(legal_process_id):  # type: (str) -> bool
     ) and valid_process
 
 
-def generate(year=datetime.now().year, orgao=randint(1, 9)):  # type: (int, int) -> (str)
+def generate(
+    year: int = datetime.now().year, orgao: int = randint(1, 9)
+) -> str | None:
     """
     Generate a random legal process ID number.
 
@@ -153,7 +156,7 @@ def generate(year=datetime.now().year, orgao=randint(1, 9)):  # type: (int, int)
         return f"{NNNNNNN}{DD}{year}{orgao}{TR}{OOOO}"
 
 
-def _checksum(basenum):  # type: (int) -> str
+def _checksum(basenum: int) -> str:
     """
     Checksum to compute the verification digit for a Legal Process ID number.
     `basenum` needs to be a digit without the verification id.
