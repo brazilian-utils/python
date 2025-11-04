@@ -5,7 +5,7 @@ from random import randint
 ############
 
 
-def sieve(dirty):  # type: (str) -> str
+def sieve(dirty: str) -> str:
     """
     Removes specific symbols from a CNPJ (Brazilian Company Registration
     Number) string.
@@ -33,7 +33,7 @@ def sieve(dirty):  # type: (str) -> str
     return "".join(filter(lambda char: char not in "./-", dirty))
 
 
-def remove_symbols(dirty):  # type: (str) -> str
+def remove_symbols(dirty: str) -> str:
     """
     This function is an alias for the `sieve` function, offering a more
     descriptive name.
@@ -54,7 +54,7 @@ def remove_symbols(dirty):  # type: (str) -> str
     return sieve(dirty)
 
 
-def display(cnpj):  # type: (str) -> str
+def display(cnpj: str) -> str | None:
     """
     Will format an adequately formatted numbers-only CNPJ string,
     adding in standard formatting visual aid symbols for display.
@@ -90,7 +90,7 @@ def display(cnpj):  # type: (str) -> str
     )
 
 
-def format_cnpj(cnpj):  # type: (str) -> str
+def format_cnpj(cnpj: str) -> str | None:
     """
     Formats a CNPJ (Brazilian Company Registration Number) string for visual
     display.
@@ -124,7 +124,7 @@ def format_cnpj(cnpj):  # type: (str) -> str
 ############
 
 
-def validate(cnpj):  # type: (str) -> bool
+def validate(cnpj: str) -> bool:
     """
     Validates a CNPJ (Brazilian Company Registration Number) by comparing its
     verifying checksum digits to its base number.
@@ -158,7 +158,7 @@ def validate(cnpj):  # type: (str) -> bool
     )
 
 
-def is_valid(cnpj):  # type: (str) -> bool
+def is_valid(cnpj: str) -> bool:
     """
     Returns whether or not the verifying checksum digits of the given `cnpj`
     match its base number.
@@ -183,7 +183,7 @@ def is_valid(cnpj):  # type: (str) -> bool
     return isinstance(cnpj, str) and validate(cnpj)
 
 
-def generate(branch=1):  # type: (int) -> str
+def generate(branch: int = 1) -> str:
     """
     Generates a random valid CNPJ digit string. An optional branch number
     parameter can be given; it defaults to 1.
@@ -209,7 +209,7 @@ def generate(branch=1):  # type: (int) -> str
     return base + _checksum(base)
 
 
-def _hashdigit(cnpj, position):  # type: (str, int) -> int
+def _hashdigit(cnpj: str, position: int) -> int:
     """
     Calculates the checksum digit at the given `position` for the provided
     `cnpj`. The input must contain all elements before `position`.
@@ -235,7 +235,7 @@ def _hashdigit(cnpj, position):  # type: (str, int) -> int
     return 0 if val < 2 else 11 - val
 
 
-def _checksum(basenum):  # type: (str) -> str
+def _checksum(basenum: str) -> str:
     """
     Calculates the verifying checksum digits for a given CNPJ base number.
 
