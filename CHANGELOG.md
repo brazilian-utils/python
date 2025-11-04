@@ -13,6 +13,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utilitário `is_valid_legal_nature` [#641](https://github.com/brazilian-utils/python/issues/641)
 - Utilitário `get_legal_nature_description` [#641](https://github.com/brazilian-utils/python/issues/641)
 - Utilitário `list_all_legal_nature` [#641](https://github.com/brazilian-utils/python/issues/641)
+- Utilitário `is_valid_cnh` [#651](https://github.com/brazilian-utils/brutils-python/pull/651)
+
+### Fixed
+
+- Suporte a anotações modernas no `brutils/cep.py` [#637](https://github.com/brazilian-utils/python/pull/637)
+
+### Fixed
+
+- Suporte a anotações modernas `legal_process` [#622](https://github.com/brazilian-utils/brutils-python/pull/634)
+
+### Fixed
+
+- Suporte a anotações modernas `voter_id` [#623](https://github.com/brazilian-utils/brutils-python/pull/638)
 
 ## [2.3.0] - 2025-10-07
 
