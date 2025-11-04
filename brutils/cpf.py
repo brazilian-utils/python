@@ -4,7 +4,7 @@ from random import randint
 ############
 
 
-def sieve(dirty):  # type: (str) -> str
+def sieve(dirty: str) -> str:
     """
     Removes specific symbols from a CPF (Brazilian Individual Taxpayer Number)
     string.
@@ -32,7 +32,7 @@ def sieve(dirty):  # type: (str) -> str
     return "".join(filter(lambda char: char not in ".-", dirty))
 
 
-def remove_symbols(dirty):  # type: (str) -> str
+def remove_symbols(dirty: str) -> str:
     """
     Alias for the `sieve` function. Better naming.
 
@@ -46,7 +46,7 @@ def remove_symbols(dirty):  # type: (str) -> str
     return sieve(dirty)
 
 
-def display(cpf):  # type: (str) -> str
+def display(cpf: str) -> str:
     """
     Format a CPF for display with visual aid symbols.
 
@@ -77,7 +77,7 @@ def display(cpf):  # type: (str) -> str
     return "{}.{}.{}-{}".format(cpf[:3], cpf[3:6], cpf[6:9], cpf[9:])
 
 
-def format_cpf(cpf):  # type: (str) -> str
+def format_cpf(cpf: str) -> str:
     """
     Format a CPF for display with visual aid symbols.
 
@@ -108,7 +108,7 @@ def format_cpf(cpf):  # type: (str) -> str
 ############
 
 
-def validate(cpf):  # type: (str) -> bool
+def validate(cpf: str) -> bool:
     """
     Validate the checksum digits of a CPF.
 
@@ -139,7 +139,7 @@ def validate(cpf):  # type: (str) -> bool
     return all(_hashdigit(cpf, i + 10) == int(v) for i, v in enumerate(cpf[9:]))
 
 
-def is_valid(cpf):  # type: (str) -> bool
+def is_valid(cpf: str) -> bool:
     """
     Returns whether or not the verifying checksum digits of the given `˜CPF`
     match its base number.
@@ -164,7 +164,7 @@ def is_valid(cpf):  # type: (str) -> bool
     return isinstance(cpf, str) and validate(cpf)
 
 
-def generate():  # type: () -> str
+def generate() -> str:
     """
     Generate a random valid CPF digit string.
 
@@ -185,7 +185,7 @@ def generate():  # type: () -> str
     return base + _checksum(base)
 
 
-def _hashdigit(cpf, position):  # type: (str, int) -> int
+def _hashdigit(cpf: str, position: int) -> int:
     """
     Compute the given position checksum digit for a CPF.
 
@@ -219,7 +219,7 @@ def _hashdigit(cpf, position):  # type: (str, int) -> int
     return 0 if val < 2 else 11 - val
 
 
-def _checksum(basenum):  # type: (str) -> str
+def _checksum(basenum: str) -> str:
     """
     Compute the checksum digits for a given CPF base number.
 
