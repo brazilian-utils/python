@@ -20,6 +20,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Suporte a anotações modernas `legal_process` [#622](https://github.com/brazilian-utils/brutils-python/pull/634)
 
+### Fixed
+
+- Suporte a anotações modernas `voter_id` [#623](https://github.com/brazilian-utils/brutils-python/pull/638)
+
 ## [2.3.0] - 2025-10-07
 
 ### Added
