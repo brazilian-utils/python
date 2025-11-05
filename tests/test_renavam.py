@@ -7,7 +7,6 @@ class TestRENAVAM(TestCase):
     def test_is_valid_renavam(self):
         self.assertTrue(is_valid_renavam("86769597308"))
         self.assertFalse(is_valid_renavam("12345678901"))
-
         self.assertFalse(is_valid_renavam("1234567890a"))
         self.assertFalse(is_valid_renavam("12345678 901"))
         self.assertFalse(is_valid_renavam("12345678"))
