@@ -18,6 +18,7 @@ class TestIsValid(TestCase):
         # test a valid voter id number
         voter_id = "217633460930"
         self.assertIs(is_valid(voter_id), True)
+        self.assertIsInstance(is_valid(voter_id), bool)
 
     def test_invalid_voter_id(self):
         # test an invalid voter id number (dv1 & UF fail)
@@ -59,12 +60,18 @@ class TestIsValid(TestCase):
         verifying_digits = _get_verifying_digits(voter_id)
 
         self.assertEqual(sequential_number, "12345678")
+        self.assertIsInstance(sequential_number, str)
+
         self.assertEqual(federative_union, "AB")
+        self.assertIsInstance(federative_union, str)
+
         self.assertEqual(verifying_digits, "12")
+        self.assertIsInstance(verifying_digits, str)
 
     def test_valid_length_verify(self):
         voter_id = "123456789012"
         self.assertIs(_is_length_valid(voter_id), True)
+        self.assertIsInstance(_is_length_valid(voter_id), bool)
 
     def test_invalid_length_verify(self):
         voter_id = "12345678AB123"  # Invalid length
@@ -79,6 +86,7 @@ class TestIsValid(TestCase):
         self.assertIs(_calculate_vd1("42750359", "02"), 1)
         # test edge case: rest is 10, declare vd1 as 0
         self.assertIs(_calculate_vd1("73146415", "03"), 0)
+        self.assertIsInstance(_calculate_vd1("73146415", "03"), int)
 
     def test_calculate_vd2(self):
         self.assertIs(_calculate_vd2("02", 7), 2)
@@ -90,6 +98,7 @@ class TestIsValid(TestCase):
         # edge case: if UF is "02" (for MG) and rest == 0
         # declare dv2 as 1 instead
         self.assertIs(_calculate_vd2("02", 8), 1)
+        self.assertIsInstance(_calculate_vd2("02", 8), int)
 
     def test_generate_voter_id(self):
         # test if is_valid a voter id from MG
@@ -103,13 +112,16 @@ class TestIsValid(TestCase):
         # test if is_valid a voter id from foreigner
         voter_id = generate()
         self.assertIs(is_valid(voter_id), True)
+        self.assertIsInstance(voter_id, str)
 
         # test if UF is not valid
         voter_id = generate(federative_union="XX")
         self.assertIs(is_valid(voter_id), False)
+        self.assertIsNone(voter_id)
 
     def test_format_voter_id(self):
         self.assertEqual(format_voter_id("277627122852"), "2776 2712 28 52")
+        self.assertIsInstance(format_voter_id("277627122852"), str)
         self.assertIsNone(format_voter_id("00000000000"))
         self.assertIsNone(format_voter_id("0000000000a"))
         self.assertIsNone(format_voter_id("000000000000"))
