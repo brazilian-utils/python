@@ -88,6 +88,8 @@ False
   - [format\_legal\_process](#format_legal_process)
   - [remove\_symbols\_legal\_process](#remove_symbols_legal_process)
   - [generate\_legal\_process](#generate_legal_process)
+- [RENAVAM](#renavam)
+  - [is_valid_renavam](#is_valid_renavam)
 - [Titulo Eleitoral](#titulo-eleitoral)
   - [is\_valid\_voter\_id](#is_valid_voter_id)
   - [format\_voter\_id](#format_voter_id)
@@ -1444,6 +1446,31 @@ Retorna uma cópia do dicionário completo `{codigo: descricao}`.
 True
 >>> data["2062"]                 
 'Sociedade Empresária Limitada'
+## RENAVAM
+
+### is_valid_renavam
+
+Valida se os dígitos de verificação do RENAVAM fornecido
+correspondem aos seus 10 dígitos iniciais. Esta função não verifica a existência do veículo;
+ela apenas valida o formato da string e o dígito verificador.
+
+Argumentos:
+
+- renavam (str): O RENAVAM a ser validado, uma string de 11 dígitos.
+
+Retorna:
+
+- bool: Verdadeiro se o RENAVAM for válido  
+  Falso caso contrário.
+
+Exemplo:
+
+```python
+>>> from brutils import is_valid_renavam
+>>> is_valid_renavam("86769597308")
+True
+>>> is_valid_renavam("12345678901")
+False
 ```
 
 # Novos Utilitários e Reportar Bugs

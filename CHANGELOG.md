@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utilitário `get_legal_nature_description` [#641](https://github.com/brazilian-utils/python/issues/641)
 - Utilitário `list_all_legal_nature` [#641](https://github.com/brazilian-utils/python/issues/641)
 - Utilitário `is_valid_cnh` [#651](https://github.com/brazilian-utils/brutils-python/pull/651)
+- Utilitário `is_valid_renavam` [#652](https://github.com/brazilian-utils/brutils-python/pull/652)
 
 ### Fixed
 
