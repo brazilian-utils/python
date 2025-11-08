@@ -104,6 +104,10 @@ False
 - [Monetary](#monetary)
   - [format_currency](#format_currency)
   - [convert\_real\_to\_text](#convert_real_to_text)
+- [Legal Nature](#legal-nature)
+  - [is_valid_legal_nature](#is_valid_legal_nature)
+  - [get_legal_nature_description](#get_legal_nature_description)
+  - [list_all_legal_nature](#list_all_legal_nature)
 
 ## CPF
 
@@ -1381,6 +1385,72 @@ Example:
 None
 ```
 
+## Legal Nature
+
+### is_valid_legal_nature
+
+Validates if the given code exists in the official table. Accepts `NNNN` or `NNN-N`.
+The value is **normalized** before checking: removes spaces, keeps only digits, and accepts a hyphen between the 3rd and 4th digits.
+
+**Arguments**
+- `code (str)`: 4-digit code (e.g.: `"2062"` or `"206-2"`)
+
+**Returns**
+- `bool`: `True` if it exists in the table, `False` otherwise.
+
+**Example**
+```python
+>>> from brutils import legal_nature
+>>> legal_nature.is_valid("2062")
+True
+>>> legal_nature.is_valid("206-2")
+True
+>>> legal_nature.is_valid("9999")
+False
+```
+
+### get_legal_nature_description
+
+Returns the **official description** for the Legal Nature code. Accepts `NNNN` or `NNN-N`. Applies the same normalization as `is_valid`.
+
+**Arguments**
+
+  * `code (str)`: 4-digit code
+
+**Returns**
+
+  * `str | None`: The corresponding description or `None` if the code is invalid or non-existent.
+
+**Example**
+
+```python
+>>> from brutils import legal_nature
+>>> legal_nature.get_description("2062")
+'Sociedade Empresária Limitada'
+>>> legal_nature.get_description("101-5")
+'Órgão Público do Poder Executivo Federal'
+>>> legal_nature.get_description("0000")
+None
+```
+
+### list_all_legal_nature
+
+Returns a copy of the complete dictionary `{code: description}`.
+
+**Returns**
+
+  * `dict[str, str]`: Mapping of all codes to their descriptions.
+
+**Example**
+
+```python
+>>> from brutils import legal_nature
+>>> data = legal_nature.list_all()
+>>> len(data) > 0
+True
+>>> data["2062"]
+'Sociedade Empresária Limitada'
+```
 ## RENAVAM
 
 ### is_valid_renavam

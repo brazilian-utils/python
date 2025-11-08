@@ -43,6 +43,11 @@ from brutils.ibge.uf import (
     convert_uf_to_name,
 )
 
+# Legal Nature imports
+from brutils.legal_nature import get_description as get_natureza_legal_nature
+from brutils.legal_nature import is_valid as is_valid_legal_nature
+from brutils.legal_nature import list_all as list_all_legal_nature
+
 # Legal Process Imports
 from brutils.legal_process import format_legal_process
 from brutils.legal_process import generate as generate_legal_process
@@ -146,4 +151,8 @@ __all__ = [
     # Currency
     "format_currency",
     "convert_real_to_text",
+    # Legal Nature
+    "is_valid_legal_nature",
+    "get_natureza_legal_nature",
+    "list_all_legal_nature",
 ]

@@ -105,6 +105,10 @@ False
 - [Monetário](#monetário)
   - [format\_currency](#format_currency)
   - [convert\_real\_to\_text](#convert_real_to_text)
+- [Natureza Jurídica](#natureza-jurídica)
+  - [is_valid_legal_nature](#is_valid_legal_nature)
+  - [get_legal_nature_description](#get_legal_nature_description)
+  - [list_all_legal_nature](#list_all_legal_nature)
 
 ## CPF
 
@@ -1377,6 +1381,71 @@ Exemplo:
 None
 ```
 
+## Natureza Jurídica
+
+### is_valid_legal_nature
+
+Valida se o código informado existe na tabela oficial. Aceita `NNNN` ou `NNN-N`.  
+O valor é **normalizado** antes da checagem: remove espaços, mantém apenas dígitos e aceita hífen entre o 3º e 4º dígitos.
+
+**Argumentos**
+- `code (str)`: Código de 4 dígitos (ex.: `"2062"` ou `"206-2"`)
+
+**Retorna**
+- `bool`: `True` se existir na tabela, `False` caso contrário.
+
+**Exemplo**
+```python
+>>> from brutils import legal_nature
+>>> legal_nature.is_valid("2062")   
+True
+>>> legal_nature.is_valid("206-2")  
+True
+>>> legal_nature.is_valid("9999")   
+False
+```
+
+### get_legal_nature_description
+
+Retorna a **descrição oficial** do código de Natureza Jurídica. Aceita `NNNN` ou `NNN-N`. Aplica a mesma normalização do `is_valid`.
+
+**Argumentos**
+
+* `code (str)`: Código de 4 dígitos
+
+**Retorna**
+
+* `str | None`: Descrição correspondente ou `None` se o código for inválido ou inexistente.
+
+**Exemplo**
+
+```python
+>>> from brutils import legal_nature
+>>> legal_nature.get_description("2062")   
+'Sociedade Empresária Limitada'
+>>> legal_nature.get_description("101-5")  
+'Órgão Público do Poder Executivo Federal'
+>>> legal_nature.get_description("0000")   
+None
+```
+
+### list_all_legal_nature
+
+Retorna uma cópia do dicionário completo `{codigo: descricao}`.
+
+**Retorna**
+
+* `dict[str, str]`: Mapeamento de todos os códigos para suas descrições.
+
+**Exemplo**
+
+```python
+>>> from brutils import legal_nature 
+>>> data = legal_nature.list_all()
+>>> len(data) > 0               
+True
+>>> data["2062"]                 
+'Sociedade Empresária Limitada'
 ## RENAVAM
 
 ### is_valid_renavam
