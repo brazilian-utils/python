@@ -88,6 +88,8 @@ False
   - [format\_legal\_process](#format_legal_process)
   - [remove\_symbols\_legal\_process](#remove_symbols_legal_process)
   - [generate\_legal\_process](#generate_legal_process)
+- [RENAVAM](#renavam)
+  - [is_valid_renavam](#is_valid_renavam)
 - [Titulo Eleitoral](#titulo-eleitoral)
   - [is\_valid\_voter\_id](#is_valid_voter_id)
   - [format\_voter\_id](#format_voter_id)
@@ -103,6 +105,10 @@ False
 - [Monetário](#monetário)
   - [format\_currency](#format_currency)
   - [convert\_real\_to\_text](#convert_real_to_text)
+- [Natureza Jurídica](#natureza-jurídica)
+  - [is_valid_legal_nature](#is_valid_legal_nature)
+  - [get_legal_nature_description](#get_legal_nature_description)
+  - [list_all_legal_nature](#list_all_legal_nature)
 
 ## CPF
 
@@ -1368,6 +1374,98 @@ Exemplo:
 'Menos cinquenta reais e vinte e cinco centavos'
 >>> convert_real_to_text("invalid")
 None
+```
+
+## Natureza Jurídica
+
+### is_valid_legal_nature
+
+Valida se o código informado existe na tabela oficial. Aceita `NNNN` ou `NNN-N`.  
+O valor é **normalizado** antes da checagem: remove espaços, mantém apenas dígitos e aceita hífen entre o 3º e 4º dígitos.
+
+**Argumentos**
+- `code (str)`: Código de 4 dígitos (ex.: `"2062"` ou `"206-2"`)
+
+**Retorna**
+- `bool`: `True` se existir na tabela, `False` caso contrário.
+
+**Exemplo**
+```python
+>>> from brutils import legal_nature
+>>> legal_nature.is_valid("2062")   
+True
+>>> legal_nature.is_valid("206-2")  
+True
+>>> legal_nature.is_valid("9999")   
+False
+```
+
+### get_legal_nature_description
+
+Retorna a **descrição oficial** do código de Natureza Jurídica. Aceita `NNNN` ou `NNN-N`. Aplica a mesma normalização do `is_valid`.
+
+**Argumentos**
+
+* `code (str)`: Código de 4 dígitos
+
+**Retorna**
+
+* `str | None`: Descrição correspondente ou `None` se o código for inválido ou inexistente.
+
+**Exemplo**
+
+```python
+>>> from brutils import legal_nature
+>>> legal_nature.get_description("2062")   
+'Sociedade Empresária Limitada'
+>>> legal_nature.get_description("101-5")  
+'Órgão Público do Poder Executivo Federal'
+>>> legal_nature.get_description("0000")   
+None
+```
+
+### list_all_legal_nature
+
+Retorna uma cópia do dicionário completo `{codigo: descricao}`.
+
+**Retorna**
+
+* `dict[str, str]`: Mapeamento de todos os códigos para suas descrições.
+
+**Exemplo**
+
+```python
+>>> from brutils import legal_nature 
+>>> data = legal_nature.list_all()
+>>> len(data) > 0               
+True
+>>> data["2062"]                 
+'Sociedade Empresária Limitada'
+## RENAVAM
+
+### is_valid_renavam
+
+Valida se os dígitos de verificação do RENAVAM fornecido
+correspondem aos seus 10 dígitos iniciais. Esta função não verifica a existência do veículo;
+ela apenas valida o formato da string e o dígito verificador.
+
+Argumentos:
+
+- renavam (str): O RENAVAM a ser validado, uma string de 11 dígitos.
+
+Retorna:
+
+- bool: Verdadeiro se o RENAVAM for válido  
+  Falso caso contrário.
+
+Exemplo:
+
+```python
+>>> from brutils import is_valid_renavam
+>>> is_valid_renavam("86769597308")
+True
+>>> is_valid_renavam("12345678901")
+False
 ```
 
 # Novos Utilitários e Reportar Bugs
