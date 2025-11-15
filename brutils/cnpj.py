@@ -103,7 +103,7 @@ def format_cnpj(cnpj: str) -> str | None:
 
     Returns:
         str: The formatted CNPJ with visual aid symbols if it's valid,
-             None if it's not valid.
+             raises ValueError if it's not valid.
 
     Example:
         >>> format_cnpj("03560714000142")
@@ -113,7 +113,9 @@ def format_cnpj(cnpj: str) -> str | None:
     """
 
     if not is_valid(cnpj):
-        return None
+        raise ValueError(
+            "CPNJ inválido: formato incorreto ou digito de verificação inválido."
+        )
 
     return "{}.{}.{}/{}-{}".format(
         cnpj[:2], cnpj[2:5], cnpj[5:8], cnpj[8:12], cnpj[12:14]

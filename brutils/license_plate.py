@@ -44,16 +44,14 @@ def format_license_plate(license_plate: str) -> str | None:
         license_plate (str): A license plate string.
 
     Returns:
-        str | None: The formatted license plate string or 'None' if the
-                       input is invalid.
+        str: The formatted license plate string or raises ValueError if the
+        input is invalid.
 
     Example:
         >>> format("ABC1234") # old format (contains a dash)
         'ABC-1234'
         >>> format("abc1e34") # mercosul format
         'ABC1E34'
-        >>> format("ABC123")
-        None
     """
 
     license_plate = license_plate.upper()
@@ -62,7 +60,7 @@ def format_license_plate(license_plate: str) -> str | None:
     elif _is_valid_mercosul(license_plate):
         return license_plate.upper()
 
-    return None
+    raise ValueError("Número de placa inválido")
 
 
 # OPERATIONS

@@ -41,7 +41,7 @@ def format_pis(pis: str) -> str:
 
     Returns:
         str: A formatted PIS string with standard visual aid symbols
-        or None if the input is invalid.
+        or raises ValueError if the input is invalid.
 
     Example:
         >>> format_pis("12345678909")
@@ -51,7 +51,7 @@ def format_pis(pis: str) -> str:
     """
 
     if not is_valid(pis):
-        return None
+        raise ValueError("Número de PIS inválido")
 
     return "{}.{}.{}-{}".format(pis[:3], pis[3:8], pis[8:10], pis[10:11])
 

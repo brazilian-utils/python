@@ -45,8 +45,8 @@ def format_cep(cep: str) -> str | None:
         cep (str): The input CEP (Postal Code) to be formatted.
 
     Returns:
-        str: The formatted CEP in the "12345-678" format if it's valid,
-             None if it's not valid.
+        str: The formatted CEP in the "12345-678" format if it's valid or
+        raises ValueError if it's not valid.
 
     Example:
         >>> format_cep("12345678")
@@ -55,7 +55,10 @@ def format_cep(cep: str) -> str | None:
         None
     """
 
-    return f"{cep[:5]}-{cep[5:8]}" if is_valid(cep) else None
+    if not is_valid(cep):
+        raise ValueError("Número de CEP inválido")
+
+    return f"{cep[:5]}-{cep[5:8]}"
 
 
 # OPERATIONS

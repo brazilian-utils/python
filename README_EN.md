@@ -150,7 +150,7 @@ Args:
 Returns:
 
 - str: A formatted CPF string with standard visual aid symbols or
-         None if the input is invalid.
+         raises ValueError if the input is a invalid CPF.
 
 Example:
 
@@ -344,7 +344,7 @@ Args:
 Returns:
 
 - str: The formatted CEP in the "12345-678" format if it's valid,
-         None if it's not valid.
+    raises ValueError if it's not valid.
 
 Example:
 
@@ -354,8 +354,6 @@ Example:
 '01310-200'
 >>> format_cep("12345678")
 "12345-678"
->>> format_cep("12345")
-None
 ```
 
 ### remove_symbols_cep
@@ -745,7 +743,7 @@ Args:
 Returns:
 
 - str: The formatted license plate string or
-         'None' if the input is invalid.
+         raises ValueError if the input is invalid.
 
 Example:
 
@@ -762,9 +760,6 @@ Example:
 # mercosul format
 >>> format_license_plate("abc1d23")
 "ABC1D23"
-# mercosul format
->>> format_license_plate("ABCD123")
-None
 ```
 
 ### remove_symbols_license_plate
@@ -919,7 +914,7 @@ Args:
 
 Returns:
 
-- str: A formatted PIS string with standard visual aid symbols or None if the input is invalid.
+- str: A formatted PIS string with standard visual aid symbols or raises ValueError if the input is invalid.
 
 Example:
 

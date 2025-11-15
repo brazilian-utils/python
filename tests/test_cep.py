@@ -53,11 +53,12 @@ class TestIsValidToFormat(TestCase):
         # Checks if function is_valid_cnpj is called
         mock_is_valid.assert_called_once_with("01310200")
 
-    def test_when_cep_is_not_valid_returns_none(self, mock_is_valid):
+    def test_when_cep_is_not_valid_raises_value_error(self, mock_is_valid):
         mock_is_valid.return_value = False
 
-        # When cep isn't valid, returns None
-        self.assertIsNone(format_cep("013102009"))
+        # When cep isn't valid, raises ValueError
+        with self.assertRaises(ValueError):
+            format_cep("013102009")
 
 
 @patch("brutils.cep.urlopen")

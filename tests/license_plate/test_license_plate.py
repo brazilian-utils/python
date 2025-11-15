@@ -68,7 +68,9 @@ class TestLicensePlate(TestCase):
         self.assertEqual(format_license_plate("abc1234"), "ABC-1234")
         self.assertEqual(format_license_plate("ABC1D23"), "ABC1D23")
         self.assertEqual(format_license_plate("abc1d23"), "ABC1D23")
-        self.assertIsNone(format_license_plate("ABCD123"))
+        # When license place isn't valid, raises ValueError
+        with self.assertRaises(ValueError):
+            format_license_plate("ABCD123")
 
     def test_get_format(self):
         # Old format

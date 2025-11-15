@@ -102,11 +102,12 @@ class TestIsValidToFormat(TestCase):
         # Checks if function is_valid_cnpj is called
         mock_is_valid.assert_called_once_with("01838723000127")
 
-    def test_when_cnpj_is_not_valid_returns_none(self, mock_is_valid):
+    def test_when_cnpj_is_not_valid_raises_value_error(self, mock_is_valid):
         mock_is_valid.return_value = False
 
-        # When cnpj isn't valid, returns None
-        self.assertIsNone(format_cnpj("01838723000127"))
+        # When cnpj isn't valid, raises ValueError
+        with self.assertRaises(ValueError):
+            format_cnpj("01838723000127")
 
 
 if __name__ == "__main__":

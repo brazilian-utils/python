@@ -102,11 +102,12 @@ class TestIsValidToFormat(TestCase):
         # Checks if function is_valid_cpf is called
         mock_is_valid.assert_called_once_with("11144477735")
 
-    def test_when_cpf_is_not_valid_returns_none(self, mock_is_valid):
+    def test_when_cpf_is_not_valid_raises_value_error(self, mock_is_valid):
         mock_is_valid.return_value = False
 
-        # When cpf isn't valid, returns None
-        self.assertIsNone(format_cpf("11144477735"))
+        # When cpf isn't valid, raises ValueError
+        with self.assertRaises(ValueError):
+            format_cpf("11144477735")
 
 
 if __name__ == "__main__":

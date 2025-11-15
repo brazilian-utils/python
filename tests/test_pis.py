@@ -70,8 +70,9 @@ class TestPIS(TestCase):
     def test_format_invalid_pis(self, mock_is_valid):
         mock_is_valid.return_value = False
 
-        # When PIS isn't valid, returns None
-        self.assertIsNone(format_pis("14372195539"))
+        # When PIS isn't valid, raises ValueError
+        with self.assertRaises(ValueError):
+            format_pis("14372195539")
 
 
 if __name__ == "__main__":

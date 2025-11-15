@@ -150,7 +150,7 @@ Argumentos:
 Retorna:
 
 - str: O CPF formatado com símbolos visuais se for válido,
-         None se não for válido.
+         lança ValueError se o CPF não for válido.
 
 Exemplo:
 
@@ -343,8 +343,8 @@ Argumentos:
 
 Retorna:
 
-- str: O CEP formatado no formato "12345-678" se for válido, None se não for
-        válido.
+- str: O CEP formatado no formato "12345-678" se for válido, lança ValueError
+    se não for válido.
 
 Example:
 
@@ -354,8 +354,6 @@ Example:
 '01310-200'
 >>> format_cep("12345678")
 "12345-678"
->>> format_cep("12345")
-None
 ```
 
 ### remove_symbols_cep
@@ -752,7 +750,7 @@ Argumentos:
 Retorna:
 
 - str: A string da placa de carro formatada ou
-         'None' se a entrada for inválida.
+         lança ValueError se a entrada for inválida.
 
 Exemplo:
 
@@ -769,9 +767,6 @@ Exemplo:
 # formato mercosul
 >>> format_license_plate("abc1d23")
 "ABC1D23"
-# formato mercosul
->>> format_license_plate("ABCD123")
-None
 ```
 
 ### remove_symbols_license_plate
@@ -919,7 +914,7 @@ Argumentos:
 
 Retorna:
 
-- str: Uma string de PIS formatada com símbolos visuais padrão ou None se a entrada for inválida.
+- str: Uma string de PIS formatada com símbolos visuais padrão ou lança ValueError se a entrada for inválida.
 
 Exemplo:
 
