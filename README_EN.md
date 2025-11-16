@@ -29,6 +29,35 @@ the development of applications for the Brazilian business.
 pip install brutils
 ```
 
+## Installation for Windows Users 🪟
+
+Currently, **Brazilian Utils** does not have full native support for Windows.  
+To simplify the setup and execution of the project, we created a **PowerShell script (`setup_windows.ps1`)** that handles all the required configuration automatically.
+
+### Requirements
+
+Before running the script, make sure you have:
+
+- **Operating System:** Windows 11  
+- **Python 3.9 or higher**  
+  - You can use either the version installed via Microsoft Store or the standard one downloaded from the official website  
+- **Poetry:** it will be automatically installed by the script if not already present  
+
+> There’s no need to install Makefile, Chocolatey, or use WSL.  
+> The script automatically detects your environment, installs the required dependencies, and sets up everything for you.
+
+### Installation and Setup Steps
+
+1. Clone the repository:  
+   ```bash
+   git clone <REPO_URL>
+   cd brazilian-utils
+  ```
+2. Run the PowerShell script:
+```powershell
+  .\setup_windows.ps1
+```
+
 # Usage
 
 To use one of our utilities you just need to import the required function as in the example below:
