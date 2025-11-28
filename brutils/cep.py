@@ -2,6 +2,7 @@ from json import loads
 from random import randint
 from unicodedata import normalize
 from urllib.request import urlopen
+from re import sub
 
 from brutils.data.enums import UF
 from brutils.exceptions import CEPNotFound, InvalidCEP
@@ -10,52 +11,47 @@ from brutils.schemas import Address
 # FORMATTING
 ############
 
-
-def remove_symbols(dirty: str) -> str:
-    """
-    Removes specific symbols from a given CEP (Postal Code).
-
-    This function takes a CEP (Postal Code) as input and removes all occurrences
-    of the '.' and '-' characters from it.
-
-    Args:
-        cep (str): The input CEP (Postal Code) containing symbols to be removed.
-
-    Returns:
-        str: A new string with the specified symbols removed.
-
-    Example:
-        >>> remove_symbols("123-45.678.9")
-        "123456789"
-        >>> remove_symbols("abc.xyz")
-        "abcxyz"
-    """
-
-    return "".join(filter(lambda char: char not in ".-", dirty))
-
-
-def format_cep(cep: str) -> str | None:
+def format_cep(cep: str, only_nums=False) -> str | ValueError:
     """
     Formats a Brazilian CEP (Postal Code) into a standard format.
 
-    This function takes a CEP (Postal Code) as input and, if it is a valid
-    8-digit CEP, formats it into the standard "12345-678" format.
-
+    This function takes a CEP (Postal Code) as input and, 
+        - Removes special characteres;
+        - Check if the string follows the CEP length pattern;
+        - Returns ValueError if the string is out of the pattern;
+        - Return a string with the formatted CEP.
+        
     Args:
         cep (str): The input CEP (Postal Code) to be formatted.
 
     Returns:
         str: The formatted CEP in the "12345-678" format if it's valid,
-             None if it's not valid.
+             ValueError if it's not valid.
 
     Example:
         >>> format_cep("12345678")
         "12345-678"
+        >>> format_cep("  12.345/678 ", only_nums=True)
+        "12345678"
         >>> format_cep("12345")
-        None
+        ValueError("The value inputed doesn't fit with a CEP value")
     """
+    ### Checking data type
+    if not isinstance(cep, str):
+        return ValueError("The CEP value should be a string type")
+    
+    ### Removing special characteres
+    cep = sub('[^A-Za-z0-9]+', '', cep)
 
-    return f"{cep[:5]}-{cep[5:8]}" if is_valid(cep) else None
+    ### Checking CEP patterns
+    if len(cep) != 8:
+        return ValueError("The value inputed doesn't fit with a CEP value")
+    
+    ### Returning CEP value
+    if only_nums:
+        return cep
+    else:
+        return f"{cep[:5]}-{cep[5:]}"
 
 
 # OPERATIONS
@@ -156,7 +152,7 @@ def get_address_from_cep(
     """
     base_api_url = "https://viacep.com.br/ws/{}/json/"
 
-    clean_cep = remove_symbols(cep)
+    clean_cep = format_cep(cep, only_nums=True)
     cep_is_valid = is_valid(clean_cep)
 
     if not cep_is_valid:
