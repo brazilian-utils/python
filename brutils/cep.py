@@ -1,8 +1,8 @@
 from json import loads
 from random import randint
+from re import sub
 from unicodedata import normalize
 from urllib.request import urlopen
-from re import sub
 
 from brutils.data.enums import UF
 from brutils.exceptions import CEPNotFound, InvalidCEP
@@ -11,16 +11,17 @@ from brutils.schemas import Address
 # FORMATTING
 ############
 
+
 def format_cep(cep: str, only_nums=False) -> str | ValueError:
     """
     Formats a Brazilian CEP (Postal Code) into a standard format.
 
-    This function takes a CEP (Postal Code) as input and, 
+    This function takes a CEP (Postal Code) as input and,
         - Removes special characteres;
         - Check if the string follows the CEP length pattern;
         - Returns ValueError if the string is out of the pattern;
         - Return a string with the formatted CEP.
-        
+
     Args:
         cep (str): The input CEP (Postal Code) to be formatted.
 
@@ -39,14 +40,14 @@ def format_cep(cep: str, only_nums=False) -> str | ValueError:
     ### Checking data type
     if not isinstance(cep, str):
         return ValueError("The CEP value should be a string type")
-    
+
     ### Removing special characteres
-    cep = sub('[^A-Za-z0-9]+', '', cep)
+    cep = sub("[^A-Za-z0-9]+", "", cep)
 
     ### Checking CEP patterns
     if len(cep) != 8:
         return ValueError("The value inputed doesn't fit with a CEP value")
-    
+
     ### Returning CEP value
     if only_nums:
         return cep
