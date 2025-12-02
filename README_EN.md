@@ -334,12 +334,18 @@ False
 
 ### format_cep
 
-This function takes a CEP (Postal Code) as input and, if it is a valid
-8-digit CEP, formats it into the standard "12345-678" format.
+This function formats a brazillian postal code (CEP) in the standard format.
+It receives a CEP as input, removes all special characters, validates if the
+CEP is 8 digits long, and returns the standard format "12345-678" or only the
+numbers "12345678" if the parameters only_nums is setted as True.
 
 Args:
 
 - cep (str): The input CEP (Postal Code) to be formatted.
+
+- only_nums (bool): The default value is False, in case of the True value be
+                    inputed, the function will return a string with only 
+                    numbers
 
 Returns:
 
@@ -352,35 +358,14 @@ Example:
 >>> from brutils import format_cep
 >>> format_cep('01310200')
 '01310-200'
->>> format_cep("12345678")
+>>> format_cep("  12.345_678  ")
+"12345-678"
+>>> format_cep("12345678", only_nums=True)
 "12345-678"
 >>> format_cep("12345")
-None
-```
-
-### remove_symbols_cep
-
-This function takes a CEP (Postal Code) as input and removes all occurrences of
-the '.' and '-' characters from it.
-
-Args:
-
-- cep (str): The input CEP (Postal Code) containing symbols to be removed.
-
-Returns:
-
-- str: A new string with the specified symbols removed.
-
-Example:
-
-```python
->>> from brutils import remove_symbols_cep
->>> remove_symbols_cep('01310-200')
-'01310200'
->>> remove_symbols_cep("123-45.678.9")
-"123456789"
->>> remove_symbols_cep("abc.xyz")
-"abcxyz"
+ValueError
+>>> format_cep("ac345-564")
+"ac345-564"
 ```
 
 ### generate_cep
