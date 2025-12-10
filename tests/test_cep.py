@@ -17,9 +17,9 @@ class TestCEP(TestCase):
         self.assertEqual(format_cep("00000000"), "00000-000")
         self.assertEqual(format_cep("01310-200", only_nums=True), "01310200")
         self.assertEqual(format_cep("01..310.-200.-"), "01310-200")
-        self.assertIsInstance(format_cep("abc01310200*!*&#"), ValueError)
-        self.assertIsInstance(
-            format_cep("ab.c1.--.3-102.-0-.0-.*.-!*&#"), ValueError
+        self.assertEqual(format_cep("abc01310200*!*&#"), None)
+        self.assertEqual(
+            format_cep("ab.c1.--.3-102.-0-.0-.*.-!*&#"), None
         )
 
     def test_is_valid(self):
@@ -51,8 +51,8 @@ class TestIsValidToFormat(TestCase):
     def test_when_cep_is_not_valid_returns_error(self, mock_is_valid):
         mock_is_valid.return_value = False
 
-        # When cep isn't valid, returns ValueError
-        self.assertIsInstance(format_cep("013102009"), ValueError)
+        # When cep isn't valid, returns None
+        self.assertEqual(format_cep("013102009"), None)
 
 
 @patch("brutils.cep.urlopen")

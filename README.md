@@ -361,7 +361,7 @@ Example:
 >>> format_cep("12345678", only_nums=True)
 "12345-678"
 >>> format_cep("12345")
-ValueError
+None
 >>> format_cep("ac345-564")
 "ac345-564"
 ```

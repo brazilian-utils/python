@@ -1,6 +1,5 @@
 from json import loads
 from random import randint
-from re import sub
 from unicodedata import normalize
 from urllib.request import urlopen
 
@@ -12,14 +11,14 @@ from brutils.schemas import Address
 ############
 
 
-def format_cep(cep: str, only_nums=False) -> str | ValueError:
+def format_cep(cep: str, only_nums=False) -> str | None:
     """
     Formats a Brazilian CEP (Postal Code) into a standard format.
 
     This function takes a CEP (Postal Code) as input and,
         - Removes special characteres;
         - Check if the string follows the CEP length pattern;
-        - Returns ValueError if the string is out of the pattern;
+        - Returns None if the string is out of the pattern;
         - Return a string with the formatted CEP.
 
     Args:
@@ -27,7 +26,7 @@ def format_cep(cep: str, only_nums=False) -> str | ValueError:
 
     Returns:
         str: The formatted CEP in the "12345-678" format if it's valid,
-             ValueError if it's not valid.
+             None if it's not valid.
 
     Example:
         >>> format_cep("12345678")
@@ -35,18 +34,18 @@ def format_cep(cep: str, only_nums=False) -> str | ValueError:
         >>> format_cep("  12.345/678 ", only_nums=True)
         "12345678"
         >>> format_cep("12345")
-        ValueError("The value inputed doesn't fit with a CEP value")
+        None
     """
     ### Checking data type
     if not isinstance(cep, str):
-        return ValueError("The CEP value should be a string type")
+        return None
 
     ### Removing special characteres
-    cep = sub("[^A-Za-z0-9]+", "", cep)
+    cep = "".join(filter(str.isalnum, cep))
 
     ### Checking CEP patterns
     if len(cep) != 8:
-        return ValueError("The value inputed doesn't fit with a CEP value")
+        return None
 
     ### Returning CEP value
     if only_nums:
