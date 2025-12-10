@@ -18,9 +18,7 @@ class TestCEP(TestCase):
         self.assertEqual(format_cep("01310-200", only_nums=True), "01310200")
         self.assertEqual(format_cep("01..310.-200.-"), "01310-200")
         self.assertEqual(format_cep("abc01310200*!*&#"), None)
-        self.assertEqual(
-            format_cep("ab.c1.--.3-102.-0-.0-.*.-!*&#"), None
-        )
+        self.assertEqual(format_cep("ab.c1.--.3-102.-0-.0-.*.-!*&#"), None)
 
     def test_is_valid(self):
         # When CEP is not string, returns False
