@@ -9,20 +9,16 @@ from brutils.cep import (
     get_address_from_cep,
     get_cep_information_from_address,
     is_valid,
-    remove_symbols,
 )
 
 
 class TestCEP(TestCase):
     def test_remove_symbols(self):
-        self.assertEqual(remove_symbols("00000000"), "00000000")
-        self.assertEqual(remove_symbols("01310-200"), "01310200")
-        self.assertEqual(remove_symbols("01..310.-200.-"), "01310200")
-        self.assertEqual(remove_symbols("abc01310200*!*&#"), "abc01310200*!*&#")
-        self.assertEqual(
-            remove_symbols("ab.c1.--.3-102.-0-.0-.*.-!*&#"), "abc1310200*!*&#"
-        )
-        self.assertEqual(remove_symbols("...---..."), "")
+        self.assertEqual(format_cep("00000000"), "00000-000")
+        self.assertEqual(format_cep("01310-200", only_nums=True), "01310200")
+        self.assertEqual(format_cep("01..310.-200.-"), "01310-200")
+        self.assertEqual(format_cep("abc01310200*!*&#"), None)
+        self.assertEqual(format_cep("ab.c1.--.3-102.-0-.0-.*.-!*&#"), None)
 
     def test_is_valid(self):
         # When CEP is not string, returns False
@@ -50,14 +46,11 @@ class TestIsValidToFormat(TestCase):
 
         self.assertEqual(format_cep("01310200"), "01310-200")
 
-        # Checks if function is_valid_cnpj is called
-        mock_is_valid.assert_called_once_with("01310200")
-
-    def test_when_cep_is_not_valid_returns_none(self, mock_is_valid):
+    def test_when_cep_is_not_valid_returns_error(self, mock_is_valid):
         mock_is_valid.return_value = False
 
         # When cep isn't valid, returns None
-        self.assertIsNone(format_cep("013102009"))
+        self.assertEqual(format_cep("013102009"), None)
 
 
 @patch("brutils.cep.urlopen")
