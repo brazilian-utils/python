@@ -23,6 +23,7 @@ def format_cep(cep: str, only_nums=False) -> str | None:
 
     Args:
         cep (str): The input CEP (Postal Code) to be formatted.
+        only_nums (bool, optional): Returns only numbers if the value is True
 
     Returns:
         str: The formatted CEP in the "12345-678" format if it's valid,

@@ -1,7 +1,7 @@
 from itertools import chain
 from random import randint
 
-# FORMATTING
+# LEGACY BACKWARDS COMPATIBILITY
 ############
 
 
@@ -31,27 +31,6 @@ def sieve(dirty: str) -> str:
     """
 
     return "".join(filter(lambda char: char not in "./-", dirty))
-
-
-def remove_symbols(dirty: str) -> str:
-    """
-    This function is an alias for the `sieve` function, offering a more
-    descriptive name.
-
-    Args:
-        dirty (str): The dirty string containing symbols to be removed.
-
-    Returns:
-        str: A new string with the specified symbols removed.
-
-    Example:
-        >>> remove_symbols("12.345/6789-01")
-        "12345678901"
-        >>> remove_symbols("98/76.543-2101")
-        "98765432101"
-    """
-
-    return sieve(dirty)
 
 
 def display(cnpj: str) -> str | None:
@@ -90,34 +69,55 @@ def display(cnpj: str) -> str | None:
     )
 
 
-def format_cnpj(cnpj: str) -> str | None:
+# FORMATTING
+############
+
+
+def format_cnpj(cnpj: str, only_nums=False) -> str | None:
     """
     Formats a CNPJ (Brazilian Company Registration Number) string for visual
     display.
 
-    This function takes a CNPJ string as input, validates its format, and
-    formats it with standard visual aid symbols for display purposes.
+    This function takes a CNPJ string as input and,
+    - Removes special characteres;
+    - Check if the string follows the CNPJ length pattern;
+    - Returns None if the string is out of pattern;
+    - Return a string with the formatted CNPJ.
 
     Args:
-        cnpj (str): The CNPJ string to be formatted for display.
+        cnpj (str): The CNPJ string to be formatted.
+        only_nums (bool, optional): Returns only numbers if the value is True
 
     Returns:
-        str: The formatted CNPJ with visual aid symbols if it's valid,
+        str: The formatted CNPJ if it's valid,
              None if it's not valid.
 
     Example:
         >>> format_cnpj("03560714000142")
         '03.560.714/0001-42'
+        >>> format_cnpj("03.560.714/0001-42", only_nums=True)
+        '03560714000142'
         >>> format_cnpj("98765432100100")
         None
     """
-
-    if not is_valid(cnpj):
+    ### Checking data type
+    if not isinstance(cnpj, str):
         return None
 
-    return "{}.{}.{}/{}-{}".format(
-        cnpj[:2], cnpj[2:5], cnpj[5:8], cnpj[8:12], cnpj[12:14]
-    )
+    ### Removing special characteres
+    cnpj = "".join(filter(str.isalnum, cnpj))
+
+    ### Checking math validation
+    if not validate(cnpj):
+        return None
+
+    ### Returning CNPJ value
+    if only_nums:
+        return cnpj
+    else:
+        return "{}.{}.{}/{}-{}".format(
+            cnpj[:2], cnpj[2:5], cnpj[5:8], cnpj[8:12], cnpj[12:14]
+        )
 
 
 # OPERATIONS
@@ -178,6 +178,10 @@ def is_valid(cnpj: str) -> bool:
         True
         >>> is_valid("00111222000133")
         False
+
+    .. note::
+       This method should not be used in new code and is only provided for
+       backward compatibility.
     """
 
     return isinstance(cnpj, str) and validate(cnpj)

@@ -241,6 +241,9 @@ formats it with standard visual aid symbols for display purposes.
 Args:
 
 - cnpj (str): The CNPJ string to be formatted for display.
+- only_nums (bool): The default value is False, in case of the True value be
+                    inputed, the function will return a string with only 
+                    numbers
 
 Returns:
 
@@ -253,31 +256,10 @@ Example:
 >>> from brutils import format_cnpj
 >>> format_cnpj("03560714000142")
 '03.560.714/0001-42'
+>>> format_cnpj("03.560.714/0001-42", only_nums=True)
+'03560714000142'
 >>> format_cnpj("98765432100100")
 None
-```
-
-### remove_symbols_cnpj
-
-Removes specific symbols from a CNPJ (Brazilian Company Registration Number)
-string.
-This function takes a CNPJ string as input and removes all occurrences of
-the '.', '/' and '-' characters from it.
-
-Args:
-
-- cnpj (str): The CNPJ string containing symbols to be removed.
-
-Returns:
-
-- str: A new string with the specified symbols removed.
-
-Example:
-
-```python
->>> from brutils import remove_symbols_cnpj
->>> remove_symbols_cnpj('00.111.222/0001-00')
-'00111222000100'
 ```
 
 ### generate_cnpj
