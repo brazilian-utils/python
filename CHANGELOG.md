@@ -9,24 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Utilitário `convert_name_to_uf`
+- Utilitário `convert_name_to_uf` [#396](https://github.com/brazilian-utils/python/issues/396)
 - Utilitário `is_valid_legal_nature` [#641](https://github.com/brazilian-utils/python/issues/641)
 - Utilitário `get_legal_nature_description` [#641](https://github.com/brazilian-utils/python/issues/641)
 - Utilitário `list_all_legal_nature` [#641](https://github.com/brazilian-utils/python/issues/641)
-- Utilitário `is_valid_cnh` [#651](https://github.com/brazilian-utils/brutils-python/pull/651)
-- Utilitário `is_valid_renavam` [#652](https://github.com/brazilian-utils/brutils-python/pull/652)
+- Utilitário `is_valid_cnh` [#431](https://github.com/brazilian-utils/python/issues/431)
+- Utilitário `is_valid_renavam` [#430](https://github.com/brazilian-utils/python/issues/430)
 
 ### Fixed
 
-- Suporte a anotações modernas no `brutils/cep.py` [#637](https://github.com/brazilian-utils/python/pull/637)
-
-### Fixed
-
-- Suporte a anotações modernas `legal_process` [#622](https://github.com/brazilian-utils/brutils-python/pull/634)
-
-### Fixed
-
-- Suporte a anotações modernas `voter_id` [#623](https://github.com/brazilian-utils/brutils-python/pull/638)
+- Utilitário `brutils/cep.py` [#666](https://github.com/brazilian-utils/python/issues/666)
+- Utilitário `brutils/cep.py` [#616](https://github.com/brazilian-utils/python/issues/616)
+- Utilitário `legal_process` [#622](https://github.com/brazilian-utils/python/issues/622)
+- Utilitário `voter_id` [#623](https://github.com/brazilian-utils/python/issues/623)
 
 ## [2.3.0] - 2025-10-07
 

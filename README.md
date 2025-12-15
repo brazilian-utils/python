@@ -55,7 +55,6 @@ False
 - [CEP](#cep)
   - [is\_valid\_cep](#is_valid_cep)
   - [format\_cep](#format_cep)
-  - [remove\_symbols\_cep](#remove_symbols_cep)
   - [generate\_cep](#generate_cep)
   - [get\_address\_from\_cep](#get_address_from_cep)
   - [get\_cep\_information\_from\_address](#get_cep_information_from_address)
