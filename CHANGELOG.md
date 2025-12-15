@@ -9,19 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Utilitário `convert_name_to_uf` [#396](https://github.com/brazilian-utils/python/issues/396)
-- Utilitário `is_valid_legal_nature` [#641](https://github.com/brazilian-utils/python/issues/641)
-- Utilitário `get_legal_nature_description` [#641](https://github.com/brazilian-utils/python/issues/641)
-- Utilitário `list_all_legal_nature` [#641](https://github.com/brazilian-utils/python/issues/641)
-- Utilitário `is_valid_cnh` [#431](https://github.com/brazilian-utils/python/issues/431)
-- Utilitário `is_valid_renavam` [#430](https://github.com/brazilian-utils/python/issues/430)
+- Utilitário `convert_name_to_uf` [#606](https://github.com/brazilian-utils/python/pull/606)
+- Utilitário `is_valid_legal_nature` [#653](https://github.com/brazilian-utils/python/pull/653)
+- Utilitário `get_legal_nature_description` [#653](https://github.com/brazilian-utils/python/pull/653)
+- Utilitário `list_all_legal_nature` [#653](https://github.com/brazilian-utils/python/pull/653)
+- Utilitário `is_valid_cnh` [#651](https://github.com/brazilian-utils/brutils-python/pull/651)
+- Utilitário `is_valid_renavam` [#652](https://github.com/brazilian-utils/brutils-python/pull/652)
 
 ### Fixed
 
-- Utilitário `brutils/cep.py` [#666](https://github.com/brazilian-utils/python/issues/666)
-- Utilitário `brutils/cep.py` [#616](https://github.com/brazilian-utils/python/issues/616)
-- Utilitário `legal_process` [#622](https://github.com/brazilian-utils/python/issues/622)
-- Utilitário `voter_id` [#623](https://github.com/brazilian-utils/python/issues/623)
+- Utilitário `brutils/cep.py` [#668](https://github.com/brazilian-utils/python/pull/668)
+- Utilitário `brutils/cep.py` [#637](https://github.com/brazilian-utils/python/pull/637)
+- Utilitário `legal_process` [#634](https://github.com/brazilian-utils/python/pull/634)
+- Utilitário `voter_id` [#638](https://github.com/brazilian-utils/python/pull/638)
 
 ## [2.3.0] - 2025-10-07
 
