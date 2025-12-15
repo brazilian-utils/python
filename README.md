@@ -208,8 +208,9 @@ Exemplo:
 
 Verifica se os dígitos de verificação do CNPJ (Cadastro Nacional da Pessoa
 Jurídica) fornecido correspondem ao seu número base. A entrada deve ser uma
-string de dígitos com o comprimento apropriado. Esta função não verifica a
-existência do CNPJ; ela só valida o formato da string.
+string de dígitos, sem caracteres especiais e com o comprimento apropriado. 
+Esta função não verifica a existência do CNPJ; ela só valida o formato da 
+string.
 
 Argumentos:
 
@@ -240,6 +241,9 @@ formata com símbolos visuais padrão para fins de exibição.
 Argumentos:
 
 - cnpj (str): A string de CNPJ a ser formatada para exibição.
+- only_nums (bool, optional): Valor default é False, caso seja passado True como
+                              valor será retornada uma string contendo apenas
+                              números.
 
 Retorna:
 
@@ -251,31 +255,10 @@ Exemplo:
 >>> from brutils import format_cnpj
 >>> format_cnpj("03560714000142")
 '03.560.714/0001-42'
+>>> format_cnpj("03.560.714/0001-42", only_nums=True)
+'03560714000142'
 >>> format_cnpj("98765432100100")
 None
-```
-
-### remove_symbols_cnpj
-
-Remove símbolos específicos de uma string de CNPJ (Cadastro Nacional da Pessoa
-Jurídica).
-Esta função recebe uma string de CNPJ como entrada e remove todas as
-ocorrências dos caracteres '.', '/' e '-' dela.
-
-Argumentos:
-
-- cnpj (str): A string de CNPJ que contém os símbolos a serem removidos.
-
-Retorna:
-
-- str: Uma nova string com os símbolos especificados removidos.
-
-Exemplo:
-
-```python
->>> from brutils import remove_symbols_cnpj
->>> remove_symbols_cnpj('00.111.222/0001-00')
-'00111222000100'
 ```
 
 ### generate_cnpj
@@ -342,8 +325,9 @@ Argumentos:
 - cep (str): O CEP (Código de Endereçamento Postal) de entrada a ser
               formatado.
 
-- only_nums (bool): Valor default é False, caso seja passado True como valor
-                    será retornada uma string contendo apenas números
+- only_nums (bool, optional): Valor default é False, caso seja passado True como
+                              valor será retornada uma string contendo apenas
+                              números.
 
 Retorna:
 

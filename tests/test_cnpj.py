@@ -8,7 +8,6 @@ from brutils.cnpj import (
     format_cnpj,
     generate,
     is_valid,
-    remove_symbols,
     sieve,
     validate,
 )
@@ -30,6 +29,14 @@ class TestCNPJ(TestCase):
         self.assertIsNone(display("00000000000000"))
         self.assertIsNone(display("0000000000000"))
         self.assertIsNone(display("0000000000000a"))
+
+    def test_format_cnpj(self):
+        self.assertEqual(format_cnpj("11862986000125"), "11.862.986/0001-25")
+        self.assertEqual(
+            format_cnpj("50.715.656/0001-69", only_nums=True), "50715656000169"
+        )
+        self.assertIsNone(format_cnpj("0000000000000"))
+        self.assertIsNone(format_cnpj("0000000000"))
 
     def test_validate(self):
         self.assertIs(validate("34665388000161"), True)
@@ -83,30 +90,22 @@ class TestCNPJ(TestCase):
         self.assertEqual(_checksum("52513127000299"), "99")
 
 
-@patch("brutils.cnpj.sieve")
-class TestRemoveSymbols(TestCase):
-    def test_remove_symbols(self, mock_sieve):
-        # When call remove_symbols, it calls sieve
-        remove_symbols("12.345.678/0001-90")
-        mock_sieve.assert_called()
-
-
-@patch("brutils.cnpj.is_valid")
+@patch("brutils.cnpj.validate")
 class TestIsValidToFormat(TestCase):
-    def test_when_cnpj_is_valid_returns_true_to_format(self, mock_is_valid):
-        mock_is_valid.return_value = True
+    def test_when_cnpj_is_valid_returns_true_to_format(self, mock_validate):
+        mock_validate.return_value = True
 
         # When cnpj is_valid, returns formatted cnpj
         self.assertEqual(format_cnpj("01838723000127"), "01.838.723/0001-27")
 
-        # Checks if function is_valid_cnpj is called
-        mock_is_valid.assert_called_once_with("01838723000127")
+        # Checks if function validate_cnpj is called
+        mock_validate.assert_called_once_with("01838723000127")
 
-    def test_when_cnpj_is_not_valid_returns_none(self, mock_is_valid):
-        mock_is_valid.return_value = False
+    def test_when_cnpj_is_not_valid_returns_none(self, mock_validate):
+        mock_validate.return_value = False
 
-        # When cnpj isn't valid, returns None
-        self.assertIsNone(format_cnpj("01838723000127"))
+        # When cnpj isn't valid, returns False
+        self.assertFalse(format_cnpj("01838723000127"))
 
 
 if __name__ == "__main__":

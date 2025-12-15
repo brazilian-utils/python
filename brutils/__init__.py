@@ -14,7 +14,6 @@ from brutils.cnh import is_valid_cnh as is_valid_cnh
 from brutils.cnpj import format_cnpj
 from brutils.cnpj import generate as generate_cnpj
 from brutils.cnpj import is_valid as is_valid_cnpj
-from brutils.cnpj import remove_symbols as remove_symbols_cnpj
 
 # CPF Imports
 from brutils.cpf import format_cpf
