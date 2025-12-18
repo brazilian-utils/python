@@ -11,15 +11,35 @@ from brutils.schemas import Address
 ############
 
 
-def format_cep(cep: str, only_nums=False) -> str | None:
+def remove_symbols(dirty: str) -> str:
+    """
+    Removes specific symbols from a given CEP (Postal Code).
+
+    This function takes a CEP (Postal Code) as input and removes all occurrences
+    of the '.' and '-' characters from it.
+
+    Args:
+        cep (str): The input CEP (Postal Code) containing symbols to be removed.
+
+    Returns:
+        str: A new string with the specified symbols removed.
+
+    Example:
+        >>> remove_symbols("123-45.678.9")
+        "123456789"
+        >>> remove_symbols("abc.xyz")
+        "abcxyz"
+    """
+
+    return "".join(filter(lambda char: char not in ".-", dirty))
+
+
+def format_cep(cep: str) -> str | None:
     """
     Formats a Brazilian CEP (Postal Code) into a standard format.
 
-    This function takes a CEP (Postal Code) as input and,
-        - Removes special characteres;
-        - Check if the string follows the CEP length pattern;
-        - Returns None if the string is out of the pattern;
-        - Return a string with the formatted CEP.
+    This function takes a CEP (Postal Code) as input and, if it is a valid
+    8-digit CEP, formats it into the standard "12345-678" format.
 
     Args:
         cep (str): The input CEP (Postal Code) to be formatted.
@@ -31,27 +51,11 @@ def format_cep(cep: str, only_nums=False) -> str | None:
     Example:
         >>> format_cep("12345678")
         "12345-678"
-        >>> format_cep("  12.345/678 ", only_nums=True)
-        "12345678"
         >>> format_cep("12345")
         None
     """
-    ### Checking data type
-    if not isinstance(cep, str):
-        return None
 
-    ### Removing special characteres
-    cep = "".join(filter(str.isalnum, cep))
-
-    ### Checking CEP patterns
-    if len(cep) != 8:
-        return None
-
-    ### Returning CEP value
-    if only_nums:
-        return cep
-    else:
-        return f"{cep[:5]}-{cep[5:]}"
+    return f"{cep[:5]}-{cep[5:8]}" if is_valid(cep) else None
 
 
 # OPERATIONS
@@ -152,7 +156,7 @@ def get_address_from_cep(
     """
     base_api_url = "https://viacep.com.br/ws/{}/json/"
 
-    clean_cep = format_cep(cep, only_nums=True)
+    clean_cep = remove_symbols(cep)
     cep_is_valid = is_valid(clean_cep)
 
     if not cep_is_valid:
