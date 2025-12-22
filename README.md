@@ -332,17 +332,13 @@ False
 ### format_cep
 
 Formata um CEP (Código de Endereçamento Postal) brasileiro em um formato padrão.
-Esta função recebe um CEP como entrada, remove caracteres especiais e, se for um
-CEP válido com 8 dígitos, e retorna o formata no padrão "12345-678" ou apenas os
-números "12345678" se o parâmetro only_nums for True.
+Esta função recebe um CEP como entrada e, se for um CEP válido com 8 dígitos,
+o formata no padrão "12345-678".
 
 Argumentos:
 
 - cep (str): O CEP (Código de Endereçamento Postal) de entrada a ser
               formatado.
-
-- only_nums (bool): Valor default é False, caso seja passado True como valor
-                    será retornada uma string contendo apenas números
 
 Retorna:
 
@@ -355,14 +351,37 @@ Example:
 >>> from brutils import format_cep
 >>> format_cep('01310200')
 '01310-200'
->>> format_cep("  12.345_678  ")
-"12345-678"
->>> format_cep("12345678", only_nums=True)
+>>> format_cep("12345678")
 "12345-678"
 >>> format_cep("12345")
 None
->>> format_cep("ac345-564")
-"ac345-564"
+```
+
+### remove_symbols_cep
+
+Remove símbolos específicos de um CEP (Código de Endereçamento Postal)
+fornecido. Esta função recebe um CEP como entrada e remove todas as ocorrências
+dos caracteres '.' e '-' dele.
+
+Argumentos:
+
+- cep (str): O CEP (Código de Endereçamento Postal) de entrada que contém os
+               símbolos a serem removidos.
+
+Retorna:
+
+- str: Uma nova string com os símbolos especificados removidos.
+
+Exemplo:
+
+```python
+>>> from brutils import remove_symbols_cep
+>>> remove_symbols_cep('01310-200')
+'01310200'
+>>> remove_symbols_cep("123-45.678.9")
+"123456789"
+>>> remove_symbols_cep("abc.xyz")
+"abcxyz"
 ```
 
 ### generate_cep
