@@ -18,7 +18,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Utilitário `brutils/cep.py` [#668](https://github.com/brazilian-utils/python/pull/668)
 - Utilitário `brutils/cep.py` [#637](https://github.com/brazilian-utils/python/pull/637)
 - Utilitário `legal_process` [#634](https://github.com/brazilian-utils/python/pull/634)
 - Utilitário `voter_id` [#638](https://github.com/brazilian-utils/python/pull/638)
