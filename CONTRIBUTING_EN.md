@@ -19,20 +19,44 @@ What matters is that you know: your participation is very welcome, and every con
 
 How to make your first contribution:
 
-- [1. Create a GitHub Account](#1-create-a-github-account)
-- [2. Find an Issue to Work On](#2-find-an-issue-to-work-on)
-- [3. Install Git](#3-install-git)
-- [4. Fork the Project](#4-fork-the-project)
-- [5. Clone your Fork](#5-clone-your-fork)
-- [6. Create a New Branch](#6-create-a-new-branch)
-- [7. Run brutils Locally](#7-run-brutils-locally)
-- [8. Make your Changes](#8-make-your-changes)
-- [9. Test your Changes](#9-test-your-changes)
-- [10. Update READMEs](#10-update-readmes)
-- [11. Commit and push your Changes](#11-commit-and-push-your-changes)
-- [12. Add changelog Entries](#12-add-changelog-entries)
-- [13. Create a GitHub PR](#13-create-a-github-pr)
-- [14. Update your branch if Needed.](#14-update-your-branch-if-needed)
+- [Contributing](#contributing)
+    - [💌 Want to contribute, but don’t feel comfortable?](#-want-to-contribute-but-dont-feel-comfortable)
+  - [First Contribution](#first-contribution)
+    - [1. Create a GitHub Account](#1-create-a-github-account)
+    - [2. Find an Issue to Work With](#2-find-an-issue-to-work-with)
+    - [3. Install Git](#3-install-git)
+    - [4. Fork the Project](#4-fork-the-project)
+    - [5. Clone your Fork](#5-clone-your-fork)
+    - [6. Create a New Branch](#6-create-a-new-branch)
+    - [7. Run brutils locally](#7-run-brutils-locally)
+      - [Installation with poetry](#installation-with-poetry)
+        - [Requirements](#requirements)
+      - [Installation with pip](#installation-with-pip)
+        - [Requirements](#requirements-1)
+      - [Using locally](#using-locally)
+  - [Tests](#tests)
+    - [8. Make your changes](#8-make-your-changes)
+    - [9. Test your changes](#9-test-your-changes)
+      - [Write new tests](#write-new-tests)
+      - [Make sure all tests passed](#make-sure-all-tests-passed)
+      - [Test it manually](#test-it-manually)
+    - [11. Commit and push your changes](#11-commit-and-push-your-changes)
+    - [12. Create a GitHub PR](#12-create-a-github-pr)
+      - [Write a Descriptive PR Title](#write-a-descriptive-pr-title)
+      - [Provide a Detailed PR Description](#provide-a-detailed-pr-description)
+      - [Link the PR to the Related Issue](#link-the-pr-to-the-related-issue)
+      - [Verify the PR Description Template](#verify-the-pr-description-template)
+    - [13. Update your branch if needed.](#13-update-your-branch-if-needed)
+  - [Release a New Version](#release-a-new-version)
+    - [1. Create a Release Issue](#1-create-a-release-issue)
+      - [Create the Issue](#create-the-issue)
+      - [Create a Branch](#create-a-branch)
+    - [2. Create a Release PR](#2-create-a-release-pr)
+      - [Update the Library Version](#update-the-library-version)
+      - [Update the CHANGELOG.md](#update-the-changelogmd)
+      - [Create the PR](#create-the-pr)
+      - [Merge the PR](#merge-the-pr)
+    - [3. Deploy via GitHub](#3-deploy-via-github)
 
 ### 1. Create a GitHub Account
 
@@ -388,167 +412,14 @@ To github.com:brazilian-utils/brutils-python.git
 
 Make the necessary changes and commits and push them when ready.
 
-### 12. Add changelog entries
+**Note about CHANGELOG:** The CHANGELOG.md is automatically generated from commits using [git-cliff](https://git-cliff.org/). When your PR is merged into the `main` branch, your changes will automatically appear in the `[Unreleased]` section of the CHANGELOG. Therefore, it's important to follow the [Conventional Commits](https://www.conventionalcommits.org/) pattern in your commit messages:
 
-#### What is a changelog?
+- `feat:` for new features (will appear in "Added")
+- `fix:` for bug fixes (will appear in "Fixed")
+- `refactor:` or `perf:` for changes to existing features (will appear in "Changed")
+- `docs:`, `test:`, `ci:`, `chore:` are ignored in the changelog
 
-A changelog is a file that contains a chronologically organized list of notable changes for each version of a project.
-
-#### Why maintain a changelog?
-
-To make it easier for users and contributors to see exactly what notable changes have been made between each release (or version) of the project.
-
-####  Who needs a changelog?
-
-People. Whether they are consumers or developers, the end users of software are human beings who care about what’s in the software. When the software changes, people want to know why and how.
-
-####  Where is the brutils changelog?
-
-The brutils changelog is available at [CHANGELOG.md][changelog].
-
-####  Guiding principles
-
-- Changelogs are for humans, not machines.
-- There should be an entry for every version.
-- The same types of changes should be grouped together.
-- Versions and sections should be linkable.
-- The most recent version comes first.
-- The release date of each version is displayed.
-
-####  What justifies an entry in the changelog?
-
-- Security fixes: These should be documented with the type labeled as “security” to alert users to resolved security issues.
-Example: “Fixed a critical vulnerability that allowed remote code execution.”
-
-- User-facing changes: Changes that directly affect how users interact with the software, including new features, changes to existing features, or UI improvements.
-Example: “Added a new filter option on the results page to make searching easier.”
-
-- Significant performance improvements: Should be recorded when they result in noticeable improvements in speed or efficiency that impact the user experience.
-Example: “The home page loading time was reduced by 40% after backend optimization.”
-
-- Changes affecting compatibility: Adjustments to maintain compatibility with other tools, systems, or versions.
-Example: “Updated library X to version 2.0 to support the new version of Python.”
-
-- Changes to the public API: Changes that affect how developers interact with the public API, such as adding new routes or modifying existing ones.
-Example: “Added a new /api/v1/users route for user management.”
-
-- Dependency changes: Updates or changes to the project’s dependencies that may affect software behavior or compatibility.
-Example: “Updated dependency package Y to version 3.1.4, which includes important security fixes.”
-
-#### What should NOT go in the changelog
-
-Although the changelog is a valuable tool for documenting changes, some information should not be included. Here are some examples of what should not appear in the changelog:
-
-- Internal Code Changes: Changes that do not affect the end-user experience, such as internal refactoring that does not alter functionality, need not be documented.
-Example: “Refactored internal functions” or “Fixed inconsistent tests.”
-
-- Non-notable performance improvements: Performance improvements that do not result in noticeable changes or clear benefits for the end user do not need to be included.
-Example: “Optimized internal algorithms.”
-
-- Minor bug fixes: Bug fixes that do not impact the general use or end-user experience can be omitted.
-Example: “Fixed a small typo in the code.”
-
-- Documentation-only changes: Changes that affect only the documentation, without modifying the software behavior, usually don’t need to be included.
-Example: “Updated README.md to reflect new dependencies.”
-
-- Excessive technical details: Overly technical information that is irrelevant to the end user or does not provide context on the impact of the change should be avoided.
-Example: “Changed memory management in class X.”
-
-- Maintainer entries: Changes related only to the development or internal maintenance process, such as CI/CD tool configuration adjustments, are generally not relevant for the changelog.
-Example: “Updated GitHub Actions configuration.”
-
-- A bug introduced and fixed in the same release does not need a changelog entry.
-
-Avoid including this information to keep the changelog focused and useful for project users and contributors.
-
-#### Writing good changelog entries
-
-A good changelog entry should be both descriptive and concise. It should explain the change to a reader with no prior context about the change. If it’s hard to be both concise and descriptive, lean toward being more descriptive.
-
-- **Bad** : Go to the project order.
-- **Good**: Display the user’s starred projects at the top of the “Go to project” dropdown.
-
-The first example provides no context on where the change was made, why it was made, or how it benefits the user.
-
-- **Bad**: Copy (some text) to the clipboard.
-- **Good**: Update the tooltip of “Copy to clipboard” to indicate what is being copied.
-
-Again, the first example is too vague and provides no context.
-
-- **Bad**: Fix and improve CSS and HTML issues in the mini pipeline graph and builds dropdown.
-- **Good**: Fix tooltips and hover states in the mini pipeline graph and builds dropdown.
-
-The first example is too focused on implementation details. Users don’t care that we changed CSS and HTML, they care about the final result of those changes.
-
-- **Bad**: Remove null values in the Commit object array returned by find_commits_by_message_with_elastic.
-- **Good**: Fix 500 errors caused by Elasticsearch results referencing commits already collected by the garbage collector.
-
-The first example focuses on how we fixed something, not on what was fixed. The rewritten version clearly describes the final benefit to the user (fewer 500 errors) and when it happens (when searching for commits with Elasticsearch).
-
-Use your best judgment and try to put yourself in the position of someone reading the compiled changelog. Does this entry add value? Does it provide context on where and why the change was made?
-
-#### How to add an entry to the changelog
-
-The changelog is available in the [CHANGELOG.md][changelog] file.
-
-First, you need to identify the type of your change. Types of changes:
-
-- `Added` for new features. 
-- `Changed` for changes to existing features. 
-- `Deprecated` for features that will soon be removed. 
-- `Fixed` for any bug fixes. 
-- `Removed` for features that were removed. 
-- `Security` in case of vulnerabilities.
-
-You should always add new entries to the changelog in the `Unreleased` section. At the time of release, we will move the changes from the `Unreleased` section to a new version section.
-
-So, within the `Unreleased` section, you should add your entry to the appropriate section by type. If there is no section yet for the type of your change, you should add one.
-
-Let’s see some examples. Suppose you have a new `Fixed` change to add, and the current CHANGELOG.md file looks like this:
-
-```md
-## [Unreleased]
-### Added
-- Utility `get_address_from_cep` [#358](https://github.com/brazilian-utils/brutils-python/pull/358)
-
-### Changed
-- Utility `fmt_voter_id` renamed to `format_voter_id` [#221](https://github.com/brazilian-utils/brutils-python/issues/221)
-```
-
-You would need to add a new `Fixed` section and include your new entry there:
-
-```md
-## [Unreleased]
-### Added
-- Utility `get_address_from_cep` [#358](https://github.com/brazilian-utils/brutils-python/pull/358)
-
-### Changed
-- Utility `fmt_voter_id` renamed to `format_voter_id` [#221](https://github.com/brazilian-utils/brutils-python/issues/221)
-
-### Fixed
-- My changelog message here. [#<issue_number>](<issue_link>)
-```
-
-Note that the order of sections by type matters. We have a lint that checks this, so the sections must be ordered alphabetically. First `Added`, then `Changed`, third `Deprecated`, and so on.
-
-Now, let’s say you have another entry to add, and its type is `Added`. Since we already have a section for that, you should just add a new line:
-
-```md
-## [Unreleased]
-### Added
-- Utility `get_address_from_cep` [#358](https://github.com/brazilian-utils/brutils-python/pull/358)
-- My other changelog message here. [#<issue_number>](<issue_link>)
-
-### Changed
-- Utility `fmt_voter_id` renamed to `format_voter_id` [#221](https://github.com/brazilian-utils/brutils-python/issues/221)
-
-### Fixed
-- My changelog message here. [#<issue_number>](<issue_link>)
-```
-
-This content is based on the [Keep a Changelog][keep-a-changelog] site, as we follow its guidelines.
-
-### 13. Create a GitHub PR
+### 12. Create a GitHub PR
 
 [Create a GitHub PR][github-creating-a-pr] to submit your changes for review. To ensure your Pull Request (PR) is clear, effective, and reviewed quickly, follow these best practices:
 
@@ -579,18 +450,18 @@ This PR adds the convert_uf_to_text utility to convert Brazilian state codes (e.
 - For more details, see the [GitHub documentation on closing issues automatically](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue).
 
 #### Verify the PR Description Template
-- Ensure your PR follows the repository’s PR description template (if provided). Check all required items, such as test coverage, documentation updates, or changelog entries.
+- Ensure your PR follows the repository's PR description template (if provided). Check all required items, such as test coverage and documentation updates.
 - **Example Checklist**: (showing how it looks when completed):
 - [x] Code changes are tested.
 - [x] Documentation (READMEs) is updated.
-- [ ] Changelog entry is added.
+- [x] Commit messages follow Conventional Commits pattern.
 - **Syntax Note**:
 - Use [x] to mark completed items and [ ] for incomplete ones, with no spaces inside the brackets (e.g., [ x ] or [x ] will not render correctly on GitHub).
 - **Benefits**:
 - Adhering to the template ensures your PR is complete and ready for review.
 - It reduces back-and-forth with reviewers, speeding up the merge process.
 
-### 14. Update your branch if needed.
+### 13. Update your branch if needed.
 
 [Ensure your branch is up to date with main][github-sync-pr].
 
@@ -622,14 +493,11 @@ in the `pyproject.toml` file: https://github.com/brazilian-utils/brutils-python/
 
 #### Update the CHANGELOG.md
 
-Add a title for the new version with the new number and the current date, as seen in [this example](https://github.com/brazilian-utils/brutils-python/blob/main/CHANGELOG.md?plain=1#L9).
-
-And add the version links, like [this example](https://github.com/antoniamaia/brutils-python/blob/eac770e8b213532d2bb5948d117f6f4684f65be2/CHANGELOG.md?plain=1#L76)
+Run `git cliff --bump --output CHANGELOG.md`
 
 #### Create the PR
 
 Create a PR named `Release v<version>` containing the two changes mentioned above. In the description of the Pull Request, add the modified section of the changelog.
-
 
 [Example of Release PR](https://github.com/brazilian-utils/brutils-python/pull/128)
 
@@ -637,7 +505,7 @@ Create a PR named `Release v<version>` containing the two changes mentioned abov
 
 Once the PR is accepted and passes all checks, merge it.
 
-### 2. Deploy via GitHub
+### 3. Deploy via GitHub
 
 The new version release in production is done automatically when a [new release is created][creating-releases] on GitHub.
 

@@ -1,0 +1,55 @@
+name: Update Changelog
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  update-changelog:
+    name: Update Unreleased section
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Generate GitHub App Token
+        id: generate-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.APP_CHANGELOG_ID }}
+          private-key: ${{ secrets.APP_CHANGELOG_PRIVATE_KEY }}
+
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          token: ${{ steps.generate-token.outputs.token }}
+
+      - name: Generate changelog for Unreleased
+        uses: orhun/git-cliff-action@v4
+        with:
+          config: pyproject.toml
+          args: --verbose --github-token ${{ secrets.GITHUB_TOKEN }}
+        env:
+          OUTPUT: CHANGELOG.md
+          GITHUB_REPO: ${{ github.repository }}
+
+      - name: Check for changes
+        id: check-changes
+        run: |
+          if git diff --quiet CHANGELOG.md; then
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push changes
+        if: steps.check-changes.outputs.has_changes == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add CHANGELOG.md
+          git commit -m "docs: update CHANGELOG.md [skip ci]"
+          git push
