@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-
+- Script PowerShell `setup_windows.ps1` que instala automaticamente o Poetry e configura as dependências no Windows. [#639](https://github.com/brazilian-utils/python/issues/639)
 - Utilitário `convert_name_to_uf`
 - Utilitário `is_valid_legal_nature` [#641](https://github.com/brazilian-utils/python/issues/641)
 - Utilitário `get_legal_nature_description` [#641](https://github.com/brazilian-utils/python/issues/641)
