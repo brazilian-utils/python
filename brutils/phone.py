@@ -187,7 +187,7 @@ def _generate_ddd_number() -> str:
     """
     Generate a valid DDD number.
     """
-    return f'{"".join([str(randint(1, 9)) for i in range(2)])}'
+    return f"{''.join([str(randint(1, 9)) for i in range(2)])}"
 
 
 def _generate_mobile_phone() -> str:
@@ -197,7 +197,7 @@ def _generate_mobile_phone() -> str:
     ddd = _generate_ddd_number()
     client_number = [str(randint(0, 9)) for i in range(8)]
 
-    phone_number = f'{ddd}9{"".join(client_number)}'
+    phone_number = f"{ddd}9{''.join(client_number)}"
 
     return phone_number
 
@@ -207,4 +207,4 @@ def _generate_landline_phone() -> str:
     Generate a valid and random landline phone number.
     """
     ddd = _generate_ddd_number()
-    return f"{ddd}{randint(2,5)}{str(randint(0,9999999)).zfill(7)}"
+    return f"{ddd}{randint(2, 5)}{str(randint(0, 9999999)).zfill(7)}"
