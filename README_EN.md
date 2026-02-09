@@ -41,73 +41,86 @@ False
 
 # Utilities
 
-- [CPF](#cpf)
-  - [is\_valid\_cpf](#is_valid_cpf)
-  - [format\_cpf](#format_cpf)
-  - [remove\_symbols\_cpf](#remove_symbols_cpf)
-  - [generate\_cpf](#generate_cpf)
-- [CNPJ](#cnpj)
-  - [is\_valid\_cnpj](#is_valid_cnpj)
-  - [format\_cnpj](#format_cnpj)
-  - [remove\_symbols\_cnpj](#remove_symbols_cnpj)
-  - [generate\_cnpj](#generate_cnpj)
-- [CEP](#cep)
-  - [is\_valid\_cep](#is_valid_cep)
-  - [format\_cep](#format_cep)
-  - [remove\_symbols\_cep](#remove_symbols_cep)
-  - [generate\_cep](#generate_cep)
-  - [get\_address\_from\_cep](#get_address_from_cep)
-  - [get\_cep\_information\_from\_address](#get_cep_information_from_address)
-- [Date](#date)
-  - [convert\_date\_to_text](#convert_date_to_text)
-- [Phone](#phone)
-  - [is\_valid\_phone](#is_valid_phone)
-  - [format\_phone](#format_phone)
-  - [remove\_symbols\_phone](#remove_symbols_phone)
-  - [remove\_international\_dialing\_code](#remove_international_dialing_code)
-  - [generate\_phone](#generate_phone)
-- [Email](#email)
-  - [is\_valid\_email](#is_valid_email)
-- [CNH](#cnh)
-  - [is\_valid\_cnh](#is_valid_cnh)
-- [License Plate](#license-plate)
-  - [is\_valid\_license\_plate](#is_valid_license_plate)
-  - [format\_license\_plate](#format_license_plate)
-  - [remove\_symbols\_license\_plate](#remove_symbols_license_plate)
-  - [generate\_license\_plate](#generate_license_plate)
-  - [convert\_license\_plate\_to\_mercosul](#convert_license_plate_to_mercosul)
-  - [get\_format\_license\_plate](#get_format_license_plate)
-- [PIS](#pis)
-  - [is\_valid\_pis](#is_valid_pis)
-  - [format\_pis](#format_pis)
-  - [remove\_symbols\_pis](#remove_symbols_pis)
-  - [generate\_pis](#generate_pis)
-- [RENAVAM](#renavam)
-  - [is_valid_renavam](#is_valid_renavam)
-- [Legal Process](#legal-process)
+- [Getting Started](#getting-started)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Utilities](#utilities)
+  - [CPF](#cpf)
+    - [is\_valid\_cpf](#is_valid_cpf)
+    - [format\_cpf](#format_cpf)
+    - [remove\_symbols\_cpf](#remove_symbols_cpf)
+    - [generate\_cpf](#generate_cpf)
+  - [CNPJ](#cnpj)
+    - [is\_valid\_cnpj](#is_valid_cnpj)
+    - [format\_cnpj](#format_cnpj)
+    - [remove\_symbols\_cnpj](#remove_symbols_cnpj)
+    - [generate\_cnpj](#generate_cnpj)
+  - [CEP](#cep)
+    - [is\_valid\_cep](#is_valid_cep)
+    - [format\_cep](#format_cep)
+    - [remove\_symbols\_cep](#remove_symbols_cep)
+    - [generate\_cep](#generate_cep)
+    - [get\_address\_from\_cep](#get_address_from_cep)
+    - [get\_cep\_information\_from\_address](#get_cep_information_from_address)
+  - [Date](#date)
+    - [convert\_date\_to\_text](#convert_date_to_text)
+  - [Phone](#phone)
+    - [is\_valid\_phone](#is_valid_phone)
+    - [format\_phone](#format_phone)
+    - [remove\_symbols\_phone](#remove_symbols_phone)
+    - [remove\_international\_dialing\_code](#remove_international_dialing_code)
+    - [generate\_phone](#generate_phone)
+  - [Email](#email)
+    - [is\_valid\_email](#is_valid_email)
+  - [CNH](#cnh)
+    - [is\_valid\_cnh](#is_valid_cnh)
+  - [License Plate](#license-plate)
+    - [is\_valid\_license\_plate](#is_valid_license_plate)
+    - [format\_license\_plate](#format_license_plate)
+    - [remove\_symbols\_license\_plate](#remove_symbols_license_plate)
+    - [generate\_license\_plate](#generate_license_plate)
+    - [convert\_license\_plate\_to\_mercosul](#convert_license_plate_to_mercosul)
+    - [get\_format\_license\_plate](#get_format_license_plate)
+  - [PIS](#pis)
+    - [is\_valid\_pis](#is_valid_pis)
+    - [format\_pis](#format_pis)
+    - [remove\_symbols\_pis](#remove_symbols_pis)
+    - [generate\_pis](#generate_pis)
+  - [Legal Process](#legal-process)
   - [is\_valid\_legal\_process](#is_valid_legal_process)
-  - [format\_legal\_process](#format_legal_process)
-  - [remove\_symbols\_legal\_process](#remove_symbols_legal_process)
-  - [generate\_legal\_process](#generate_legal_process)
-- [Voter ID](#voter-id)
-  - [is_valid_voter_id](#is_valid_voter_id)
-  - [format_voter_id](#format_voter_id)
-  - [generate_voter_id](#generate_voter_id)
-- [IBGE](#ibge)
-  - [convert_code_to_uf](#convert_code_to_uf)
-  - [convert_uf_to_name](#convert_uf_to_name)
-  - [convert_name_to_uf](#convert_name_to_uf)
-  - [get_code_by_municipality_name](#get_code_by_municipality_name)
-  - [get\_municipality\_by\_code](#get_municipality_by_code)
-- [Holidays](#holidays)
-  - [is_holiday](#is_holiday)
-- [Monetary](#monetary)
-  - [format_currency](#format_currency)
-  - [convert\_real\_to\_text](#convert_real_to_text)
-- [Legal Nature](#legal-nature)
-  - [is_valid_legal_nature](#is_valid_legal_nature)
-  - [get_legal_nature_description](#get_legal_nature_description)
-  - [list_all_legal_nature](#list_all_legal_nature)
+    - [format\_legal\_process](#format_legal_process)
+    - [remove\_symbols\_legal\_process](#remove_symbols_legal_process)
+    - [generate\_legal\_process](#generate_legal_process)
+  - [Voter ID](#voter-id)
+    - [is\_valid\_voter\_id](#is_valid_voter_id)
+    - [format\_voter\_id](#format_voter_id)
+    - [generate\_voter\_id](#generate_voter_id)
+  - [IBGE](#ibge)
+    - [convert\_code\_to\_uf](#convert_code_to_uf)
+    - [get\_code\_by\_municipality\_name](#get_code_by_municipality_name)
+    - [get\_municipality\_by\_code](#get_municipality_by_code)
+    - [convert\_uf\_to\_name](#convert_uf_to_name)
+    - [convert\_name\_to\_uf](#convert_name_to_uf)
+  - [Holidays](#holidays)
+    - [is\_holiday](#is_holiday)
+  - [Monetary](#monetary)
+    - [format\_currency](#format_currency)
+    - [convert\_real\_to\_text](#convert_real_to_text)
+  - [Legal Nature](#legal-nature)
+    - [is\_valid\_legal\_nature](#is_valid_legal_nature)
+    - [get\_legal\_nature\_description](#get_legal_nature_description)
+    - [list\_all\_legal\_nature](#list_all_legal_nature)
+  - [RENAVAM](#renavam)
+    - [is\_valid\_renavam](#is_valid_renavam)
+  - [Passport](#passport)
+    - [is\_valid\_passport](#is_valid_passport)
+    - [format\_passport](#format_passport)
+    - [remove\_symbols\_passport](#remove_symbols_passport)
+    - [generate\_passport](#generate_passport)
+- [Feature Request and Bug Report](#feature-request-and-bug-report)
+- [Questions? Ideas?](#questions-ideas)
+- [Code Contribution](#code-contribution)
+  - [❤️ Contributors](#️-contributors)
 
 ## CPF
 
@@ -1476,6 +1489,95 @@ Example:
 True
 >>> is_valid_renavam("12345678901")
 False
+```
+
+## Passport
+
+### is_valid_passport
+
+Checks if a Brazilian passport number is valid.
+
+To be considered valid, the input must be a string containing exactly two alphabetical characters followed by exactly six numerical digits.
+
+This function does not verify is the input is a real passport number, as there are no checksums for the Brazilian passport.
+
+Args:
+- passport (str): The string containing the passport number to be checked.
+
+Returns:
+- bool: True if the passport number is valid (2 letters followed by 6 digits). False otherwise.
+
+Example: 
+```python
+>>> from brutils import is_valid_passport
+>>> is_valid_passport("Ab123456")
+True
+>>> is_valid_passport("12345678")
+False
+>>> is_valid_passport("DC-221345")
+False
+```
+### format_passport
+
+Formats a Brazilian passport number for display. 
+
+This function takes a string representing a valid passport number and returns it formatted (uppercase, without symbols).
+
+Args:
+- passport (str | None): A Brazilian passport number (lower or uppercase, possibly including symbols)
+
+Returns:
+- str: The formatted passport number (uppercase, without symbols) or None if the input is invalid
+
+Example:
+```python
+>>> format_passport("Ab123456")
+AB123456
+>>> format_passport("Ab-123456")
+AB123456
+>>> format_passport("111111")
+None
+```
+
+### remove_symbols_passport
+
+Removes symbols ('-', '.', and whitespaces) from a passport number.
+
+This function takes a passport number string as input and removes all occurrences of
+the '.', '-', and whitespace characters from it.
+
+Args:
+- passport (str): The string containing a passport number 
+
+Returns:
+- str: The passport numbers with dashes (-), dots (.), and whitespaces ( ) removed.
+
+Example:
+```python 
+>>> remove_symbols_passport("Ab123456")
+Ab123456
+>>> remove_symbols_passport("Ab-123456")
+Ab123456
+>>> remove_symbols_passport("Ab -. 123456")
+Ab123456
+```
+
+### generate_passport
+
+Generate a random valid Brazilian passport number string.
+
+This function generates a random Brazilian passport number string.
+
+Returns:
+- str: A random valid passport number string.
+
+Example:
+```python 
+>>> generate()
+"RY393097"
+>>> generate()
+"ZS840088"
+```
 
 # Feature Request and Bug Report
 
