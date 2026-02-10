@@ -113,7 +113,6 @@ False
   - [remove\_symbols\_passport](#remove_symbols_passport)
   - [generate\_passport](#generate_passport)
 
-
 ## CPF
 
 ### is_valid_cpf
