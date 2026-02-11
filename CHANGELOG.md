@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utilitário `list_all_legal_nature` [#653](https://github.com/brazilian-utils/python/pull/653)
 - Utilitário `is_valid_cnh` [#651](https://github.com/brazilian-utils/brutils-python/pull/651)
 - Utilitário `is_valid_renavam` [#652](https://github.com/brazilian-utils/brutils-python/pull/652)
+- Suporte a CNPJ alfanumérico em `is_valid_cnpj`, `format_cnpj` e `remove_symbols_cnpj`
 
 ### Fixed
 
