@@ -228,6 +228,8 @@ Exemplo:
 True
 >>> is_valid_cnpj('00111222000133')
 False
+>>> is_valid_cnpj('12ABC34501DE35')
+True
 ```
 
 ### format_cnpj
@@ -276,6 +278,8 @@ Exemplo:
 >>> from brutils import remove_symbols_cnpj
 >>> remove_symbols_cnpj('00.111.222/0001-00')
 '00111222000100'
+>>> remove_symbols_cnpj('12.ABC.345/01DE-35')
+'12ABC34501DE35'
 ```
 
 ### generate_cnpj

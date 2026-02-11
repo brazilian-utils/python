@@ -151,7 +151,7 @@ def validate(cnpj: str) -> bool:
        backward compatibility.
     """
 
-    if not cnpj.isdigit() or len(cnpj) != 14 or len(set(cnpj)) == 1:
+    if len(cnpj) != 14 or len(set(cnpj)) == 1:
         return False
     return all(
         _hashdigit(cnpj, i + 13) == int(v) for i, v in enumerate(cnpj[12:])
@@ -230,7 +230,11 @@ def _hashdigit(cnpj: str, position: int) -> int:
 
     weightgen = chain(range(position - 8, 1, -1), range(9, 1, -1))
     val = (
-        sum(int(digit) * weight for digit, weight in zip(cnpj, weightgen)) % 11
+        sum(
+            (ord(char) - 48) * weight
+            for char, weight in zip(cnpj, weightgen)
+        )
+        % 11
     )
     return 0 if val < 2 else 11 - val
 

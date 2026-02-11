@@ -35,6 +35,10 @@ class TestCNPJ(TestCase):
         self.assertIs(validate("34665388000161"), True)
         self.assertIs(validate("52599927000100"), False)
         self.assertIs(validate("00000000000"), False)
+        self.assertIs(validate("12ABC34501DE35"), True)
+        self.assertIs(validate("12ABC34501DE00"), False)
+        self.assertIs(validate("AAAAAAAAAAAAAA"), False)
+        self.assertIs(validate("12ABC34501DE3"), False)
 
     def test_is_valid(self):
         # When CNPJ is not string, returns False
@@ -66,6 +70,7 @@ class TestCNPJ(TestCase):
         # When CNPJ is valid
         self.assertIs(is_valid("34665388000161"), True)
         self.assertIs(is_valid("01838723000127"), True)
+        self.assertIs(is_valid("12ABC34501DE35"), True)
 
     def test_generate(self):
         for _ in range(10_000):
@@ -77,10 +82,15 @@ class TestCNPJ(TestCase):
         self.assertEqual(_hashdigit("00000000000000", 14), 0)
         self.assertEqual(_hashdigit("52513127000292", 13), 9)
         self.assertEqual(_hashdigit("52513127000292", 14), 9)
+        self.assertEqual(_hashdigit("12ABC34501DE", 13), 3)
+        self.assertEqual(_hashdigit("12ABC34501DE3", 14), 5)
 
     def test__checksum(self):
         self.assertEqual(_checksum("00000000000000"), "00")
         self.assertEqual(_checksum("52513127000299"), "99")
+        self.assertEqual(_checksum("12ABC34501DE35"), "35")
+        self.assertEqual(_checksum("1345C3A50001"), "06")
+        self.assertEqual(_checksum("R55231B30007"), "57")
 
 
 @patch("brutils.cnpj.sieve")
@@ -88,6 +98,8 @@ class TestRemoveSymbols(TestCase):
     def test_remove_symbols(self, mock_sieve):
         # When call remove_symbols, it calls sieve
         remove_symbols("12.345.678/0001-90")
+        mock_sieve.assert_called()
+        remove_symbols("12.ABC.345/01DE-35")
         mock_sieve.assert_called()
 
 
@@ -101,6 +113,13 @@ class TestIsValidToFormat(TestCase):
 
         # Checks if function is_valid_cnpj is called
         mock_is_valid.assert_called_once_with("01838723000127")
+
+        mock_is_valid.reset_mock()
+        # When cnpj is_valid, returns formatted cnpj
+        self.assertEqual(format_cnpj("12ABC34501DE35"), "12.ABC.345/01DE-35")
+
+        # Checks if function is_valid_cnpj is called
+        mock_is_valid.assert_called_once_with("12ABC34501DE35")
 
     def test_when_cnpj_is_not_valid_returns_none(self, mock_is_valid):
         mock_is_valid.return_value = False
