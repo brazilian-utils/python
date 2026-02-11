@@ -230,10 +230,7 @@ def _hashdigit(cnpj: str, position: int) -> int:
 
     weightgen = chain(range(position - 8, 1, -1), range(9, 1, -1))
     val = (
-        sum(
-            (ord(char) - 48) * weight
-            for char, weight in zip(cnpj, weightgen)
-        )
+        sum((ord(char) - 48) * weight for char, weight in zip(cnpj, weightgen))
         % 11
     )
     return 0 if val < 2 else 11 - val
