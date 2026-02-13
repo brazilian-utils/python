@@ -40,8 +40,6 @@ False
 ```
 
 # Utilities
-# Utilities
-
 - [CPF](#cpf)
   - [is\_valid\_cpf](#is_valid_cpf)
   - [format\_cpf](#format_cpf)
