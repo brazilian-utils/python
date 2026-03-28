@@ -26,7 +26,7 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.10"
-holidays = ">=0.58,<0.90"
+holidays = ">=0.58,<0.94"
 num2words = "0.5.14"
 coverage = "^7.2.7"
 
@@ -34,7 +34,7 @@ coverage = "^7.2.7"
 coverage = "^7.2.7"
 
 [tool.poetry.group.dev.dependencies]
-ruff = ">=0.5.0,<0.15.0"
+ruff = "0.15.7"
 
 [tool.ruff]
 line-length = 80
