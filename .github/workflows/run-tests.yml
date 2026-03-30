@@ -18,8 +18,6 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Poetry Setup
         uses: snok/install-poetry@v1
-        with:
-          version: 1.8.4
       - name: Install Dependencies
         run: poetry install
       - name: Generate Report
