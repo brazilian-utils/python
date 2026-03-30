@@ -41,7 +41,6 @@ False
 ```
 
 # Utilitários
-
 - [CPF](#cpf)
   - [is\_valid\_cpf](#is_valid_cpf)
   - [format\_cpf](#format_cpf)
@@ -109,6 +108,11 @@ False
   - [is_valid_legal_nature](#is_valid_legal_nature)
   - [get_legal_nature_description](#get_legal_nature_description)
   - [list_all_legal_nature](#list_all_legal_nature)
+- [Passaporte](#passaporte)
+  - [is_valid_passport](#is_valid_passport)
+  - [format_passport](#format_passport)
+  - [remove_symbols_passport](#remove_symbols_passport)
+  - [generate_passport](#generate_passport)
 
 ## CPF
 
@@ -1446,6 +1450,8 @@ Retorna uma cópia do dicionário completo `{codigo: descricao}`.
 True
 >>> data["2062"]                 
 'Sociedade Empresária Limitada'
+```
+
 ## RENAVAM
 
 ### is_valid_renavam
@@ -1471,6 +1477,94 @@ Exemplo:
 True
 >>> is_valid_renavam("12345678901")
 False
+```
+
+## Passaporte
+
+### is_valid_passport
+
+Verifica se um número de passaporte brasileiro é válido.
+
+Para ser considerado válido, a entrada deve ser uma string contendo exatamente dois caracteres alfabéticos seguidos de exatamente seis dígitos numéricos.
+
+Esta função não verifica se a entrada é um número de passaporte real, pois não existem dígitos verificadores para o passaporte brasileiro.
+
+Argumentos:
+- passport (str): A string contendo o número do passaporte a ser verificado.
+
+Retorna:
+- bool: True se o número do passaporte for válido (2 letras seguidas de 6 dígitos). False caso contrário.
+
+Exemplo: 
+```python
+>>> from brutils import is_valid_passport
+>>> is_valid_passport("Ab123456")
+True
+>>> is_valid_passport("12345678")
+False
+>>> is_valid_passport("DC-221345")
+False
+```
+### format_passport
+
+Formata um número de passaporte brasileiro para exibição.
+
+Esta função recebe uma string representando um número de passaporte válido e o retorna formatado (maiúsculas, sem símbolos).
+
+Argumentos:
+- passport (str | None): Um número de passaporte brasileiro (minúsculas ou maiúsculas, possivelmente incluindo símbolos)
+
+Retorna:
+- str: O número do passaporte formatado (maiúsculas, sem símbolos) ou None se a entrada for inválida
+
+Exemplo:
+```python
+>>> from brutils import format_passport
+>>> format_passport("Ab123456")
+AB123456
+>>> format_passport("Ab-123456")
+AB123456
+>>> format_passport("111111")
+None
+```
+### remove_symbols_passport
+
+Remove símbolos ('-', '.' e espaços em branco) de um número de passaporte.
+
+Esta função recebe uma string com um número de passaporte como entrada e remove todas as ocorrências dos caracteres '.', '-' e espaço em branco.
+
+Argumentos:
+- passport (str): A string contendo um número de passaporte
+
+Retorna:
+- str: O número do passaporte com hífens (-), pontos (.) e espaços em branco ( ) removidos.
+
+Exemplo:
+```python 
+>>> from brutils import remove_symbols_passport
+>>> remove_symbols_passport("Ab123456")
+Ab123456
+>>> remove_symbols_passport("Ab-123456")
+Ab123456
+>>> remove_symbols_passport("Ab -. 123456")
+Ab123456
+```
+### generate_passport
+
+Gera uma string com um número de passaporte brasileiro válido aleatório.
+
+Esta função gera uma string com um número de passaporte brasileiro aleatório.
+
+Retorna:
+- str: Uma string com um número de passaporte válido aleatório.
+
+Exemplo:
+```python 
+>>> from brutils import generate_passport
+>>> generate_passport()
+"RY393097"
+>>> generate_passport()
+"ZS840088"
 ```
 
 # Novos Utilitários e Reportar Bugs

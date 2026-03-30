@@ -40,7 +40,6 @@ False
 ```
 
 # Utilities
-
 - [CPF](#cpf)
   - [is\_valid\_cpf](#is_valid_cpf)
   - [format\_cpf](#format_cpf)
@@ -108,6 +107,11 @@ False
   - [is_valid_legal_nature](#is_valid_legal_nature)
   - [get_legal_nature_description](#get_legal_nature_description)
   - [list_all_legal_nature](#list_all_legal_nature)
+- [Passport](#passport)
+  - [is_valid_passport](#is_valid_passport)
+  - [format_passport](#format_passport)
+  - [remove_symbols_passport](#remove_symbols_passport)
+  - [generate_passport](#generate_passport)
 
 ## CPF
 
@@ -1476,6 +1480,95 @@ Example:
 True
 >>> is_valid_renavam("12345678901")
 False
+```
+
+## Passport
+
+### is_valid_passport
+
+Checks if a Brazilian passport number is valid.
+
+To be considered valid, the input must be a string containing exactly two alphabetical characters followed by exactly six numerical digits.
+
+This function does not verify is the input is a real passport number, as there are no checksums for the Brazilian passport.
+
+Args:
+- passport (str): The string containing the passport number to be checked.
+
+Returns:
+- bool: True if the passport number is valid (2 letters followed by 6 digits). False otherwise.
+
+Example: 
+```python
+>>> from brutils import is_valid_passport
+>>> is_valid_passport("Ab123456")
+True
+>>> is_valid_passport("12345678")
+False
+>>> is_valid_passport("DC-221345")
+False
+```
+### format_passport
+
+Formats a Brazilian passport number for display. 
+
+This function takes a string representing a valid passport number and returns it formatted (uppercase, without symbols).
+
+Args:
+- passport (str | None): A Brazilian passport number (lower or uppercase, possibly including symbols)
+
+Returns:
+- str: The formatted passport number (uppercase, without symbols) or None if the input is invalid
+
+Example:
+```python
+>>> format_passport("Ab123456")
+AB123456
+>>> format_passport("Ab-123456")
+AB123456
+>>> format_passport("111111")
+None
+```
+
+### remove_symbols_passport
+
+Removes symbols ('-', '.', and whitespaces) from a passport number.
+
+This function takes a passport number string as input and removes all occurrences of
+the '.', '-', and whitespace characters from it.
+
+Args:
+- passport (str): The string containing a passport number 
+
+Returns:
+- str: The passport numbers with dashes (-), dots (.), and whitespaces ( ) removed.
+
+Example:
+```python 
+>>> remove_symbols_passport("Ab123456")
+Ab123456
+>>> remove_symbols_passport("Ab-123456")
+Ab123456
+>>> remove_symbols_passport("Ab -. 123456")
+Ab123456
+```
+
+### generate_passport
+
+Generate a random valid Brazilian passport number string.
+
+This function generates a random Brazilian passport number string.
+
+Returns:
+- str: A random valid passport number string.
+
+Example:
+```python 
+>>> generate()
+"RY393097"
+>>> generate()
+"ZS840088"
+```
 
 # Feature Request and Bug Report
 
