@@ -3,7 +3,7 @@
 <div align="center">
 <p>Utils library for Brazilian-specific businesses.</p>
 
-[![codecov](https://codecov.io/gh/brazilian-utils/brutils-python/branch/main/graph/badge.svg?token=5KNECS8JYF)](https://codecov.io/gh/brazilian-utils/brutils-python)
+[![codecov](https://codecov.io/gh/brazilian-utils/python/branch/main/graph/badge.svg)](https://codecov.io/gh/brazilian-utils/python)
 [![Downloads per Month](https://shields.io/pypi/dm/brutils)](https://pypistats.org/packages/brutils)
 [![Package version](https://shields.io/pypi/v/brutils)](https://pypi.org/project/brutils/)
 

@@ -5,7 +5,7 @@ description = "Utils library for specific Brazilian businesses"
 authors = ["The Brazilian Utils Organization"]
 license = "MIT"
 readme = "README.md"
-repository = "https://github.com/brazilian-utils/brutils"
+repository = "https://github.com/brazilian-utils/python"
 keywords = ["cpf", "cnpj", "cep", "document", "validation", "brazil", "brazilian"]
 classifiers = [
   "Development Status :: 5 - Production/Stable",
