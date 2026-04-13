@@ -5,6 +5,7 @@
 <p>Biblioteca de utilitários projetada para validar, gerar e manipular dados de acordo com as particularidades do Brasil</p>
 
 [![codecov](https://codecov.io/gh/brazilian-utils/python/branch/main/graph/badge.svg)](https://codecov.io/gh/brazilian-utils/python)
+[![Check Lint](https://github.com/brazilian-utils/python/actions/workflows/check-lint.yml/badge.svg?branch=main)](https://github.com/brazilian-utils/python/actions/workflows/check-lint.yml?query=branch%3Amain)
 [![Downloads per Month](https://shields.io/pypi/dm/brutils)](https://pypistats.org/packages/brutils)
 [![Package version](https://shields.io/pypi/v/brutils)](https://pypi.org/project/brutils/)
 
