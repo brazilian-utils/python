@@ -34,7 +34,7 @@ coverage = "^7.2.7"
 coverage = "^7.2.7"
 
 [tool.poetry.group.dev.dependencies]
-ruff = "0.15.10"
+ruff = "0.15.11"
 
 [tool.ruff]
 line-length = 80
