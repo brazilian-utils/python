@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.4.0] - 2026-04-20
+
 ### Added
 
 - Utilitário `convert_name_to_uf` [#606](https://github.com/brazilian-utils/python/pull/606)
@@ -118,7 +120,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utilitário `cnpj.display`
 - Utilitário `cnpj.validate`
 
-[Unreleased]: https://github.com/brazilian-utils/brutils-python/compare/v2.3.0...HEAD
+[Unreleased]: https://github.com/brazilian-utils/brutils-python/compare/v2.4.0...HEAD
+[2.4.0]: https://github.com/brazilian-utils/brutils-python/releases/tag/v2.4.0
 [2.3.0]: https://github.com/brazilian-utils/brutils-python/releases/tag/v2.3.0
 [2.2.0]: https://github.com/brazilian-utils/brutils-python/releases/tag/v2.2.0
 [2.1.1]: https://github.com/brazilian-utils/brutils-python/releases/tag/v2.1.1
