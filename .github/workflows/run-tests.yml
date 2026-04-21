@@ -23,7 +23,9 @@ jobs:
       - name: Generate Report
         run: |
           poetry run coverage run -m unittest discover -s tests
+          poetry run coverage xml
       - name: Upload Coverage to Codecov
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         with:
+          files: ./coverage.xml
           token: ${{ secrets.CODECOV_TOKEN }}

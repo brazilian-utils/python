@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.4.0] - 2026-04-20
+
 ### Added
 
 - Utilitário `generate_alphanumeric_cnpj` [#685](https://github.com/brazilian-utils/python/issues/685)
@@ -16,6 +18,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utilitário `list_all_legal_nature` [#653](https://github.com/brazilian-utils/python/pull/653)
 - Utilitário `is_valid_cnh` [#651](https://github.com/brazilian-utils/brutils-python/pull/651)
 - Utilitário `is_valid_renavam` [#652](https://github.com/brazilian-utils/brutils-python/pull/652)
+- Utilitário `is_valid_passport` [#699](https://github.com/brazilian-utils/python/pull/699)
+- Utilitário `generate_passport` [#699](https://github.com/brazilian-utils/python/pull/699)
+- Utilitário `format_passport` [#699](https://github.com/brazilian-utils/python/pull/699)
+- Utilitário `remove_symbols_passport` [#699](https://github.com/brazilian-utils/python/pull/699)
 
 ### Fixed
 
@@ -115,7 +121,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utilitário `cnpj.display`
 - Utilitário `cnpj.validate`
 
-[Unreleased]: https://github.com/brazilian-utils/brutils-python/compare/v2.3.0...HEAD
+[Unreleased]: https://github.com/brazilian-utils/brutils-python/compare/v2.4.0...HEAD
+[2.4.0]: https://github.com/brazilian-utils/brutils-python/releases/tag/v2.4.0
 [2.3.0]: https://github.com/brazilian-utils/brutils-python/releases/tag/v2.3.0
 [2.2.0]: https://github.com/brazilian-utils/brutils-python/releases/tag/v2.2.0
 [2.1.1]: https://github.com/brazilian-utils/brutils-python/releases/tag/v2.1.1

@@ -1,11 +1,11 @@
 [tool.poetry]
 name = "brutils"
-version = "2.3.0"
+version = "2.4.0"
 description = "Utils library for specific Brazilian businesses"
 authors = ["The Brazilian Utils Organization"]
 license = "MIT"
 readme = "README.md"
-repository = "https://github.com/brazilian-utils/brutils"
+repository = "https://github.com/brazilian-utils/python"
 keywords = ["cpf", "cnpj", "cep", "document", "validation", "brazil", "brazilian"]
 classifiers = [
   "Development Status :: 5 - Production/Stable",
@@ -26,7 +26,7 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.10"
-holidays = ">=0.58,<0.91"
+holidays = ">=0.58,<0.95"
 num2words = "0.5.14"
 coverage = "^7.2.7"
 
@@ -34,7 +34,7 @@ coverage = "^7.2.7"
 coverage = "^7.2.7"
 
 [tool.poetry.group.dev.dependencies]
-ruff = "0.15.1"
+ruff = "0.15.10"
 
 [tool.ruff]
 line-length = 80
