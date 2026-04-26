@@ -52,6 +52,7 @@ False
   - [format\_cnpj](#format_cnpj)
   - [remove\_symbols\_cnpj](#remove_symbols_cnpj)
   - [generate\_cnpj](#generate_cnpj)
+  - [generate\_alphanumeric\_cnpj](#generate_alphanumeric_cnpj)
 - [CEP](#cep)
   - [is\_valid\_cep](#is_valid_cep)
   - [format\_cep](#format_cep)
@@ -304,6 +305,29 @@ Exemplo:
 '34665388000161'
 >>> generate_cnpj(1234)
 "01745284123455"
+```
+
+### generate_alphanumeric_cnpj
+
+Gera uma string de dígitos alphanuméricos CNPJ válida aleatória. Um número de filial
+opcional pode ser fornecido; o padrão é '1'.
+
+Argumentos:
+
+- branch (str): Um número de filial opcional a ser incluído no CNPJ.
+
+Retorna:
+
+- str: Um CNPJ válido alphanumérico gerado aleatoriamente.
+
+Exemplo:
+
+```python
+>>> from brutils import generate_cnpj
+>>> generate_alphanumeric_cnpj()
+"9359QAG9000184"
+>>> generate_alphanumeric_cnpj('1234')
+"NX9K79E2123400"
 ```
 
 ## CEP
