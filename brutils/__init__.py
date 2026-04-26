@@ -15,6 +15,7 @@ from brutils.cnh import is_valid_cnh as is_valid_cnh
 from brutils.cnpj import format_cnpj
 from brutils.cnpj import generate as generate_cnpj
 from brutils.cnpj import generate_alphanumeric as generate_alphanumeric_cnpj
+from brutils.cnpj import is_alphanumeric as is_alphanumeric_cnpj
 from brutils.cnpj import is_valid as is_valid_cnpj
 from brutils.cnpj import remove_symbols as remove_symbols_cnpj
 
@@ -108,6 +109,7 @@ __all__ = [
     "generate_cnpj",
     "generate_alphanumeric_cnpj",
     "is_valid_cnpj",
+    "is_alphanumeric_cnpj",
     "remove_symbols_cnpj",
     # CPF
     "format_cpf",
