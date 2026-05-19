@@ -7,6 +7,8 @@ from brutils.cnpj import (
     display,
     format_cnpj,
     generate,
+    generate_alphanumeric,
+    is_alphanumeric,
     is_valid,
     remove_symbols,
     sieve,
@@ -31,8 +33,15 @@ class TestCNPJ(TestCase):
         self.assertIsNone(display("0000000000000"))
         self.assertIsNone(display("0000000000000a"))
 
+    def test_is_alphanumeric(self):
+        self.assertIs(is_alphanumeric("12ABC34501DE35"), True)
+        self.assertIs(is_alphanumeric("12345678910111"), True)
+        self.assertIs(is_alphanumeric("123456a78b10C1"), False)
+        self.assertIs(is_alphanumeric("12.ABC.345/01DE-35"), False)
+
     def test_validate(self):
         self.assertIs(validate("34665388000161"), True)
+        self.assertIs(validate("Z46ABC88000164"), True)
         self.assertIs(validate("52599927000100"), False)
         self.assertIs(validate("00000000000"), False)
 
@@ -71,6 +80,11 @@ class TestCNPJ(TestCase):
         for _ in range(10_000):
             self.assertIs(validate(generate()), True)
             self.assertIsNotNone(display(generate()))
+
+    def test_generate_alphanumeric(self):
+        for _ in range(10_000):
+            self.assertIs(validate(generate_alphanumeric()), True)
+            self.assertIsNotNone(display(generate_alphanumeric()))
 
     def test__hashdigit(self):
         self.assertEqual(_hashdigit("00000000000000", 13), 0)
