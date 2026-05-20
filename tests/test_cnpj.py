@@ -111,3 +111,52 @@ class TestIsValidToFormat(TestCase):
 
 if __name__ == "__main__":
     main()
+
+
+class TestCNPJAlphanumeric:
+    """Tests for alphanumeric CNPJ support (RFB Nota Técnica 49/2024)."""
+
+    def test_is_valid_canonical_rfb_example(self):
+        """Canonical example published by RFB (Nota Técnica 49/2024, Q14)."""
+        assert is_valid("12ABC34501DE35") is True
+
+    def test_is_valid_numeric_still_works(self):
+        """Numeric CNPJs must remain valid (backward compatibility)."""
+        assert is_valid("03560714000142") is True
+        assert is_valid("00111222000133") is False
+
+    def test_is_valid_rejects_lowercase(self):
+        """Lowercase letters are not valid CNPJ characters."""
+        assert is_valid("12abc34501de35") is False
+
+    def test_is_valid_rejects_wrong_checksum(self):
+        """Alphanumeric CNPJ with wrong DVs must be rejected."""
+        assert is_valid("12ABC34501DE00") is False
+
+    def test_is_valid_rejects_all_same_char(self):
+        """All-identical characters must be rejected."""
+        assert is_valid("AAAAAAAAAAAAAA") is False
+
+    def test_format_cnpj_alphanumeric(self):
+        """Alphanumeric CNPJ must be formatted correctly."""
+        assert format_cnpj("12ABC34501DE35") == "12.ABC.345/01DE-35"
+
+    def test_format_cnpj_numeric_unchanged(self):
+        """Numeric formatting must remain unchanged."""
+        assert format_cnpj("03560714000142") == "03.560.714/0001-42"
+
+    def test_generate_alphanumeric_is_valid(self):
+        """Generated alphanumeric CNPJs must pass validation."""
+        for _ in range(50):
+            cnpj = generate(alphanumeric=True)
+            assert is_valid(cnpj), f"Generated CNPJ failed validation: {cnpj}"
+
+    def test_generate_numeric_still_valid(self):
+        """Generated numeric CNPJs must still pass validation."""
+        for _ in range(50):
+            cnpj = generate()
+            assert is_valid(cnpj), f"Generated CNPJ failed validation: {cnpj}"
+
+    def test_sieve_alphanumeric(self):
+        """sieve() must strip symbols from alphanumeric CNPJs."""
+        assert sieve("12.ABC.345/01DE-35") == "12ABC34501DE35"
