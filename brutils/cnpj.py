@@ -104,7 +104,7 @@ def _is_valid_chars(cnpj: str) -> bool:
     Returns:
         bool: True if all characters are valid, False otherwise.
     """
-    return all(c.isdigit() or c.upper() in _CHAR_VALUES for c in cnpj)
+    return all(c.isdigit() or c in _CHAR_VALUES for c in cnpj)
 
 
 def _hashdigit(cnpj: str, position: int) -> int:
