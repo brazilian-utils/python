@@ -1,6 +1,6 @@
-from itertools import chain
-from random import randint, choice
 import string
+from itertools import chain
+from random import choice, randint
 
 # Mapeamento alfanumérico: A=10, B=11, ..., Z=35
 _CHAR_VALUES = {c: i + 10 for i, c in enumerate(string.ascii_uppercase)}
