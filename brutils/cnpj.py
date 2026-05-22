@@ -121,9 +121,7 @@ def _hashdigit(cnpj: str, position: int) -> int:
         int: The calculated checksum digit.
     """
     weightgen = chain(range(position - 8, 1, -1), range(9, 1, -1))
-    val = (
-        sum(_char_to_val(c) * w for c, w in zip(cnpj, weightgen)) % 11
-    )
+    val = sum(_char_to_val(c) * w for c, w in zip(cnpj, weightgen)) % 11
     return 0 if val < 2 else 11 - val
 
 
@@ -176,10 +174,7 @@ def validate(cnpj: str) -> bool:
         or len(set(cnpj.upper())) == 1
     ):
         return False
-    return all(
-        _hashdigit(cnpj, i + 13) == int(cnpj[12 + i])
-        for i in range(2)
-    )
+    return all(_hashdigit(cnpj, i + 13) == int(cnpj[12 + i]) for i in range(2))
 
 
 def is_valid(cnpj: str) -> bool:
@@ -239,7 +234,7 @@ def generate(branch: int = 1, alphanumeric: bool = False) -> str:
         # Ensure at least one letter in the base (distinguishes from numeric)
         if base[:8].isdigit():
             pos = randint(0, 7)
-            base = base[:pos] + choice(string.ascii_uppercase) + base[pos + 1:]
+            base = base[:pos] + choice(string.ascii_uppercase) + base[pos + 1 :]
     else:
         base = str(randint(0, 99999999)).zfill(8) + branch
 
