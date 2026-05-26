@@ -16,7 +16,7 @@ class TestEmailValidation(TestCase):
         for email in valid_emails:
             try:
                 self.assertTrue(is_valid_email(email))
-            except:  # noqa: E722
+            except Exception:
                 print(f"AssertionError for email: {email}")
                 raise AssertionError
 
@@ -35,7 +35,7 @@ class TestEmailValidation(TestCase):
         for email in invalid_emails:
             try:
                 self.assertFalse(is_valid_email(email))
-            except:  # noqa: E722
+            except Exception:
                 print(f"AssertionError for email: {email}")
                 raise AssertionError
 
