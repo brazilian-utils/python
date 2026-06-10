@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Utilitário `generate_alphanumeric_cnpj` [#685](https://github.com/brazilian-utils/python/issues/685)
 - Utilitário `convert_name_to_uf` [#606](https://github.com/brazilian-utils/python/pull/606)
 - Utilitário `is_valid_legal_nature` [#653](https://github.com/brazilian-utils/python/pull/653)
 - Utilitário `get_legal_nature_description` [#653](https://github.com/brazilian-utils/python/pull/653)
