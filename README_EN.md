@@ -51,6 +51,7 @@ False
   - [format\_cnpj](#format_cnpj)
   - [remove\_symbols\_cnpj](#remove_symbols_cnpj)
   - [generate\_cnpj](#generate_cnpj)
+  - [generate\_alphanumeric\_cnpj](#generate_alphanumeric_cnpj)
 - [CEP](#cep)
   - [is\_valid\_cep](#is_valid_cep)
   - [format\_cep](#format_cep)
@@ -213,9 +214,10 @@ Example:
 
 Returns whether or not the verifying checksum digits of the given CNPJ
 (Brazilian Company Registration Number) match its base number.
-Input should be a digit string of proper length.
-This function does not verify the existence of the CNPJ; it only
-validates the format of the string.
+Input should be a 14-character string, allowing digits and uppercase letters
+in the first 12 positions and digits in the last 2 positions. This function
+does not verify the existence of the CNPJ; it only validates the format of the
+string.
 
 Args:
 
@@ -306,6 +308,29 @@ Example:
 '34665388000161'
 >>> generate_cnpj(1234)
 "01745284123455"
+```
+
+### generate_alphanumeric_cnpj
+
+Generates a random valid alphanumeric CNPJ string. An optional branch number
+parameter can be given; it defaults to '1'.
+
+Args:
+
+- branch (str): An optional branch number to be included in the CNPJ.
+
+Returns:
+
+- str: A randomly generated valid alphanumeric CNPJ string.
+
+Example:
+
+```python
+>>> from brutils import generate_alphanumeric_cnpj
+>>> generate_alphanumeric_cnpj()
+"9359QAG9000184"
+>>> generate_alphanumeric_cnpj('1234')
+"NX9K79E2123400"
 ```
 
 ## CEP

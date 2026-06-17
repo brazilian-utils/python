@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Utilitário `generate_alphanumeric_cnpj` [#685](https://github.com/brazilian-utils/python/issues/685)
+
 ## [2.4.0] - 2026-04-20
 
 ### Added
