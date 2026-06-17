@@ -285,11 +285,24 @@ def format_voter_id(voter_id: str) -> str | None:
         '6908 4709 28 28'
         >>> format_voter_id("163204010922")
         '1632 0401 09 22'
+        >>> format_voter_id("3244567800167")
+        '32445 6780 01 67'
     """
 
     if not is_valid(voter_id):
         return None
 
+    # The sequential number has 8 digits, except for the SP and MG edge case,
+    # where it can have 9 digits (making the voter id 13 digits long). The
+    # federative union and verifying digits are always the last 4 digits.
+    sequential_number = voter_id[:-4]
+    federative_union = _get_federative_union(voter_id)
+    verifying_digits = _get_verifying_digits(voter_id)
+
+    split = len(sequential_number) - 4
     return "{} {} {} {}".format(
-        voter_id[:4], voter_id[4:8], voter_id[8:10], voter_id[10:12]
+        sequential_number[:split],
+        sequential_number[split:],
+        federative_union,
+        verifying_digits,
     )

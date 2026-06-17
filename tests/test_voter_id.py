@@ -127,6 +127,16 @@ class TestIsValid(TestCase):
         self.assertIsNone(format_voter_id("000000000000"))
         self.assertIsNone(format_voter_id("800911840197"))
 
+    def test_format_voter_id_special_case(self):
+        # SP & MG voter ids can have a 9-digit sequential number, making the
+        # voter id 13 digits long. Formatting must keep every digit and place
+        # the federative union and verifying digits correctly.
+        voter_id = "3244567800167"
+        self.assertIs(is_valid(voter_id), True)
+        formatted = format_voter_id(voter_id)
+        self.assertEqual(formatted, "32445 6780 01 67")
+        self.assertEqual(formatted.replace(" ", ""), voter_id)
+
 
 if __name__ == "__main__":
     main()
