@@ -132,9 +132,7 @@ class TestIsValidToFormat(TestCase):
 
 class TestFormatCnpj(TestCase):
     def test_when_cnpj_is_alphanumeric_valid_returns_formatted_cnpj(self):
-        self.assertEqual(
-            format_cnpj("12ABC34501DE35"), "12.ABC.345/01DE-35"
-        )
+        self.assertEqual(format_cnpj("12ABC34501DE35"), "12.ABC.345/01DE-35")
 
     def test_when_cnpj_has_alphanumeric_check_digits_returns_none(self):
         self.assertIsNone(format_cnpj("12ABC34501DEAA"))
