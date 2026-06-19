@@ -27,6 +27,8 @@ class TestLegalProcess(TestCase):
         self.assertIsNone(format_legal_process("2314194582005507"))
         self.assertIsNone(format_legal_process("0000000000000000000000000"))
         self.assertIsNone(format_legal_process("0000000000000000000asdasd"))
+        self.assertIsNone(format_legal_process(None))
+        self.assertIsNone(format_legal_process(123))
 
     def test_remove_symbols(self):
         self.assertEqual(
@@ -73,6 +75,8 @@ class TestLegalProcess(TestCase):
         self.assertIs(is_valid("455323469202340251"), False)
         self.assertIs(is_valid("455323469202340257123123123"), False)
         self.assertIs(is_valid("455323423QQWEQWSsasd&*(()"), False)
+        self.assertIs(is_valid(None), False)
+        self.assertIs(is_valid(123), False)
         self.assertIsInstance(is_valid("455323423QQWEQWSsasd&*(()"), bool)
 
 

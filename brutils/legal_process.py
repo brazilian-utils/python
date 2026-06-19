@@ -56,7 +56,11 @@ def format_legal_process(legal_process_id: str) -> str | None:
         None
     """
 
-    if legal_process_id.isdigit() and len(legal_process_id) == 20:
+    if (
+        isinstance(legal_process_id, str)
+        and legal_process_id.isdigit()
+        and len(legal_process_id) == 20
+    ):
         capture_fields = r"(\d{7})(\d{2})(\d{4})(\d)(\d{2})(\d{4})"
         include_chars = r"\1-\2.\3.\4.\5.\6"
 
@@ -92,7 +96,16 @@ def is_valid(legal_process_id: str) -> bool:
         False
     """
 
+    if not isinstance(legal_process_id, str):
+        return False
+
     clean_legal_process_id = remove_symbols(legal_process_id)
+    if (
+        not clean_legal_process_id.isdigit()
+        or len(clean_legal_process_id) != 20
+    ):
+        return False
+
     DD = clean_legal_process_id[7:9]
     J = clean_legal_process_id[13:14]
     TR = clean_legal_process_id[14:16]
