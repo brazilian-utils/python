@@ -215,13 +215,18 @@ def is_valid(cnpj: str) -> bool:
     return isinstance(cnpj, str) and validate(cnpj)
 
 
-def generate(branch: int = 1) -> str:
+def generate(branch: int | str = 1, alphanumeric: bool = False) -> str:
     """
-    Generates a random valid CNPJ digit string. An optional branch number
-    parameter can be given; it defaults to 1.
+    Generates a random valid CNPJ string. An optional branch number parameter
+    can be given; it defaults to 1. Use alphanumeric=True to generate a CNPJ
+    whose first 12 characters may contain digits and uppercase letters.
 
     Args:
-        branch (int): An optional branch number to be included in the CNPJ.
+        branch (int | str): An optional branch number to be included in the
+            CNPJ. Alphanumeric branch values are accepted only with
+            alphanumeric=True.
+        alphanumeric (bool): Whether the generated CNPJ should be
+            alphanumeric.
 
     Returns:
         str: A randomly generated valid CNPJ string.
@@ -231,40 +236,27 @@ def generate(branch: int = 1) -> str:
         "30180536000105"
         >>> generate(1234)
         "01745284123455"
+        >>> generate(branch="AB12", alphanumeric=True)
+        "NX9K79E2AB1200"
     """
 
+    if alphanumeric:
+        branch = str(branch)
+        branch = branch[:4] if len(branch) >= 4 else branch.zfill(4)
+        branch = (
+            "0001"
+            if branch == "0000" or not _is_alphanumeric(branch)
+            else branch
+        )
+        base = "".join(choices(digits * 3 + ascii_uppercase, k=8)) + branch
+
+        return base + _checksum(base)
+
+    branch = int(branch)
     branch %= 10000
     branch += int(branch == 0)
     branch = str(branch).zfill(4)
     base = str(randint(0, 99999999)).zfill(8) + branch
-
-    return base + _checksum(base)
-
-
-def generate_alphanumeric(branch: str = "1") -> str:
-    """
-    Generates a random valid alphanumeric CNPJ digit string. An optional branch
-    number parameter can be given; it defaults to '1'.
-
-    Args:
-        branch (str): An optional branch number to be included in the CNPJ.
-
-    Returns:
-        str: A randomly generated valid alphanumeric CNPJ string.
-
-    Example:
-        >>> generate_alphanumeric()
-        "9359QAG9000184"
-        >>> generate_alphanumeric('1234')
-        "NX9K79E2123400"
-    """
-
-    branch = branch[:4] if len(branch) >= 4 else branch.zfill(4)
-    branch = (
-        "0001" if branch == "0000" or not _is_alphanumeric(branch) else branch
-    )
-
-    base = "".join(choices(digits * 3 + ascii_uppercase, k=8)) + branch
 
     return base + _checksum(base)
 

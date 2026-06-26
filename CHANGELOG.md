@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Utilitário `generate_alphanumeric_cnpj` [#741](https://github.com/brazilian-utils/python/pull/741)
+- Utilitário `generate_cnpj` com suporte a CNPJ alfanumérico [#741](https://github.com/brazilian-utils/python/pull/741)
 
 ## [2.4.0] - 2026-04-20
 

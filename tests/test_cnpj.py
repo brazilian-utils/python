@@ -8,7 +8,6 @@ from brutils.cnpj import (
     display,
     format_cnpj,
     generate,
-    generate_alphanumeric,
     is_valid,
     remove_symbols,
     sieve,
@@ -88,10 +87,15 @@ class TestCNPJ(TestCase):
 
     def test_generate_alphanumeric(self):
         for _ in range(10_000):
-            generated = generate_alphanumeric()
+            generated = generate(alphanumeric=True)
             self.assertIs(validate(generated), True)
             self.assertIsNotNone(display(generated))
-        self.assertIs(validate(generate_alphanumeric(branch="1234")), True)
+        self.assertIs(
+            validate(generate(branch="1234", alphanumeric=True)), True
+        )
+        self.assertIs(
+            validate(generate(branch="AB12", alphanumeric=True)), True
+        )
 
     def test__hashdigit(self):
         self.assertEqual(_hashdigit("00000000000000", 13), 0)

@@ -51,7 +51,6 @@ False
   - [format\_cnpj](#format_cnpj)
   - [remove\_symbols\_cnpj](#remove_symbols_cnpj)
   - [generate\_cnpj](#generate_cnpj)
-  - [generate\_alphanumeric\_cnpj](#generate_alphanumeric_cnpj)
 - [CEP](#cep)
   - [is\_valid\_cep](#is_valid_cep)
   - [format\_cep](#format_cep)
@@ -289,12 +288,16 @@ Example:
 
 ### generate_cnpj
 
-Generates a random valid CNPJ (Brazilian Company Registration Number) digit
-string. An optional branch number parameter can be given; it defaults to 1.
+Generates a random valid CNPJ (Brazilian Company Registration Number) string.
+An optional branch number parameter can be given; it defaults to 1. Use
+`alphanumeric=True` to generate a CNPJ whose first 12 positions may contain
+digits and uppercase letters.
 
 Args:
 
-- branch (int): An optional branch number to be included in the CNPJ.
+- branch (int | str): An optional branch number to be included in the CNPJ.
+  Alphanumeric branch values are accepted only with `alphanumeric=True`.
+- alphanumeric (bool): Whether the generated CNPJ should be alphanumeric.
 
 Returns:
 
@@ -308,29 +311,10 @@ Example:
 '34665388000161'
 >>> generate_cnpj(1234)
 "01745284123455"
-```
-
-### generate_alphanumeric_cnpj
-
-Generates a random valid alphanumeric CNPJ string. An optional branch number
-parameter can be given; it defaults to '1'.
-
-Args:
-
-- branch (str): An optional branch number to be included in the CNPJ.
-
-Returns:
-
-- str: A randomly generated valid alphanumeric CNPJ string.
-
-Example:
-
-```python
->>> from brutils import generate_alphanumeric_cnpj
->>> generate_alphanumeric_cnpj()
+>>> generate_cnpj(alphanumeric=True)
 "9359QAG9000184"
->>> generate_alphanumeric_cnpj('1234')
-"NX9K79E2123400"
+>>> generate_cnpj(branch="AB12", alphanumeric=True)
+"NX9K79E2AB1200"
 ```
 
 ## CEP
