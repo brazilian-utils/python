@@ -314,7 +314,10 @@ Example:
 >>> generate_cnpj(alphanumeric=True)
 "9359QAG9000184"
 >>> generate_cnpj(branch="AB12", alphanumeric=True)
-"NX9K79E2AB1200"
+"BR2026UTAB1290"
+>>> generate_cnpj(branch="CD34", alphanumeric=True)
+# Invalid CNPJ for validation examples:
+"NX9K79E2CD3400"
 ```
 
 ## CEP
