@@ -4,10 +4,15 @@
 
 <p>Biblioteca de utilitários projetada para validar, gerar e manipular dados de acordo com as particularidades do Brasil</p>
 
-[![codecov](https://codecov.io/gh/brazilian-utils/python/branch/main/graph/badge.svg)](https://codecov.io/gh/brazilian-utils/python)
-[![Check Lint](https://github.com/brazilian-utils/python/actions/workflows/check-lint.yml/badge.svg?branch=main)](https://github.com/brazilian-utils/python/actions/workflows/check-lint.yml?query=branch%3Amain)
-[![Downloads per Month](https://shields.io/pypi/dm/brutils)](https://pypistats.org/packages/brutils)
+[![GitHub License](https://img.shields.io/github/license/brazilian-utils/python?color=blue)](https://opensource.org/license/mit)
 [![Package version](https://shields.io/pypi/v/brutils)](https://pypi.org/project/brutils/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/brutils)](https://pypi.org/project/brutils/)
+[![PyPI - Status](https://img.shields.io/pypi/status/brutils)](https://pypi.org/project/brutils/)
+[![Downloads per Month](https://shields.io/pypi/dm/brutils)](https://pypistats.org/packages/brutils)
+
+[![run-tests](https://github.com/brazilian-utils/python/actions/workflows/run-tests.yml/badge.svg)](https://github.com/brazilian-utils/python/actions/workflows/run-tests.yml)
+[![check-lint](https://github.com/brazilian-utils/python/actions/workflows/check-lint.yml/badge.svg)](https://github.com/brazilian-utils/python/actions/workflows/check-lint.yml)
+[![codecov](https://codecov.io/gh/brazilian-utils/python/branch/main/graph/badge.svg)](https://codecov.io/gh/brazilian-utils/python)
 
 ### [Looking for the english version?](README_EN.md)
 

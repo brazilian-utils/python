@@ -1,13 +1,12 @@
-name: Check Lint
+name: check-lint
 on:
   pull_request:
   push:
     branches:
       - main
-
 jobs:
   lint:
-    name: Check Lint
+    name: check-lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -33,5 +32,3 @@ jobs:
           cat lint_output.log
           echo -e "\n\033[0;33m Please, run \`make format\` and push the changes to fix this error."
           exit 1
-
-          
