@@ -1,5 +1,6 @@
 from itertools import chain
-from random import randint
+from random import choices, randint
+from string import ascii_uppercase, digits
 
 # FORMATTING
 ############
@@ -83,7 +84,12 @@ def display(cnpj: str) -> str | None:
        backward compatibility.
     """
 
-    if not cnpj.isdigit() or len(cnpj) != 14 or len(set(cnpj)) == 1:
+    if (
+        len(cnpj) != 14
+        or not _is_alphanumeric(cnpj[:12])
+        or not cnpj[12:].isdigit()
+        or len(set(cnpj)) == 1
+    ):
         return None
     return "{}.{}.{}/{}-{}".format(
         cnpj[:2], cnpj[2:5], cnpj[5:8], cnpj[8:12], cnpj[12:]
@@ -124,6 +130,27 @@ def format_cnpj(cnpj: str) -> str | None:
 ############
 
 
+def _is_alphanumeric(cnpj: str) -> bool:
+    """
+    Checks whether all characters are digits or uppercase letters.
+
+    Args:
+        cnpj (str): The CNPJ string to be validated.
+
+    Returns:
+        bool: True if all characters are either digits or uppercase letters,
+        False otherwise.
+
+    Example:
+        >>> _is_alphanumeric("035ABC1400Z142")
+        True
+        >>> _is_alphanumeric("0011-22200013!")
+        False
+    """
+
+    return all(char in (digits + ascii_uppercase) for char in cnpj)
+
+
 def validate(cnpj: str) -> bool:
     """
     Validates a CNPJ (Brazilian Company Registration Number) by comparing its
@@ -151,7 +178,12 @@ def validate(cnpj: str) -> bool:
        backward compatibility.
     """
 
-    if not cnpj.isdigit() or len(cnpj) != 14 or len(set(cnpj)) == 1:
+    if (
+        len(cnpj) != 14
+        or not _is_alphanumeric(cnpj[:12])
+        or not cnpj[12:].isdigit()
+        or len(set(cnpj)) == 1
+    ):
         return False
     return all(
         _hashdigit(cnpj, i + 13) == int(v) for i, v in enumerate(cnpj[12:])
@@ -183,13 +215,18 @@ def is_valid(cnpj: str) -> bool:
     return isinstance(cnpj, str) and validate(cnpj)
 
 
-def generate(branch: int = 1) -> str:
+def generate(branch: int | str = 1, alphanumeric: bool = False) -> str:
     """
-    Generates a random valid CNPJ digit string. An optional branch number
-    parameter can be given; it defaults to 1.
+    Generates a random valid CNPJ string. An optional branch number parameter
+    can be given; it defaults to 1. Use alphanumeric=True to generate a CNPJ
+    whose first 12 characters may contain digits and uppercase letters.
 
     Args:
-        branch (int): An optional branch number to be included in the CNPJ.
+        branch (int | str): An optional branch number to be included in the
+            CNPJ. Alphanumeric branch values are accepted only with
+            alphanumeric=True.
+        alphanumeric (bool): Whether the generated CNPJ should be
+            alphanumeric.
 
     Returns:
         str: A randomly generated valid CNPJ string.
@@ -199,8 +236,23 @@ def generate(branch: int = 1) -> str:
         "30180536000105"
         >>> generate(1234)
         "01745284123455"
+        >>> generate(branch="AB12", alphanumeric=True)
+        "NX9K79E2AB1200"
     """
 
+    if alphanumeric:
+        branch = str(branch)
+        branch = branch[:4] if len(branch) >= 4 else branch.zfill(4)
+        branch = (
+            "0001"
+            if branch == "0000" or not _is_alphanumeric(branch)
+            else branch
+        )
+        base = "".join(choices(digits * 3 + ascii_uppercase, k=8)) + branch
+
+        return base + _checksum(base)
+
+    branch = int(branch)
     branch %= 10000
     branch += int(branch == 0)
     branch = str(branch).zfill(4)
@@ -230,7 +282,10 @@ def _hashdigit(cnpj: str, position: int) -> int:
 
     weightgen = chain(range(position - 8, 1, -1), range(9, 1, -1))
     val = (
-        sum(int(digit) * weight for digit, weight in zip(cnpj, weightgen)) % 11
+        sum(
+            (ord(digit) - 48) * weight for digit, weight in zip(cnpj, weightgen)
+        )
+        % 11
     )
     return 0 if val < 2 else 11 - val
 

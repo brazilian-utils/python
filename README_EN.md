@@ -213,9 +213,10 @@ Example:
 
 Returns whether or not the verifying checksum digits of the given CNPJ
 (Brazilian Company Registration Number) match its base number.
-Input should be a digit string of proper length.
-This function does not verify the existence of the CNPJ; it only
-validates the format of the string.
+Input should be a 14-character string, allowing digits and uppercase letters
+in the first 12 positions and digits in the last 2 positions. This function
+does not verify the existence of the CNPJ; it only validates the format of the
+string.
 
 Args:
 
@@ -287,12 +288,16 @@ Example:
 
 ### generate_cnpj
 
-Generates a random valid CNPJ (Brazilian Company Registration Number) digit
-string. An optional branch number parameter can be given; it defaults to 1.
+Generates a random valid CNPJ (Brazilian Company Registration Number) string.
+An optional branch number parameter can be given; it defaults to 1. Use
+`alphanumeric=True` to generate a CNPJ whose first 12 positions may contain
+digits and uppercase letters.
 
 Args:
 
-- branch (int): An optional branch number to be included in the CNPJ.
+- branch (int | str): An optional branch number to be included in the CNPJ.
+  Alphanumeric branch values are accepted only with `alphanumeric=True`.
+- alphanumeric (bool): Whether the generated CNPJ should be alphanumeric.
 
 Returns:
 
@@ -306,6 +311,13 @@ Example:
 '34665388000161'
 >>> generate_cnpj(1234)
 "01745284123455"
+>>> generate_cnpj(alphanumeric=True)
+"9359QAG9000184"
+>>> generate_cnpj(branch="AB12", alphanumeric=True)
+"BR2026UTAB1290"
+>>> generate_cnpj(branch="CD34", alphanumeric=True)
+# Invalid CNPJ for validation examples:
+"NX9K79E2CD3400"
 ```
 
 ## CEP

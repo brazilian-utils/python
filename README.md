@@ -213,7 +213,8 @@ Exemplo:
 
 Verifica se os dígitos de verificação do CNPJ (Cadastro Nacional da Pessoa
 Jurídica) fornecido correspondem ao seu número base. A entrada deve ser uma
-string de dígitos com o comprimento apropriado. Esta função não verifica a
+string de 14 caracteres, permitindo dígitos e letras maiúsculas nas 12
+primeiras posições e dígitos nas 2 últimas. Esta função não verifica a
 existência do CNPJ; ela só valida o formato da string.
 
 Argumentos:
@@ -285,12 +286,16 @@ Exemplo:
 
 ### generate_cnpj
 
-Gera uma string de dígitos CNPJ válida aleatória. Um número de filial
-opcional pode ser fornecido; o padrão é 1.
+Gera uma string de CNPJ válida aleatória. Um número de filial opcional pode ser
+fornecido; o padrão é 1. Use `alphanumeric=True` para gerar um CNPJ cujas 12
+primeiras posições podem conter dígitos e letras maiúsculas.
 
 Argumentos:
 
-- branch (int): Um número de filial opcional a ser incluído no CNPJ.
+- branch (int | str): Um número de filial opcional a ser incluído no CNPJ.
+  Valores de filial alfanuméricos são aceitos apenas com
+  `alphanumeric=True`.
+- alphanumeric (bool): Define se o CNPJ gerado deve ser alfanumérico.
 
 Retorna:
 
@@ -304,6 +309,13 @@ Exemplo:
 '34665388000161'
 >>> generate_cnpj(1234)
 "01745284123455"
+>>> generate_cnpj(alphanumeric=True)
+"9359QAG9000184"
+>>> generate_cnpj(branch="AB12", alphanumeric=True)
+"BR2026UTAB1290"
+>>> generate_cnpj(branch="CD34", alphanumeric=True)
+# CNPJ inválido para exemplos de validação:
+"NX9K79E2CD3400"
 ```
 
 ## CEP

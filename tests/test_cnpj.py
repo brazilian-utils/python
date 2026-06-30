@@ -4,6 +4,7 @@ from unittest.mock import patch
 from brutils.cnpj import (
     _checksum,
     _hashdigit,
+    _is_alphanumeric,
     display,
     format_cnpj,
     generate,
@@ -27,12 +28,23 @@ class TestCNPJ(TestCase):
 
     def test_display(self):
         self.assertEqual(display("00000000000109"), "00.000.000/0001-09")
+        self.assertEqual(display("12ABC34501DE35"), "12.ABC.345/01DE-35")
+        self.assertIsNone(display("12ABC34501DEAA"))
         self.assertIsNone(display("00000000000000"))
         self.assertIsNone(display("0000000000000"))
         self.assertIsNone(display("0000000000000a"))
 
+    def test__is_alphanumeric(self):
+        self.assertIs(_is_alphanumeric("12ABC34501DE35"), True)
+        self.assertIs(_is_alphanumeric("12345678910111"), True)
+        self.assertIs(_is_alphanumeric("123456a78b10C1"), False)
+        self.assertIs(_is_alphanumeric("12.ABC.345/01DE-35"), False)
+
     def test_validate(self):
         self.assertIs(validate("34665388000161"), True)
+        self.assertIs(validate("12ABC34501DE35"), True)
+        self.assertIs(validate("Z46ABC88000164"), True)
+        self.assertIs(validate("12ABC34501DEAA"), False)
         self.assertIs(validate("52599927000100"), False)
         self.assertIs(validate("00000000000"), False)
 
@@ -71,6 +83,19 @@ class TestCNPJ(TestCase):
         for _ in range(10_000):
             self.assertIs(validate(generate()), True)
             self.assertIsNotNone(display(generate()))
+        self.assertIs(validate(generate(branch=1234)), True)
+
+    def test_generate_alphanumeric(self):
+        for _ in range(10_000):
+            generated = generate(alphanumeric=True)
+            self.assertIs(validate(generated), True)
+            self.assertIsNotNone(display(generated))
+        self.assertIs(
+            validate(generate(branch="1234", alphanumeric=True)), True
+        )
+        self.assertIs(
+            validate(generate(branch="AB12", alphanumeric=True)), True
+        )
 
     def test__hashdigit(self):
         self.assertEqual(_hashdigit("00000000000000", 13), 0)
@@ -107,6 +132,14 @@ class TestIsValidToFormat(TestCase):
 
         # When cnpj isn't valid, returns None
         self.assertIsNone(format_cnpj("01838723000127"))
+
+
+class TestFormatCnpj(TestCase):
+    def test_when_cnpj_is_alphanumeric_valid_returns_formatted_cnpj(self):
+        self.assertEqual(format_cnpj("12ABC34501DE35"), "12.ABC.345/01DE-35")
+
+    def test_when_cnpj_has_alphanumeric_check_digits_returns_none(self):
+        self.assertIsNone(format_cnpj("12ABC34501DEAA"))
 
 
 if __name__ == "__main__":
