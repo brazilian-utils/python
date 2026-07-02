@@ -1,6 +1,11 @@
+import random
+import re
 from itertools import chain
 from random import choices, randint
 from string import ascii_uppercase, digits
+
+
+CNPJ_RE = re.compile(r"^[A-Z0-9]{12}[0-9]{2}")
 
 # FORMATTING
 ############
@@ -31,7 +36,7 @@ def sieve(dirty: str) -> str:
        backward compatibility.
     """
 
-    return "".join(filter(lambda char: char not in "./-", dirty))
+    return re.sub(r"[\.\/\-]", "", dirty)
 
 
 def remove_symbols(dirty: str) -> str:
@@ -84,13 +89,9 @@ def display(cnpj: str) -> str | None:
        backward compatibility.
     """
 
-    if (
-        len(cnpj) != 14
-        or not _is_alphanumeric(cnpj[:12])
-        or not cnpj[12:].isdigit()
-        or len(set(cnpj)) == 1
-    ):
+    if not re.search(CNPJ_RE, cnpj):
         return None
+
     return "{}.{}.{}/{}-{}".format(
         cnpj[:2], cnpj[2:5], cnpj[5:8], cnpj[8:12], cnpj[12:]
     )
@@ -177,14 +178,9 @@ def validate(cnpj: str) -> bool:
        This method should not be used in new code and is only provided for
        backward compatibility.
     """
-
-    if (
-        len(cnpj) != 14
-        or not _is_alphanumeric(cnpj[:12])
-        or not cnpj[12:].isdigit()
-        or len(set(cnpj)) == 1
-    ):
+    if not re.search(CNPJ_RE, cnpj):
         return False
+
     return all(
         _hashdigit(cnpj, i + 13) == int(v) for i, v in enumerate(cnpj[12:])
     )
