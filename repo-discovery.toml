@@ -1,0 +1,103 @@
+schema_version = "1.0.0"
+
+[project]
+name = "python"
+description = "Utility library designed to validate, generate, and manipulate data according to Brazilian particularities 🇧🇷"
+objective = "Democratize access to information and provide tools that help anyone create, understand, and work with Brazilian systems, solving daily problems of national business."
+license = "MIT"
+languages = ["en-US", "pt-BR"]
+technologies = ["python", "makefile", "poetry", "ruff", "flake8"]
+tech_fields = ["backend", "data"]
+documentation_languages = ["en-US", "pt-BR"]
+
+[[maintainers]]
+type = "person"
+name = "Camila Maia"
+email = "camila@cumbuca.dev"
+pronouns = "she/her"
+nationality = "Brazil"
+open_to_work = false
+
+[[organizations]]
+name = "Brazilian Utils"
+email = "opensource@cumbuca.dev"
+url = "https://brazilian-utils.com.br"
+country = "Brazil"
+
+[[organizations]]
+name = "Cumbuca Dev"
+email = "contato@cumbuca.dev"
+url = "https://cumbuca.dev"
+country = "Brazil"
+
+[community]
+good_first_issue = true
+mentorship_available = true
+async_contribution_friendly = true
+
+[[community.communication_channels]]
+name = "GitHub Issues"
+type = "issue_tracker"
+purpose = "Bug reports and suggestions for new features."
+url = "https://github.com/brazilian-utils/python/issues"
+languages = ["pt-BR", "en-US"]
+
+[[community.communication_channels]]
+name = "GitHub Discussions"
+type = "forum"
+purpose = "Questions, ideas, and knowledge exchange with the community."
+url = "https://github.com/brazilian-utils/python/discussions"
+languages = ["pt-BR", "en-US"]
+
+[[community.communication_channels]]
+name = "Slack"
+type = "chat"
+purpose = "Real-time communication and collaboration with the community."
+url = "https://cumbucadev.slack.com"
+languages = ["pt-BR", "en-US"]
+
+[[community.contribution_areas]]
+name = "code"
+description = "Implementation of new data validators and generators (CPF, CNPJ, CEP, etc.)."
+
+[[community.contribution_areas]]
+name = "documentation"
+description = "Improvement of the README and documentation for function usage."
+
+[[community.contribution_areas]]
+name = "translation"
+description = "Translation of guides and README to ensure international accessibility."
+
+[[community.accepted_experience_levels]]
+technology = "python"
+levels = ["beginner", "intermediate", "advanced"]
+
+[inclusion]
+causes = [
+  "education",
+  "equity",
+  "diversity",
+  "information-democratization",
+  "digital-commons",
+  "digital-sovereignty",
+  "digital-permaculture",
+]
+
+[application_context]
+activity_fields = ["community", "education", "government", "enterprise"]
+business_contexts = ["finance", "ecommerce", "technology"]
+
+[governance]
+type = "consensus"
+code_of_conduct = true
+contributing_guide = true
+
+[ai_policy]
+allowed = true
+disclosure_required = true
+human_review_required = true
+
+[funding]
+funding_available = false
+sponsorship_program = true
+sponsorship_program_url = "https://github.com/sponsors/cumbucadev"
