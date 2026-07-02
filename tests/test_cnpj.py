@@ -28,7 +28,7 @@ class TestCNPJ(TestCase):
 
     def test_display(self):
         self.assertEqual(display("00000000000109"), "00.000.000/0001-09")
-        self.assertIsNone(display("00000000000000", "00.000.000/0000-00"))
+        self.assertEqual(display("00000000000000"), "00.000.000/0000-00")
         self.assertEqual(display("12ABC34501DE35"), "12.ABC.345/01DE-35")
         self.assertIsNone(display("12ABC34501DEAA"))
         self.assertIsNone(display("0000000000000"))
