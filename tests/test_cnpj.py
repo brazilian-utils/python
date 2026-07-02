@@ -90,7 +90,12 @@ class TestCNPJ(TestCase):
         ]
         for branch, final_branch in test_branches:
             generated_cnpj = generate(branch=branch)
-            self.assertTrue(re.search(rf"[0-9]{{8}}{final_branch}[0-9]{{2}}", generated_cnpj), msg=(final_branch, generated_cnpj))
+            self.assertTrue(
+                re.search(
+                    rf"[0-9]{{8}}{final_branch}[0-9]{{2}}", generated_cnpj
+                ),
+                msg=(final_branch, generated_cnpj),
+            )
 
     def test_generate_alphanumeric(self):
         for _ in range(10_000):

@@ -96,6 +96,7 @@ def display(cnpj: str) -> str | None:
 
     return all(char in (digits + ascii_uppercase) for char in cnpj)
 
+
 def format_cnpj(cnpj: str) -> str | None:
     """
     Formats a CNPJ (Brazilian Company Registration Number) string for visual
