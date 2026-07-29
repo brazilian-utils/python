@@ -25,12 +25,11 @@ def format_currency(value: float | int | str | Decimal) -> str | None:
     """
     try:
         decimal_value = Decimal(value)
-        formatted_value = (
+        return (
             f"R$ {decimal_value:,.2f}".replace(",", "_")
             .replace(".", ",")
             .replace("_", ".")
         )
-        return formatted_value
     except (InvalidOperation, TypeError, ValueError):
         return None
 

@@ -52,6 +52,4 @@ class MonthsEnum(BetterEnum):
         Returns:
             True if the month is valid, False otherwise.
         """
-        return (
-            True if month in set(month.value for month in MonthsEnum) else False
-        )
+        return month in {month.value for month in MonthsEnum}

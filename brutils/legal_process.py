@@ -108,7 +108,7 @@ def is_valid(legal_process_id: str) -> bool:
         ) in process.get("id_foro")
 
     return (
-        _checksum(int(clean_legal_process_id[0:7] + clean_legal_process_id[9:]))
+        _checksum(int(clean_legal_process_id[:7] + clean_legal_process_id[9:]))
         == DD
     ) and valid_process
 
