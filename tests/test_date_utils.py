@@ -171,3 +171,9 @@ class TestConvertDateToText(TestCase):
         for number_month, name_month in self.months_year:
             month = MonthsEnum(number_month)
             self.assertEqual(month.month_name, name_month)
+
+    def test_is_valid_month(self):
+        for number_month, _ in self.months_year:
+            self.assertTrue(MonthsEnum.is_valid_month(number_month))
+        self.assertFalse(MonthsEnum.is_valid_month(0))
+        self.assertFalse(MonthsEnum.is_valid_month(13))
