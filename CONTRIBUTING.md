@@ -279,7 +279,6 @@ class Example:
         """
         ...
         return value
-
 ```
 
 Exemplo:
