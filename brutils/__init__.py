@@ -17,6 +17,12 @@ from brutils.cnpj import generate as generate_cnpj
 from brutils.cnpj import is_valid as is_valid_cnpj
 from brutils.cnpj import remove_symbols as remove_symbols_cnpj
 
+# CNS Imports
+from brutils.cns import format_cns
+from brutils.cns import generate as generate_cns
+from brutils.cns import is_valid as is_valid_cns
+from brutils.cns import remove_symbols as remove_symbols_cns
+
 # CPF Imports
 from brutils.cpf import format_cpf
 from brutils.cpf import generate as generate_cpf
@@ -114,6 +120,11 @@ __all__ = [
     "remove_symbols_cpf",
     # CNH
     "is_valid_cnh",
+    # CNS
+    "format_cns",
+    "generate_cns",
+    "is_valid_cns",
+    "remove_symbols_cns",
     # Email
     "is_valid_email",
     # Legal Process

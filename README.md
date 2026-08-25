@@ -76,6 +76,11 @@ False
   - [convert\_date\_to_text](#convert_date_to_text)
 - [CNH](#cnh)
   - [is\_valid\_cnh](#is_valid_cnh)
+- [CNS](#cns)
+  - [is\_valid\_cns](#is_valid_cns)
+  - [format\_cns](#format_cns)
+  - [remove\_symbols\_cns](#remove_symbols_cns)
+  - [generate\_cns](#generate_cns)
 - [Placa de Carro](#placa-de-carro)
   - [is\_valid\_license\_plate](#is_valid_license_plate)
   - [format\_license\_plate](#format_license_plate)
@@ -725,6 +730,103 @@ False
 True
 >>> is_valid_cnh("987654321-00")
 True
+```
+
+## CNS
+
+### is_valid_cns
+
+Verifica se o número do CNS (Cartão Nacional de Saúde) é válido. Apenas números, formatado como
+uma string, com o tamanho correto (15 dígitos). Não verifica se o CNS realmente existe.
+
+Referências:
+
+- <https://gist.github.com/dudanogueira/7af722477c33bd4bb85843cf0e035b77>.
+- <https://integracao.esusaps.bridge.ufsc.tech/v211/docs/algoritmo_CNS.html>.
+
+Argumentos:
+
+- cns (str): número do CNS como uma string do tamanho correto.
+
+Retorno:
+
+- bool: True se o CNS for válido, False caso contrário.
+
+Exemplo:
+
+```python
+from brutils import is_valid_cns
+>>> is_valid_cns("161243374450004")
+True
+>>> is_valid_cns("123456789012345")
+False
+```
+
+### format_cns
+
+Formata uma string de CNS (Cartão Nacional de Saúde) válida com os símbolos visuais padrão de
+exibição.
+
+Argumentos:
+
+- cns (str): uma string de CNS válida contendo apenas números.
+
+Retorno:
+
+- str: uma string de CNS formatada com os símbolos visuais padrão ou None caso a entrada seja
+  inválida.
+
+Exemplo:
+
+```python
+from brutils import format_cns
+>>> format_cns("161243374450004")
+'161 2433 7445 0004'
+```
+
+### remove_symbols_cns
+
+Esta função recebe uma string de CNS (Cartão Nacional de Saúde) com símbolos de formatação e
+retorna uma versão limpa sem determinados símbolos. Remove intencionalmente apenas os símbolos
+"-", "." e " ", deixando os demais símbolos intactos.
+
+Argumentos:
+
+- cns (str): uma string de CNS que pode conter símbolos de formatação.
+
+Retorno:
+
+- str: uma string de CNS limpa, sem símbolos de formatação.
+
+Exemplo:
+
+```python
+from brutils import remove_symbols_cns
+>>> remove_symbols_cns("161 2433 7445 0004")
+'161243374450004'
+```
+
+### generate_cns
+
+Gera uma string de dígitos contendo um número de CNS brasileiro válido aleatório. Pode gerar um
+CNS "definitivo" (iniciado em 1 ou 2) ou "provisório" (iniciado em 7, 8 ou 9).
+
+Argumentos:
+
+- is_final (bool): se deve gerar um CNS definitivo. Padrão é True.
+
+Retorno:
+
+- str: um número de CNS válido gerado aleatoriamente, como uma string.
+
+Exemplo:
+
+```python
+from brutils import generate_cns
+>>> generate_cns()
+'161243374450004'
+>>> generate_cns(is_final=False)
+'905885616557480'
 ```
 
 
