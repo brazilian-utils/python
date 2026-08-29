@@ -149,7 +149,6 @@ def get_description(code: str) -> Optional[str]:
         >>> get_description("101-5")
         'Órgão Público do Poder Executivo Federal'
         >>> get_description("0000")
-        None
     """
     normalized = _normalize(code)
     return LEGAL_NATURE.get(normalized) if normalized else None

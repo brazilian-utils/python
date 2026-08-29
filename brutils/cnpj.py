@@ -25,9 +25,9 @@ def sieve(dirty: str) -> str:
 
     Example:
         >>> sieve("12.345/6789-01")
-        "12345678901"
+        '12345678901'
         >>> sieve("98/76.543-2101")
-        "98765432101"
+        '98765432101'
 
     .. note::
        This method should not be used in new code and is only provided for
@@ -50,9 +50,9 @@ def remove_symbols(dirty: str) -> str:
 
     Example:
         >>> remove_symbols("12.345/6789-01")
-        "12345678901"
+        '12345678901'
         >>> remove_symbols("98/76.543-2101")
-        "98765432101"
+        '98765432101'
     """
 
     return sieve(dirty)
@@ -78,9 +78,9 @@ def display(cnpj: str) -> str | None:
 
     Example:
         >>> display("12345678901234")
-        "12.345.678/9012-34"
+        '12.345.678/9012-34'
         >>> display("98765432100100")
-        "98.765.432/1001-00"
+        '98.765.432/1001-00'
 
     .. note::
        This method should not be used in new code and is only provided for
@@ -114,7 +114,6 @@ def format_cnpj(cnpj: str) -> str | None:
         >>> format_cnpj("03560714000142")
         '03.560.714/0001-42'
         >>> format_cnpj("98765432100100")
-        None
     """
 
     if not is_valid(cnpj):
@@ -204,12 +203,12 @@ def generate(branch: int | str = 1, alphanumeric: bool = False) -> str:
         str: A randomly generated valid CNPJ string.
 
     Example:
-        >>> generate()
-        "30180536000105"
-        >>> generate(1234)
-        "01745284123455"
-        >>> generate(branch="AB12", alphanumeric=True)
-        "NX9K79E2AB1200"
+        >>> generate() # doctest: +SKIP
+        '30180536000105'
+        >>> generate(1234) # doctest: +SKIP
+        '01745284123455'
+        >>> generate(branch="AB12", alphanumeric=True) # doctest: +SKIP
+        'NX9K79E2AB1200'
     """
     final_branch = str(branch)[:4].zfill(4)
 
@@ -265,9 +264,9 @@ def _checksum(basenum: str) -> str:
 
     Example:
         >>> _checksum("123456789012")
-        "30"
+        '30'
         >>> _checksum("987654321001")
-        "41"
+        '41'
     """
 
     verifying_digits = str(_hashdigit(basenum, 13))

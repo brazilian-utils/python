@@ -27,11 +27,10 @@ def get_municipality_by_code(code: str) -> tuple[str, str] | None:
 
     Example:
         >>> get_municipality_by_code("3550308")
-        ("São Paulo", "SP")
+        ('São Paulo', 'SP')
         >>> get_municipality_by_code("3304557")
-        ("Rio de Janeiro", "RJ")
+        ('Rio de Janeiro', 'RJ')
         >>> get_municipality_by_code("1234567")
-        None
     """
     base_url = IBGE_MUNICIPALITY_BY_CODE_URL.format(code=code)
 
@@ -68,11 +67,10 @@ def get_code_by_municipality_name(
 
     Example:
         >>> get_code_by_municipality_name("São Paulo", "SP")
-        "3550308"
+        '3550308'
         >>> get_code_by_municipality_name("Conceição do Coité", "Ba")
-        "2908408"
+        '2908408'
         >>> get_code_by_municipality_name("Municipio Inexistente", "RS")
-        None
     """
     uf = uf.upper()
 
