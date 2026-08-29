@@ -16,3 +16,4 @@ class TestRENAVAM(TestCase):
         self.assertFalse(is_valid_renavam("12345678901!"))
         self.assertFalse(is_valid_renavam("00000000000"))
         self.assertFalse(is_valid_renavam("11111111111"))
+        self.assertFalse(is_valid_renavam(11111111111))
