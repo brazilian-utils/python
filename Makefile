@@ -27,3 +27,7 @@ ifeq ($(OS),Windows_NT)
 else
 	@PYTHONDONTWRITEBYTECODE=1 poetry run pytest
 endif
+
+export-requirements-dev:
+	@poetry self add poetry-plugin-export
+	@poetry export -f requirements.txt --output requirements-dev.txt --all-groups
