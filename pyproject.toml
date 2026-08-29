@@ -28,13 +28,12 @@ classifiers = [
 python = "^3.10"
 holidays = ">=0.58,<0.102"
 num2words = "0.5.14"
-coverage = "^7.2.7"
-
-[tool.poetry.group.test.dependencies]
-coverage = "^7.2.7"
 
 [tool.poetry.group.dev.dependencies]
 ruff = "0.15.17"
+pytest = "^9.1.1"
+pytest-cov = "^7.1.0"
+pytest-randomly = "^4.1.0"
 
 [tool.ruff]
 line-length = 80
@@ -42,6 +41,33 @@ lint.extend-select = ["I"]
 
 [tool.ruff.lint.per-file-ignores]
 "__init__.py" = ["F401"]
+
+[tool.pytest]
+minversion = "9.1"
+norecursedirs = [
+  "*.egg",
+  ".eggs",
+  "dist",
+  "build",
+  ".git",
+  "__pycache__",
+]
+addopts = [
+  "--strict-markers",
+  "--strict-config",
+  "--doctest-modules",
+  "--doctest-glob=README*.md",
+  # pytest-cov
+  "--cov=brutils",
+  "--cov-report=term-missing:skip-covered",
+  "--cov-report=html",
+  "--cov-report=xml",
+  "--cov-branch",
+]
+testpaths = [
+  "brutils",
+  "tests",
+]
 
 [build-system]
 requires = ["poetry-core"]
