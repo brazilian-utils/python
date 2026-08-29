@@ -40,10 +40,11 @@ pip install brutils
 
 Para usar um de nossos utilitários, basta importar a função necessária, como no exemplo abaixo:
 
-```python
+```pycon
 >>> from brutils import is_valid_cpf
 >>> is_valid_cpf('00011122233')
 False
+
 ```
 
 # Utilitários
@@ -139,12 +140,13 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import is_valid_cpf
 >>> is_valid_cpf("82178537464")
 True
 >>> is_valid_cpf('00011122233')
 False
+
 ```
 
 ### format_cpf
@@ -164,12 +166,13 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import format_cpf
 >>> format_cpf('82178537464')
 '821.785.374-64'
 >>> format_cpf("55550207753")
 '555.502.077-53'
+
 ```
 
 ### remove_symbols_cpf
@@ -188,10 +191,11 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import remove_symbols_cpf
 >>> remove_symbols_cpf('000.111.222-33')
 '00011122233'
+
 ```
 
 ### generate_cpf
@@ -204,12 +208,13 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import generate_cpf
->>> generate_cpf()
+>>> generate_cpf() # doctest: +SKIP
 '17433964657'
->>> generate_cpf()
-"10895948109"
+>>> generate_cpf() # doctest: +SKIP
+'10895948109'
+
 ```
 
 ## CNPJ
@@ -233,12 +238,13 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import is_valid_cnpj
 >>> is_valid_cnpj('03560714000142')
 True
 >>> is_valid_cnpj('00111222000133')
 False
+
 ```
 
 ### format_cnpj
@@ -258,12 +264,12 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import format_cnpj
 >>> format_cnpj("03560714000142")
 '03.560.714/0001-42'
 >>> format_cnpj("98765432100100")
-None
+
 ```
 
 ### remove_symbols_cnpj
@@ -283,10 +289,11 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import remove_symbols_cnpj
 >>> remove_symbols_cnpj('00.111.222/0001-00')
 '00111222000100'
+
 ```
 
 ### generate_cnpj
@@ -308,19 +315,20 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import generate_cnpj
->>> generate_cnpj()
+>>> generate_cnpj() # doctest: +SKIP
 '34665388000161'
->>> generate_cnpj(1234)
-"01745284123455"
->>> generate_cnpj(alphanumeric=True)
-"9359QAG9000184"
->>> generate_cnpj(branch="AB12", alphanumeric=True)
-"BR2026UTAB1290"
->>> generate_cnpj(branch="CD34", alphanumeric=True)
+>>> generate_cnpj(1234) # doctest: +SKIP
+'01745284123455'
+>>> generate_cnpj(alphanumeric=True) # doctest: +SKIP
+'9359QAG9000184'
+>>> generate_cnpj(branch="AB12", alphanumeric=True) # doctest: +SKIP
+'BR2026UTAB1290'
+>>> generate_cnpj(branch="CD34", alphanumeric=True) # doctest: +SKIP
 # CNPJ inválido para exemplos de validação:
-"NX9K79E2CD3400"
+'NX9K79E2CD3400'
+
 ```
 
 ## CEP
@@ -342,7 +350,7 @@ Retorno:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import is_valid_cep
 >>> is_valid_cep('01310200')
 True
@@ -350,6 +358,7 @@ True
 False
 >>> is_valid_cep("abcdefgh")
 False
+
 ```
 
 ### format_cep
@@ -370,14 +379,14 @@ Retorna:
 
 Example:
 
-```python
+```pycon
 >>> from brutils import format_cep
 >>> format_cep('01310200')
 '01310-200'
 >>> format_cep("12345678")
-"12345-678"
+'12345-678'
 >>> format_cep("12345")
-None
+
 ```
 
 ### remove_symbols_cep
@@ -397,14 +406,15 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import remove_symbols_cep
 >>> remove_symbols_cep('01310-200')
 '01310200'
 >>> remove_symbols_cep("123-45.678.9")
-"123456789"
+'123456789'
 >>> remove_symbols_cep("abc.xyz")
-"abcxyz"
+'abcxyz'
+
 ```
 
 ### generate_cep
@@ -418,12 +428,13 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import generate_cep
->>> generate_cep()
+>>> generate_cep() # doctest: +SKIP
 '77520503'
->>> generate_cep()
+>>> generate_cep() # doctest: +SKIP
 '29641407'
+
 ```
 
 ### get_address_from_cep
@@ -441,9 +452,9 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import get_address_from_cep
->>> get_address_from_cep("12345678")
+>>> get_address_from_cep("12345678") # doctest: +SKIP
 {
     "cep": "12345-678",
     "logradouro": "Rua Example",
@@ -456,6 +467,7 @@ Exemplo:
     "ddd": "12",
     "siafi": "1234"
 }
+
 ```
 
 ### get_cep_information_from_address
@@ -475,23 +487,24 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import get_cep_information_from_address
->>> get_cep_information_from_address("EX", "Example", "Rua Example")
+>>> get_cep_information_from_address("SP", "São Paulo", "Tua Thomaz Gonzaga") # doctest: +SKIP
 [
     {
-        "cep": "12345-678",
-        "logradouro": "Rua Example",
-        "complemento": "",
-        "bairro": "Example",
-        "localidade": "Example",
-        "uf": "EX",
-        "ibge": "1234567",
-        "gia": "1234",
-        "ddd": "12",
-        "siafi": "1234"
+        'cep': '01506-020',
+        'logradouro': 'Rua Thomaz Gonzaga',
+        'complemento': '',
+        'bairro': 'Liberdade',
+        'localidade': 'São Paulo',
+        'uf': 'SP',
+        'ibge': '3550308',
+        'gia': '1004',
+        'ddd': '11',
+        'siafi': '7107'
     }
 ]
+
 ```
 
 ## Telefone
@@ -528,7 +541,7 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import is_valid_phone
 >>> is_valid_phone('11994029275')
 True
@@ -536,6 +549,7 @@ True
 True
 >>> is_valid_phone('1938814933', 'landline')
 True
+
 ```
 
 ### format_phone
@@ -552,14 +566,14 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import format_phone
 >>> format_phone("11994029275")
 '(11)99402-9275'
 >>> format_phone("1635014415")
 '(16)3501-4415'
 >>> format_phone("333333")
-None
+
 ```
 
 ### remove_symbols_phone
@@ -576,7 +590,7 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import remove_symbols_phone
 >>> remove_symbols_phone('(21)2569-6969')
 '2125696969'
@@ -584,6 +598,7 @@ Exemplo:
 '1199998888'
 >>> remove_symbols_phone('333333')
 '333333'
+
 ```
 
 ### remove_international_dialing_code
@@ -600,18 +615,19 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import remove_international_dialing_code
 >>> remove_international_dialing_code("5521994029275")
-"21994029275"
+'21994029275'
 >>> remove_international_dialing_code("+5521994029275")
-"+21994029275"
+'+21994029275'
 >>> remove_international_dialing_code("5555994029275")
-"55994029275"
+'55994029275'
 >>> remove_international_dialing_code("21994029275")
-"21994029275"
+'21994029275'
 >>> remove_international_dialing_code("(+55)21994029275")
-"(+)21994029275"
+'(+)21994029275'
+
 ```
 
 ### generate_phone
@@ -630,14 +646,15 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import generate_phone
->>> generate_phone()
-"5929797740"
->>> generate_phone("mobile")
-"1899115895"
->>> generate_phone("landline")
-"5535317900"
+>>> generate_phone() # doctest: +SKIP
+'5929797740'
+>>> generate_phone("mobile") # doctest: +SKIP
+'1899115895'
+>>> generate_phone("landline") # doctest: +SKIP
+'5535317900'
+
 ```
 
 ## Email
@@ -657,9 +674,8 @@ Retorna:
 
 Exemplo:
 
-```python
-from brutils import is_valid_email
-
+```pycon
+>>> from brutils import is_valid_email
 >>> is_valid_email("joao.ninguem@gmail.com")
 True
 >>> is_valid_email(".joao.ninguem@gmail.com")
@@ -668,6 +684,7 @@ False
 False
 >>> is_valid_email("joao ninguem@gmail.com")
 False
+
 ```
 
 ## Data
@@ -684,16 +701,16 @@ Retorna:
 
 Exemplo:
 
-````python
+````pycon
 >>> from brutils import convert_date_to_text
 >>> convert_date_to_text("25/12/2000")
-"Vinte e cinco de dezembro de dois mil"
+'Vinte e cinco de dezembro de dois mil'
 >>> convert_date_to_text("31/02/2000")
-None
 >>> convert_date_to_text("29/02/2024")
-"Vinte e nove de fevereiro de dois mil e vinte e quatro"
->>> convert_date_to_text("1/08/2024")
-"Primeiro de agosto de dois mil e vinte e quatro"
+'Vinte e nove de fevereiro de dois mil e vinte e quatro'
+>>> convert_date_to_text("01/08/2024")
+'Primeiro de agosto de dois mil e vinte e quatro'
+
 ````
 
 ## CNH
@@ -715,7 +732,7 @@ Retorno:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import is_valid_cnh
 >>> is_valid_cnh("12345678901")
 False
@@ -725,6 +742,7 @@ False
 True
 >>> is_valid_cnh("987654321-00")
 True
+
 ```
 
 
@@ -748,7 +766,7 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import is_valid_license_plate
 >>> is_valid_license_plate('ABC1234')
 True
@@ -760,6 +778,7 @@ True
 True
 >>> is_valid_license_plate('GHI-4567')
 False
+
 ```
 
 ### format_license_plate
@@ -778,22 +797,22 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import format_license_plate
 >>> format_license_plate("ABC1234")
-"ABC-1234"
+'ABC-1234'
+
 # formato antigo (contém traço)
 >>> format_license_plate("abc1234")
-"ABC-1234"
-# formato antigo (contém traço)
+'ABC-1234'
 >>> format_license_plate("ABC1D23")
-"ABC1D23"
+'ABC1D23'
+
 # formato mercosul
 >>> format_license_plate("abc1d23")
-"ABC1D23"
-# formato mercosul
+'ABC1D23'
 >>> format_license_plate("ABCD123")
-None
+
 ```
 
 ### remove_symbols_license_plate
@@ -810,16 +829,17 @@ Retorna:
 
 Exemplo:
 
-```python
-from brutils import remove_symbols_license_plate
+```pycon
+>>> from brutils import remove_symbols_license_plate
 >>> remove_symbols_license_plate("ABC-123")
-"ABC123"
+'ABC123'
 >>> remove_symbols_license_plate("abc123")
-"abc123"
+'abc123'
 >>> remove_symbols_license_plate("ABCD123")
-"ABCD123"
+'ABCD123'
 >>> remove_symbols_license_plate("@abc#-#123@")
-"@abc##123@"
+'@abc##123@'
+
 ```
 
 ### generate_license_plate
@@ -837,16 +857,17 @@ Retorna:
 
 Exemplo:
 
-```python
-from brutils import generate_license_plate
->>> generate_license_plate()
-"ABC1D23"
->>> generate_license_plate(format="LLLNLNN")
-"ABC4D56"
->>> generate_license_plate(format="LLLNNNN")
-"ABC123"
->>> generate_license_plate(format="invalid")
+```pycon
+>>> from brutils import generate_license_plate
+>>> generate_license_plate() # doctest: +SKIP
+'ABC1D23'
+>>> generate_license_plate(format="LLLNLNN") # doctest: +SKIP
+'ABC4D56'
+>>> generate_license_plate(format="LLLNNNN") # doctest: +SKIP
+'ABC123'
+>>> generate_license_plate(format="invalid") # doctest: +SKIP
 None
+
 ```
 
 ### convert_license_plate_to_mercosul
@@ -863,14 +884,14 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import convert_license_plate_to_mercosul
->>> convert_license_plate_to_mercosul("ABC123")
-"ABC1C34"
->>> convert_license_plate_to_mercosul("abc123")
-"ABC1C34"
+>>> convert_license_plate_to_mercosul("ABC1234")
+'ABC1C34'
+>>> convert_license_plate_to_mercosul("abc1234")
+'ABC1C34'
 >>> convert_license_plate_to_mercosul("ABC1D23")
-None
+
 ```
 
 ### get_format_license_plate
@@ -889,18 +910,18 @@ Retorna:
 
 Exemplo:
 
-```python
-from brutils import get_format_license_plate
->>> get_format_license_plate("ABC123")
-"LLLNNNN"
->>> get_format_license_plate("abc123")
-"LLLNNNN"
+```pycon
+>>> from brutils import get_format_license_plate
+>>> get_format_license_plate("ABC1234")
+'LLLNNNN'
+>>> get_format_license_plate("abc1234")
+'LLLNNNN'
 >>> get_format_license_plate("ABC1D23")
-"LLLNLNN"
+'LLLNLNN'
 >>> get_format_license_plate("abc1d23")
-"LLLNLNN"
+'LLLNLNN'
 >>> get_format_license_plate("ABCD123")
-None
+
 ```
 
 ## PIS
@@ -923,12 +944,13 @@ Retorna:
 
 Exemplo:
 
-```python
-from brutils import is_valid_pis
+```pycon
+>>> from brutils import is_valid_pis
 >>> is_valid_pis("82178537464")
 False
 >>> is_valid_pis("12082043519")
 True
+
 ```
 
 ### format_pis
@@ -945,12 +967,13 @@ Retorna:
 
 Exemplo:
 
-```python
-from brutils import format_pis
+```pycon
+>>> from brutils import format_pis
 >>> format_pis("17033259504")
 '170.33259.50-4'
 >>> format_pis("12013128292")
 '120.13128.29-2'
+
 ```
 
 ### remove_symbols_pis
@@ -967,8 +990,8 @@ Retorna:
 
 Exemplo:
 
-```python
-from brutils import remove_symbols_pis
+```pycon
+>>> from brutils import remove_symbols_pis
 
 >>> remove_symbols_pis('170.33259.50-4')
 '17033259504'
@@ -976,6 +999,7 @@ from brutils import remove_symbols_pis
 '12345678909'
 >>> remove_symbols_pis('/._')
 '/_'
+
 ```
 
 ### generate_pis
@@ -988,12 +1012,13 @@ Retorna:
 
 Exemplo:
 
-```python
-from brutils import generate_pis
->>> generate_pis()
+```pycon
+>>> from brutils import generate_pis
+>>> generate_pis() # doctest: +SKIP
 '61352489741'
->>> generate_pis()
+>>> generate_pis() # doctest: +SKIP
 '73453349671'
+
 ```
 
 ## Processo Jurídico
@@ -1015,7 +1040,7 @@ Retorna:
 
 Examplo:
 
-```python
+```pycon
 >>> from brutils import is_valid_legal_process
 >>> is_valid_legal_process('10188748220234018200')
 True
@@ -1025,7 +1050,7 @@ True
 False
 >>> is_valid_legal_process('455323423QQWEQWSsasd&*(()')
 False
->>>
+
 ```
 
 ### format_legal_process
@@ -1043,13 +1068,13 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import format_legal_process
 >>> format_legal_process('23141945820055070079')
 '2314194-58.2005.5.07.0079'
 >>> format_legal_process('00000000000000000000')
 '0000000-00.0000.0.00.0000'
->>>
+
 ```
 
 ### remove_symbols_legal_process
@@ -1070,14 +1095,15 @@ Retorna:
 
 Exemplo:
 
-```python
-from brutils import remove_symbols_legal_process
+```pycon
+>>> from brutils import remove_symbols_legal_process
 >>> remove_symbols_legal_process("6439067-89.2023.4.04.5902")
-"64390678920234045902"
+'64390678920234045902'
 >>> remove_symbols_legal_process("4976023-82.2012.7.00.2263")
-"49760238220127002263"
+'49760238220127002263'
 >>> remove_symbols_legal_process("4976023-82.2012.7.00.2263*!*&#")
-"49760238220127002263*!*&#"
+'49760238220127002263*!*&#'
+
 ```
 
 ### generate_legal_process
@@ -1098,16 +1124,17 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import generate_legal_process
->>> generate_legal_process()
-"45676401020238170592"
->>> generate_legal_process(ano=2025)
-"32110268020258121130"
->>> generate_legal_process(orgao=5)
-"37573041520235090313"
->>> generate_legal_process(ano=2024, orgao=4)
-"33158248820244017105"
+>>> generate_legal_process() # doctest: +SKIP
+'45676401020238170592'
+>>> generate_legal_process(year=2025) # doctest: +SKIP
+'32110268020258121130'
+>>> generate_legal_process(orgao=5) # doctest: +SKIP
+'37573041520235090313'
+>>> generate_legal_process(year=2024, orgao=4) # doctest: +SKIP
+'33158248820244017105'
+
 ```
 
 ## Titulo Eleitoral
@@ -1131,12 +1158,13 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import is_valid_voter_id
 >>> is_valid_voter_id('123456789011')
 False
 >>> is_valid_voter_id('427503840213')
 True
+
 ```
 
 ### format_voter_id
@@ -1156,14 +1184,14 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import format_voter_id
 >>> format_voter_id("246593980493")
 '2465 9398 04 93'
 >>> format_voter_id("202715292895")
 '2027 1529 28 95'
 >>> format_voter_id("739035552205")
->>>
+
 ```
 
 ### generate_voter_id
@@ -1178,12 +1206,13 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import generate_voter_id
->>> generate_voter_id()
+>>> generate_voter_id() # doctest: +SKIP
 '183475722801'
->>> generate_voter_id(federative_union ="MG")
+>>> generate_voter_id(federative_union ="MG") # doctest: +SKIP
 '950125640248'
+
 ```
 
 ## IBGE
@@ -1200,7 +1229,7 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils.ibge.uf import convert_code_to_uf
 >>> convert_code_to_uf("12")
 'AC'
@@ -1225,20 +1254,20 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import get_code_by_municipality_name
 >>> get_code_by_municipality_name("São Paulo", "SP")
-"3550308"
+'3550308'
 >>> get_code_by_municipality_name("goiania", "go")
-"5208707"
+'5208707'
 >>> get_code_by_municipality_name("Conceição do Coité", "BA")
-"2908408"
+'2908408'
 >>> get_code_by_municipality_name("conceicao do Coite", "Ba")
-"2908408"
+'2908408'
 >>> get_code_by_municipality_name("Municipio Inexistente", "")
-None
+
 >>> get_code_by_municipality_name("Municipio Inexistente", "RS")
-None
+
 ```
 
 ### get_municipality_by_code
@@ -1254,10 +1283,11 @@ Returns:
 
 Example:
 
-```python
+```pycon
 >>> from brutils import get_municipality_by_code
->>> get_municipality_by_code(3550308)
-("São Paulo", "SP")
+>>> get_municipality_by_code("3550308")
+('São Paulo', 'SP')
+
 ```
 
 ### convert_uf_to_name
@@ -1273,12 +1303,13 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils.ibge.uf import convert_uf_to_name
 >>> convert_uf_to_name('SP')
 'São Paulo'
 >>> convert_uf_to_name('rj')
 'Rio de Janeiro'
+
 ```
 
 ### convert_name_to_uf
@@ -1294,7 +1325,7 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils.ibge.uf import convert_name_to_uf
 >>> convert_name_to_uf('São Paulo')
 'SP'
@@ -1327,7 +1358,7 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from datetime import datetime
 >>> from brutils import is_holiday
 
@@ -1339,6 +1370,7 @@ False
 False
 >>> is_holiday(datetime(2024, 12, 25), uf="RJ")
 True
+
 ```
 
 ## Monetário
@@ -1357,14 +1389,14 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils.currency import format_currency
 >>> format_currency(1259.03)
 'R$ 1.259,03'
 >>> format_currency(0)
 'R$ 0,00'
 >>> format_currency("not a number")
-None
+
 ```
 
 ### convert_real_to_text
@@ -1389,7 +1421,7 @@ Limitações:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils.currency import convert_real_to_text
 >>> convert_real_to_text(1523.45)
 'Mil, quinhentos e vinte e três reais e quarenta e cinco centavos'
@@ -1400,7 +1432,7 @@ Exemplo:
 >>> convert_real_to_text(-50.25)
 'Menos cinquenta reais e vinte e cinco centavos'
 >>> convert_real_to_text("invalid")
-None
+
 ```
 
 ## Natureza Jurídica
@@ -1417,7 +1449,7 @@ O valor é **normalizado** antes da checagem: remove espaços, mantém apenas d�
 - `bool`: `True` se existir na tabela, `False` caso contrário.
 
 **Exemplo**
-```python
+```pycon
 >>> from brutils import legal_nature
 >>> legal_nature.is_valid("2062")   
 True
@@ -1425,6 +1457,7 @@ True
 True
 >>> legal_nature.is_valid("9999")   
 False
+
 ```
 
 ### get_legal_nature_description
@@ -1441,14 +1474,14 @@ Retorna a **descrição oficial** do código de Natureza Jurídica. Aceita `NNNN
 
 **Exemplo**
 
-```python
+```pycon
 >>> from brutils import legal_nature
 >>> legal_nature.get_description("2062")   
 'Sociedade Empresária Limitada'
 >>> legal_nature.get_description("101-5")  
 'Órgão Público do Poder Executivo Federal'
 >>> legal_nature.get_description("0000")   
-None
+
 ```
 
 ### list_all_legal_nature
@@ -1461,13 +1494,14 @@ Retorna uma cópia do dicionário completo `{codigo: descricao}`.
 
 **Exemplo**
 
-```python
+```pycon
 >>> from brutils import legal_nature 
 >>> data = legal_nature.list_all()
 >>> len(data) > 0               
 True
 >>> data["2062"]                 
 'Sociedade Empresária Limitada'
+
 ```
 
 ## RENAVAM
@@ -1489,12 +1523,13 @@ Retorna:
 
 Exemplo:
 
-```python
+```pycon
 >>> from brutils import is_valid_renavam
 >>> is_valid_renavam("86769597308")
 True
 >>> is_valid_renavam("12345678901")
 False
+
 ```
 
 ## Passaporte
@@ -1514,14 +1549,15 @@ Retorna:
 - bool: True se o número do passaporte for válido (2 letras seguidas de 6 dígitos). False caso contrário.
 
 Exemplo: 
-```python
+```pycon
 >>> from brutils import is_valid_passport
->>> is_valid_passport("Ab123456")
+>>> is_valid_passport("AB123456")
 True
 >>> is_valid_passport("12345678")
 False
 >>> is_valid_passport("DC-221345")
 False
+
 ```
 ### format_passport
 
@@ -1536,14 +1572,14 @@ Retorna:
 - str: O número do passaporte formatado (maiúsculas, sem símbolos) ou None se a entrada for inválida
 
 Exemplo:
-```python
+```pycon
 >>> from brutils import format_passport
 >>> format_passport("Ab123456")
-AB123456
+'AB123456'
 >>> format_passport("Ab-123456")
-AB123456
+'AB123456'
 >>> format_passport("111111")
-None
+
 ```
 ### remove_symbols_passport
 
@@ -1558,14 +1594,15 @@ Retorna:
 - str: O número do passaporte com hífens (-), pontos (.) e espaços em branco ( ) removidos.
 
 Exemplo:
-```python 
+```pycon 
 >>> from brutils import remove_symbols_passport
 >>> remove_symbols_passport("Ab123456")
-Ab123456
+'Ab123456'
 >>> remove_symbols_passport("Ab-123456")
-Ab123456
+'Ab123456'
 >>> remove_symbols_passport("Ab -. 123456")
-Ab123456
+'Ab123456'
+
 ```
 ### generate_passport
 
@@ -1577,12 +1614,13 @@ Retorna:
 - str: Uma string com um número de passaporte válido aleatório.
 
 Exemplo:
-```python 
+```pycon 
 >>> from brutils import generate_passport
->>> generate_passport()
-"RY393097"
->>> generate_passport()
-"ZS840088"
+>>> generate_passport() # doctest: +SKIP
+'RY393097'
+>>> generate_passport() # doctest: +SKIP
+'ZS840088'
+
 ```
 
 # Novos Utilitários e Reportar Bugs
