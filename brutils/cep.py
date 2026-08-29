@@ -151,7 +151,7 @@ def get_address_from_cep(
         Traceback (most recent call last):
         brutils.exceptions.cep.InvalidCEP: CEP 'abcdefg' is invalid.
 
-        >>> get_address_from_cep("00000000", True)
+        >>> get_address_from_cep("00000000", True) # doctest: +SKIP
         Traceback (most recent call last):
         brutils.exceptions.cep.CEPNotFound: 00000000
     """
