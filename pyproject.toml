@@ -67,6 +67,8 @@ addopts = [
 testpaths = [
   "brutils",
   "tests",
+  "README.md",
+  "README_EN.md",
 ]
 
 [build-system]
