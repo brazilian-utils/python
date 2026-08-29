@@ -92,12 +92,12 @@ def generate(type: str = None) -> str:
         str: A randomly generated valid phone number.
 
     Example:
-        >>> generate()
-        "2234451215"
-        >>> generate("mobile")
-        "1899115895"
-        >>> generate("landline")
-        "5535317900"
+        >>> generate() # doctest: +SKIP
+        '2234451215'
+        >>> generate("mobile") # doctest: +SKIP
+        '1899115895'
+        >>> generate("landline") # doctest: +SKIP
+        '5535317900'
     """
 
     if type == "mobile":

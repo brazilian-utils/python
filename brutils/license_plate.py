@@ -24,7 +24,6 @@ def convert_to_mercosul(license_plate: str) -> str | None:
         >>> convert_to_mercosul("ABC4567")
         'ABC4F67'
         >>> convert_to_mercosul("ABC4*67")
-        None
     """
     if not _is_valid_old_format(license_plate):
         return None
@@ -48,12 +47,11 @@ def format_license_plate(license_plate: str) -> str | None:
                        input is invalid.
 
     Example:
-        >>> format("ABC1234") # old format (contains a dash)
+        >>> format_license_plate("ABC1234") # old format (contains a dash)
         'ABC-1234'
-        >>> format("abc1e34") # mercosul format
+        >>> format_license_plate("abc1e34") # mercosul format
         'ABC1E34'
-        >>> format("ABC123")
-        None
+        >>> format_license_plate("ABC123")
     """
 
     license_plate = license_plate.upper()
@@ -107,11 +105,11 @@ def remove_symbols(license_plate_number: str) -> str:
 
     Example:
         >>> remove_symbols("ABC-123")
-        "ABC123"
+        'ABC123'
         >>> remove_symbols("abc123")
-        "abc123"
+        'abc123'
         >>> remove_symbols("ABCD123")
-        "ABCD123"
+        'ABCD123'
     """
 
     return license_plate_number.replace("-", "")
@@ -130,12 +128,11 @@ def get_format(license_plate: str) -> str | None:
              'None' if the format is invalid.
 
     Example:
-        >>> get_format("abc123")
-        "LLLNNNN"
+        >>> get_format("abc1234")
+        'LLLNNNN'
         >>> get_format("abc1d23")
-        "LLLNLNN"
+        'LLLNLNN'
         >>> get_format("ABCD123")
-        None
     """
 
     if _is_valid_old_format(license_plate):
@@ -162,14 +159,13 @@ def generate(format: str = "LLLNLNN") -> str | None:
              'None' if the format is invalid.
 
     Example:
-        >>> generate()
-        "ABC1D23"
-        >>> generate(format="LLLNLNN")
-        "ABC4D56"
-        >>> generate(format="LLLNNNN")
-        "ABC123"
+        >>> generate() # doctest: +SKIP
+        'ABC1D23'
+        >>> generate(format="LLLNLNN") # doctest: +SKIP
+        'ABC4D56'
+        >>> generate(format="LLLNNNN") # doctest: +SKIP
+        'ABC123'
         >>> generate(format="invalid")
-        None
     """
 
     generated = ""

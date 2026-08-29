@@ -53,7 +53,6 @@ def format_legal_process(legal_process_id: str) -> str | None:
         >>> format_legal_process("98765432109876543210")
         '9876543-21.0987.6.54.3210'
         >>> format_legal_process("123")
-        None
     """
 
     if legal_process_id.isdigit() and len(legal_process_id) == 20:
@@ -131,12 +130,11 @@ def generate(
              None if one of the arguments is invalid.
 
     Example:
-        >>> generate(2023, 5)
+        >>> generate(2023, 5) # doctest: +SKIP
         '51659517020235080562'
-        >>> generate()
+        >>> generate() # doctest: +SKIP
         '88031888120233030000'
-        >>> generate(2022, 10)
-        None
+        >>> generate(2022, 10) # doctest: +SKIP
     """
 
     if year < datetime.now().year or orgao not in range(1, 10):

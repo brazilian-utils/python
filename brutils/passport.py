@@ -18,7 +18,7 @@ def is_valid(passport: str) -> bool:
         bool: True if the passport number is valid (2 letters followed by 6 digits). False otherwise.
 
     Example:
-        >>> is_valid("Ab123456")
+        >>> is_valid("AB123456")
         True
         >>> is_valid("12345678")
         False
@@ -49,11 +49,11 @@ def remove_symbols(passport: str) -> str:
 
     Example:
         >>> remove_symbols("Ab123456")
-        Ab123456
+        'Ab123456'
         >>> remove_symbols("Ab-123456")
-        Ab123456
+        'Ab123456'
         >>> remove_symbols("Ab -. 123456")
-        Ab123456
+        'Ab123456'
     """
 
     return "".join(filter(lambda c: c not in ".- ", passport))
@@ -73,11 +73,10 @@ def format_passport(passport: str) -> str | None:
 
     Example:
         >>> format_passport("Ab123456")
-        AB123456
+        'AB123456'
         >>> format_passport("Ab-123456")
-        AB123456
+        'AB123456'
         >>> format_passport("111111")
-        None
     """
 
     passport = remove_symbols(passport.upper())
@@ -95,10 +94,10 @@ def generate() -> str:
         str: A random valid passport number string.
 
     Example:
-        >>> generate()
-        "RY393097"
-        >>> generate()
-        "ZS840088"
+        >>> generate() # doctest: +SKIP
+        'RY393097'
+        >>> generate() # doctest: +SKIP
+        'ZS840088'
     """
 
     letters = "".join(random.choices(string.ascii_uppercase, k=2))
