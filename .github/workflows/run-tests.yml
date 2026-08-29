@@ -1,31 +1,53 @@
 name: run-tests
+
 on:
   pull_request:
   push:
     branches:
       - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.10', '3.11', '3.12', '3.13']
+        python-version: ['3.10', '3.11', '3.12', '3.13', '3.14']
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v6
+
       - name: Set Up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
+
       - name: Poetry Setup
         uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+
       - name: Install Dependencies
-        run: poetry install
-      - name: Generate Report
+        run: poetry install --all-groups
+
+      - name: Run tests
         run: |
-          poetry run coverage run -m unittest discover -s tests
-          poetry run coverage xml
+          poetry run pytest
+          poetry check
+          poetry run pip check
+
       - name: Upload Coverage to Codecov
         uses: codecov/codecov-action@v7
+        # Different Python versions are covered differently,
+        # so we only upload coverage for the latest version.
+        if: matrix.python-version == '3.14'
         with:
           files: ./coverage.xml
           token: ${{ secrets.CODECOV_TOKEN }}
