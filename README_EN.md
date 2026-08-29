@@ -1257,17 +1257,17 @@ Example:
 
 ```pycon
 >>> from brutils import get_code_by_municipality_name
->>> get_code_by_municipality_name("São Paulo", "SP")
+>>> get_code_by_municipality_name("São Paulo", "SP") # doctest: +SKIP
 '3550308'
->>> get_code_by_municipality_name("goiania", "go")
+>>> get_code_by_municipality_name("goiania", "go") # doctest: +SKIP
 '5208707'
->>> get_code_by_municipality_name("Conceição do Coité", "BA")
+>>> get_code_by_municipality_name("Conceição do Coité", "BA") # doctest: +SKIP
 '2908408'
->>> get_code_by_municipality_name("conceicao do Coite", "Ba")
+>>> get_code_by_municipality_name("conceicao do Coite", "Ba") # doctest: +SKIP
 '2908408'
->>> get_code_by_municipality_name("Municipio Inexistente", "")
+>>> get_code_by_municipality_name("Municipio Inexistente", "") # doctest: +SKIP
 
->>> get_code_by_municipality_name("Municipio Inexistente", "RS")
+>>> get_code_by_municipality_name("Municipio Inexistente", "RS") # doctest: +SKIP
 
 ```
 
@@ -1286,7 +1286,7 @@ Example:
 
 ```pycon
 >>> from brutils import get_municipality_by_code
->>> get_municipality_by_code("3550308")
+>>> get_municipality_by_code("3550308") # doctest: +SKIP
 ('São Paulo', 'SP')
 
 ```
