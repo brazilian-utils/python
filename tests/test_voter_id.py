@@ -128,5 +128,16 @@ class TestIsValid(TestCase):
         self.assertIsNone(format_voter_id("800911840197"))
 
 
+class TestGenerate(TestCase):
+    def test_generate_valid(self):
+        voter_id = generate()
+        self.assertIsNotNone(voter_id)
+        self.assertTrue(is_valid(voter_id))
+
+    def test_generate_invalid(self):
+        voter_id = generate(federative_union="XX")
+        self.assertIsNone(voter_id)
+
+
 if __name__ == "__main__":
     main()
