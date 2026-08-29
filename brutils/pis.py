@@ -44,10 +44,10 @@ def format_pis(pis: str) -> str:
         or None if the input is invalid.
 
     Example:
-        >>> format_pis("12345678909")
-        '123.45678.90-9'
-        >>> format_pis("98765432100")
-        '987.65432.10-0'
+        >>> format_pis("45175440093")
+        '451.75440.09-3'
+        >>> format_pis("31313213712")
+        '313.13213.71-2'
     """
 
     if not is_valid(pis):
@@ -72,10 +72,10 @@ def is_valid(pis: str) -> bool:
         bool: True if PIS is valid, False otherwise.
 
     Example:
-    >>> is_valid_pis("82178537464")
+    >>> is_valid("45175440093")
     True
-    >>> is_valid_pis("55550207753")
-    True
+    >>> is_valid("55550207753")
+    False
 
     """
 
@@ -102,9 +102,9 @@ def generate() -> str:
         str: A randomly generated valid PIS number as a string.
 
     Example:
-        >>> generate()
+        >>> generate() # doctest: +SKIP
         '12345678909'
-        >>> generate()
+        >>> generate() # doctest: +SKIP
         '98765432100'
     """
     base = str(randint(0, 9999999999)).zfill(10)
