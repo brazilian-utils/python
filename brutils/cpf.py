@@ -62,9 +62,9 @@ def display(cpf: str) -> str:
 
     Example:
         >>> display("12345678901")
-        "123.456.789-01"
+        '123.456.789-01'
         >>> display("98765432101")
-        "987.654.321-01"
+        '987.654.321-01'
 
     .. note::
        This method should not be used in new code and is only provided for
@@ -174,10 +174,10 @@ def generate() -> str:
         str: A random valid CPF string.
 
     Example:
-        >>> generate()
-        "10895948109"
-        >>> generate()
-        "52837606502"
+        >>> generate() # doctest: +SKIP
+        '10895948109'
+        >>> generate() # doctest: +SKIP
+        '52837606502'
     """
 
     base = str(randint(1, 999999998)).zfill(9)
