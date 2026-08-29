@@ -89,8 +89,8 @@ class TestCEPAPICalls(TestCase):
         self, mock_urlopen
     ):
         mock_data = MagicMock()
-        mock_data.read.return_value = {"erro": True}
-        mock_urlopen.return_value = mock_data
+        mock_data.read.return_value = '{"erro": true}'
+        mock_urlopen.return_value.__enter__.return_value = mock_data
 
         with self.assertRaises(CEPNotFound):
             get_address_from_cep("01310209", True)
