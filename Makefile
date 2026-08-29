@@ -23,7 +23,7 @@ check:
 
 test:
 ifeq ($(OS),Windows_NT)
-	@set PYTHONDONTWRITEBYTECODE=1 && poetry run python -m unittest discover tests/ -v
+	@set PYTHONDONTWRITEBYTECODE=1 && poetry run pytest
 else
-	@PYTHONDONTWRITEBYTECODE=1 poetry run python3 -m unittest discover tests/ -v
+	@PYTHONDONTWRITEBYTECODE=1 poetry run pytest
 endif
