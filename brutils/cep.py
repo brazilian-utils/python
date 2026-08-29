@@ -26,9 +26,9 @@ def remove_symbols(dirty: str) -> str:
 
     Example:
         >>> remove_symbols("123-45.678.9")
-        "123456789"
+        '123456789'
         >>> remove_symbols("abc.xyz")
-        "abcxyz"
+        'abcxyz'
     """
 
     return "".join(filter(lambda char: char not in ".-", dirty))
@@ -50,9 +50,9 @@ def format_cep(cep: str) -> str | None:
 
     Example:
         >>> format_cep("12345678")
-        "12345-678"
+        '12345-678'
+
         >>> format_cep("12345")
-        None
     """
 
     return f"{cep[:5]}-{cep[5:8]}" if is_valid(cep) else None
@@ -100,8 +100,8 @@ def generate() -> str:
         str: A randomly generated 8-digit number.
 
     Example:
-        >>> generate()
-        "12345678"
+        >>> generate() # doctest: +SKIP
+        '12345678'
     """
 
     generated_number = ""
@@ -131,7 +131,7 @@ def get_address_from_cep(
         Address | None: An Address object (TypedDict) containing the address information if the CEP is found, None otherwise.
 
     Example:
-        >>> get_address_from_cep("12345678")
+        >>> get_address_from_cep("12345678") # doctest: +SKIP
         {
             "cep": "12345-678",
             "logradouro": "Rua Example",
@@ -146,13 +146,14 @@ def get_address_from_cep(
         }
 
         >>> get_address_from_cep("abcdefg")
-        None
 
         >>> get_address_from_cep("abcdefg", True)
-        InvalidCEP: CEP 'abcdefg' is invalid.
+        Traceback (most recent call last):
+        brutils.exceptions.cep.InvalidCEP: CEP 'abcdefg' is invalid.
 
-        >>> get_address_from_cep("00000000", True)
-        CEPNotFound: 00000000
+        >>> get_address_from_cep("00000000", True) # doctest: +SKIP
+        Traceback (most recent call last):
+        brutils.exceptions.cep.CEPNotFound: 00000000
     """
     base_api_url = "https://viacep.com.br/ws/{}/json/"
 
@@ -202,30 +203,30 @@ def get_cep_information_from_address(
         list[Address] | None: A list of Address objects (TypedDict) containing the address information if the address is found, None otherwise.
 
     Example:
-        >>> get_cep_information_from_address("EX", "Example", "Rua Example")
+        >>> get_cep_information_from_address("SP", "São Paulo", "Tua Thomaz Gonzaga") # doctest: +SKIP
         [
             {
-                "cep": "12345-678",
-                "logradouro": "Rua Example",
-                "complemento": "",
-                "bairro": "Example",
-                "localidade": "Example",
-                "uf": "EX",
-                "ibge": "1234567",
-                "gia": "1234",
-                "ddd": "12",
-                "siafi": "1234"
+                'cep': '01506-020',
+                'logradouro': 'Rua Thomaz Gonzaga',
+                'complemento': '',
+                'bairro': 'Liberdade',
+                'localidade': 'São Paulo',
+                'uf': 'SP',
+                'ibge': '3550308',
+                'gia': '1004',
+                'ddd': '11',
+                'siafi': '7107'
             }
         ]
 
         >>> get_cep_information_from_address("A", "Example", "Rua Example")
-        None
 
         >>> get_cep_information_from_address("XX", "Example", "Example", True)
+        Traceback (most recent call last):
         ValueError: Invalid UF: XX
 
-        >>> get_cep_information_from_address("SP", "Example", "Example", True)
-        CEPNotFound: SP - Example - Example
+        >>> get_cep_information_from_address("SP", "Example", "Example", True) # doctest: +SKIP
+        brutils.exceptions.cep.CEPNotFound: SP - Example - Example
     """
     if federal_unit in UF.values:
         federal_unit = UF(federal_unit).name
