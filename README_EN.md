@@ -75,6 +75,11 @@ False
   - [is\_valid\_email](#is_valid_email)
 - [CNH](#cnh)
   - [is\_valid\_cnh](#is_valid_cnh)
+- [CNS](#cns)
+  - [is\_valid\_cns](#is_valid_cns)
+  - [format\_cns](#format_cns)
+  - [remove\_symbols\_cns](#remove_symbols_cns)
+  - [generate\_cns](#generate_cns)
 - [License Plate](#license-plate)
   - [is\_valid\_license\_plate](#is_valid_license_plate)
   - [format\_license\_plate](#format_license_plate)
@@ -719,6 +724,96 @@ True
 True
 ```
 
+## CNS
+
+### is_valid_cns
+
+Verifies if the CNS (Cartão Nacional de Saúde) number is valid. Only numbers, formatted as a string, with proper length (15 digits). It does not check if the CNS actually exists.
+
+References:
+
+- <https://gist.github.com/dudanogueira/7af722477c33bd4bb85843cf0e035b77>.
+- <https://integracao.esusaps.bridge.ufsc.tech/v211/docs/algoritmo_CNS.html>.
+
+Args:
+
+- cns (str): CNS number as a string of proper length.
+
+Returns:
+
+- bool: True if the CNS is valid, False otherwise.
+
+Example:
+
+```python
+from brutils import is_valid_cns
+>>> is_valid_cns("161243374450004")
+True
+>>> is_valid_cns("123456789012345")
+False
+```
+
+### format_cns
+
+Formats a valid CNS (Cartão Nacional de Saúde) string with standard visual aid symbols for display.
+
+Args:
+
+- cns (str): A valid string of CNS containing only numbers.
+
+Returns:
+
+- str: A formatted CNS string with standard visual aid symbols or None if the input is invalid.
+
+Example:
+
+```python
+from brutils import format_cns
+>>> format_cns("161243374450004")
+'161 2433 7445 0004'
+```
+
+### remove_symbols_cns
+
+This function takes a string of CNS (Cartão Nacional de Saúde) with formatting symbols and returns a clean version without certain symbols. It intentionally removes only the symbols "-", "." and " ", leaving other symbols untouched.
+
+Args:
+
+- cns (str): A string of CNS that may contain formatting symbols.
+
+Returns:
+
+- str: A clean string of CNS without formatting symbols.
+
+Example:
+
+```python
+from brutils import remove_symbols_cns
+>>> remove_symbols_cns("161 2433 7445 0004")
+'161243374450004'
+```
+
+### generate_cns
+
+Generates a string of digits containing a random valid Brazilian CNS number. Can generate either a "definitive" CNS (starting with 1 or 2) or a "provisional" one (starting with 7, 8 or 9).
+
+Args:
+
+- is_final (bool): Whether to generate a definitive CNS. Defaults to True.
+
+Returns:
+
+- str: A randomly generated valid CNS number as a string.
+
+Example:
+
+```python
+from brutils import generate_cns
+>>> generate_cns()
+'161243374450004'
+>>> generate_cns(is_final=False)
+'905885616557480'
+```
 
 ## License Plate
 
