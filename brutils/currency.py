@@ -21,7 +21,6 @@ def format_currency(value: float | int | str | Decimal) -> str | None:
         >>> format_currency(-9876.54)
         'R$ -9.876,54'
         >>> format_currency("invalid")
-        None
     """
     try:
         decimal_value = Decimal(value)
