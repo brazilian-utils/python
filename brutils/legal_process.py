@@ -131,10 +131,10 @@ def generate(
              None if one of the arguments is invalid.
 
     Example:
-        >>> generate(2023, 5)
-        '51659517120235080562'
+        >>> generate(2027, 5)
+        '66026995620275040282'
         >>> generate()
-        '88031888220233030000'
+        '97551944720262020000'
         >>> generate(2022, 10)
         None
     """

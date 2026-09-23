@@ -1101,13 +1101,13 @@ Exemplo:
 ```python
 >>> from brutils import generate_legal_process
 >>> generate_legal_process()
-"45676401120238170592"
->>> generate_legal_process(ano=2025)
-"32110268120258121130"
+"84285857720267050401"
+>>> generate_legal_process(year=2027)
+"46214128120273030000"
 >>> generate_legal_process(orgao=5)
-"37573041620235090313"
->>> generate_legal_process(ano=2024, orgao=4)
-"33158248920244017105"
+"42643452820265130129"
+>>> generate_legal_process(year=2027, orgao=4)
+"09392462020274013701"
 ```
 
 ## Titulo Eleitoral
