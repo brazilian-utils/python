@@ -84,9 +84,9 @@ def is_valid(legal_process_id: str) -> bool:
         bool: True if the legal process ID is valid, False otherwise.
 
     Example:
-        >>> is_valid("68476506020233030000")
+        >>> is_valid("68476506120233030000")
         True
-        >>> is_valid("51808233620233030000")
+        >>> is_valid("51808233720233030000")
         True
         >>> is_valid("123")
         False
@@ -132,9 +132,9 @@ def generate(
 
     Example:
         >>> generate(2023, 5)
-        '51659517020235080562'
+        '51659517120235080562'
         >>> generate()
-        '88031888120233030000'
+        '88031888220233030000'
         >>> generate(2022, 10)
         None
     """
@@ -169,9 +169,9 @@ def _checksum(basenum: int) -> str:
 
     Example:
         >>> _checksum(1234567)
-        '50'
+        '51'
         >>> _checksum(9876543)
-        '88'
+        '89'
     """
 
-    return str(97 - ((int(basenum) * 100) % 97)).zfill(2)
+    return str(98 - ((int(basenum) * 100) % 97)).zfill(2)

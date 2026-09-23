@@ -1017,9 +1017,9 @@ Examplo:
 
 ```python
 >>> from brutils import is_valid_legal_process
->>> is_valid_legal_process('10188748220234018200')
+>>> is_valid_legal_process('10188748320234018200')
 True
->>> is_valid_legal_process('45532346920234025107')
+>>> is_valid_legal_process('45532347020234025107')
 True
 >>> is_valid_legal_process('00000000000000000000')
 False
@@ -1101,13 +1101,13 @@ Exemplo:
 ```python
 >>> from brutils import generate_legal_process
 >>> generate_legal_process()
-"45676401020238170592"
+"45676401120238170592"
 >>> generate_legal_process(ano=2025)
-"32110268020258121130"
+"32110268120258121130"
 >>> generate_legal_process(orgao=5)
-"37573041520235090313"
+"37573041620235090313"
 >>> generate_legal_process(ano=2024, orgao=4)
-"33158248820244017105"
+"33158248920244017105"
 ```
 
 ## Titulo Eleitoral
