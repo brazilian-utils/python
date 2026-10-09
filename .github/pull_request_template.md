@@ -22,6 +22,10 @@
 - [ ] O Pull Request foi testado localmente. [Instruções](https://github.com/brazilian-utils/brutils-python/blob/main/CONTRIBUTING.md#7-execute-o-brutils-localmente)
 - [ ] Não há conflitos de mesclagem.
 
+## Declaração de Uso de IA (OBRIGATÓRIA)
+- [ ] Nenhuma ferramenta de IA foi utilizada na preparação deste PR.
+- [ ] Se ferramentas de IA foram utilizadas, eu informei quais foram e revisei e verifiquei completamente os resultados gerados.
+
 ## Comentários Adicionais (opcional)
 <!--- Adicione qualquer informação adicional ou contexto que você acha importante para os revisores entenderem suas mudanças.-->
 
