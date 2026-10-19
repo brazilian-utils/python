@@ -223,7 +223,7 @@ No arquivo `Makefile` do seu projeto, verifique se a seção de testes está con
 ```makefile
 test:
 ifeq ($(OS),Windows_NT)
-	@set PYTHONDONTWRITEBYTECODE=1 && poetry run python pytest
+	@set PYTHONDONTWRITEBYTECODE=1 && poetry run pytest
 else
 	@PYTHONDONTWRITEBYTECODE=1 poetry run pytest
 endif

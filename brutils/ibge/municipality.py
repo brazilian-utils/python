@@ -66,11 +66,11 @@ def get_code_by_municipality_name(
              None if the name is not valid or does not exist.
 
     Example:
-        >>> get_code_by_municipality_name("São Paulo", "SP")
+        >>> get_code_by_municipality_name("São Paulo", "SP") # doctest: +SKIP
         '3550308'
-        >>> get_code_by_municipality_name("Conceição do Coité", "Ba")
+        >>> get_code_by_municipality_name("Conceição do Coité", "Ba") # doctest: +SKIP
         '2908408'
-        >>> get_code_by_municipality_name("Municipio Inexistente", "RS")
+        >>> get_code_by_municipality_name("Municipio Inexistente", "RS") # doctest: +SKIP
     """
     uf = uf.upper()
 

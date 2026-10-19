@@ -1128,7 +1128,7 @@ Exemplo:
 >>> from brutils import generate_legal_process
 >>> generate_legal_process() # doctest: +SKIP
 '45676401020238170592'
->>> generate_legal_process(year=2025) # doctest: +SKIP
+>>> generate_legal_process(year=2026) # doctest: +SKIP
 '32110268020258121130'
 >>> generate_legal_process(orgao=5) # doctest: +SKIP
 '37573041520235090313'
