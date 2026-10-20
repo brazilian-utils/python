@@ -94,6 +94,25 @@ class TestLegalProcess(TestCase):
         self.assertIs(is_valid("455323423QQWEQWSsasd&*(()"), False)
         self.assertIsInstance(is_valid("455323423QQWEQWSsasd&*(()"), bool)
 
+    def test_is_valid_returns_false_for_malformed_input(self):
+        # 5046512-94.2016.4.04.7000 is a real, valid legal process ID
+        self.assertIs(is_valid("50465129420164047000"), True)
+        # Truncated: the court (TR) or origin (OOOO) fields are empty
+        self.assertIs(is_valid("50465129420164"), False)
+        self.assertIs(is_valid("5046512942016404"), False)
+        # Letters where digits are expected
+        self.assertIs(is_valid("ABCDEFG9420164047000"), False)
+        # Characters that str.isdigit accepts but are not ASCII digits
+        self.assertIs(is_valid("²0465129420164047000"), False)
+        self.assertIs(is_valid("5046512942016404700٠"), False)
+        # Not a string
+        self.assertIs(is_valid(50465129420164047000), False)
+        self.assertIs(is_valid(None), False)
+
+    def test_format_legal_process_rejects_non_ascii_digits(self):
+        self.assertIsNone(format_legal_process("5046512942016404700٠"))
+        self.assertIsNone(format_legal_process("²" * 20))
+
 
 if __name__ == "__main__":
     main()

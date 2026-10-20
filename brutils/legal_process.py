@@ -56,7 +56,7 @@ def format_legal_process(legal_process_id: str) -> str | None:
         None
     """
 
-    if legal_process_id.isdigit() and len(legal_process_id) == 20:
+    if _is_twenty_digits(legal_process_id):
         capture_fields = r"(\d{7})(\d{2})(\d{4})(\d)(\d{2})(\d{4})"
         include_chars = r"\1-\2.\3.\4.\5.\6"
 
@@ -67,6 +67,29 @@ def format_legal_process(legal_process_id: str) -> str | None:
 
 # OPERATIONS
 ############
+
+
+def _is_twenty_digits(legal_process_id: str) -> bool:
+    """
+    Checks whether the string has exactly 20 ASCII digits.
+
+    `str.isdigit` is not enough: it also accepts characters such as "²" and
+    "٣", which `int` either rejects or reads as a different digit.
+
+    Args:
+        legal_process_id (str): The string to be checked.
+
+    Returns:
+        bool: True if the string has exactly 20 ASCII digits, False otherwise.
+
+    Example:
+        >>> _is_twenty_digits("68476506120233030000")
+        True
+        >>> _is_twenty_digits("6847650612023303000٣")
+        False
+    """
+
+    return re.fullmatch(r"\d{20}", legal_process_id, flags=re.ASCII) is not None
 
 
 def is_valid(legal_process_id: str) -> bool:
@@ -92,7 +115,13 @@ def is_valid(legal_process_id: str) -> bool:
         False
     """
 
+    if not isinstance(legal_process_id, str):
+        return False
+
     clean_legal_process_id = remove_symbols(legal_process_id)
+    if not _is_twenty_digits(clean_legal_process_id):
+        return False
+
     DD = clean_legal_process_id[7:9]
     J = clean_legal_process_id[13:14]
     TR = clean_legal_process_id[14:16]
