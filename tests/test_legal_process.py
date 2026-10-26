@@ -60,14 +60,33 @@ class TestLegalProcess(TestCase):
         self.assertIsNone(generate(year=1000, orgao=4))
         self.assertIsNone(generate(orgao=0))
 
+    def test_generate_returns_valid_check_digits(self):
+        # CNJ Resolution 65/2008: moving DD to the end, a valid number is
+        # congruent to 1 modulo 97 (ISO 7064 MOD 97-10)
+        for orgao in range(1, 10):
+            legal_process_id = generate(orgao=orgao)
+            reordered = legal_process_id[:7] + legal_process_id[9:]
+            reordered += legal_process_id[7:9]
+            self.assertEqual(int(reordered) % 97, 1)
+            self.assertIs(is_valid(legal_process_id), True)
+
     def test_check_sum(self):
-        self.assertEqual(_checksum(546611720238150014), "77")
-        self.assertEqual(_checksum(403818720238230498), "50")
+        self.assertEqual(_checksum(546611720238150014), "78")
+        self.assertEqual(_checksum(403818720238230498), "51")
+        # Real legal process IDs
+        self.assertEqual(_checksum(504651220164047000), "94")
+        self.assertEqual(_checksum(6975820154013400), "61")
         self.assertIsInstance(_checksum(403818720238230498), str)
 
     def test_is_valid(self):
-        self.assertIs(is_valid("10188748220234018200"), True)
-        self.assertIs(is_valid("45532346920234025107"), True)
+        self.assertIs(is_valid("10188748320234018200"), True)
+        self.assertIs(is_valid("45532347020234025107"), True)
+        # Real legal process IDs
+        self.assertIs(is_valid("5046512-94.2016.4.04.7000"), True)
+        self.assertIs(is_valid("0069758-61.2015.4.01.3400"), True)
+        # Check digits off by one
+        self.assertIs(is_valid("5046512-93.2016.4.04.7000"), False)
+        self.assertIs(is_valid("10188748220234018200"), False)
         self.assertIs(is_valid("10188748220239918200"), False)
         self.assertIs(is_valid("00000000000000000000"), False)
         self.assertIs(is_valid("455323469202340251"), False)
