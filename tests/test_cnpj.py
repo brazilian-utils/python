@@ -33,6 +33,7 @@ class TestCNPJ(TestCase):
         self.assertIsNone(display("12ABC34501DEAA"))
         self.assertIsNone(display("0000000000000"))
         self.assertIsNone(display("0000000000000a"))
+        self.assertIsNone(display("34665388000161x"))
 
     def test_validate(self):
         self.assertIs(validate("34665388000161"), True)
@@ -41,6 +42,8 @@ class TestCNPJ(TestCase):
         self.assertIs(validate("12ABC34501DEAA"), False)
         self.assertIs(validate("52599927000100"), False)
         self.assertIs(validate("00000000000"), False)
+        self.assertIs(validate("34665388000161x"), False)
+
 
     def test_is_valid(self):
         # When CNPJ is not string, returns False
