@@ -44,7 +44,6 @@ class TestCNPJ(TestCase):
         self.assertIs(validate("00000000000"), False)
         self.assertIs(validate("34665388000161x"), False)
 
-
     def test_is_valid(self):
         # When CNPJ is not string, returns False
         self.assertIs(is_valid(1), False)
