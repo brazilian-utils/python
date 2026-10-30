@@ -1,10 +1,10 @@
+import re
 from unittest import TestCase, main
 from unittest.mock import patch
 
 from brutils.cnpj import (
     _checksum,
     _hashdigit,
-    _is_alphanumeric,
     display,
     format_cnpj,
     generate,
@@ -28,17 +28,12 @@ class TestCNPJ(TestCase):
 
     def test_display(self):
         self.assertEqual(display("00000000000109"), "00.000.000/0001-09")
+        self.assertEqual(display("00000000000000"), "00.000.000/0000-00")
         self.assertEqual(display("12ABC34501DE35"), "12.ABC.345/01DE-35")
         self.assertIsNone(display("12ABC34501DEAA"))
-        self.assertIsNone(display("00000000000000"))
         self.assertIsNone(display("0000000000000"))
         self.assertIsNone(display("0000000000000a"))
-
-    def test__is_alphanumeric(self):
-        self.assertIs(_is_alphanumeric("12ABC34501DE35"), True)
-        self.assertIs(_is_alphanumeric("12345678910111"), True)
-        self.assertIs(_is_alphanumeric("123456a78b10C1"), False)
-        self.assertIs(_is_alphanumeric("12.ABC.345/01DE-35"), False)
+        self.assertIsNone(display("34665388000161x"))
 
     def test_validate(self):
         self.assertIs(validate("34665388000161"), True)
@@ -47,6 +42,7 @@ class TestCNPJ(TestCase):
         self.assertIs(validate("12ABC34501DEAA"), False)
         self.assertIs(validate("52599927000100"), False)
         self.assertIs(validate("00000000000"), False)
+        self.assertIs(validate("34665388000161x"), False)
 
     def test_is_valid(self):
         # When CNPJ is not string, returns False
@@ -85,10 +81,28 @@ class TestCNPJ(TestCase):
             self.assertIsNotNone(display(generate()))
         self.assertIs(validate(generate(branch=1234)), True)
 
+    def test_generate_with_branch(self):
+        test_branches = [
+            (1, "0001"),
+            (2, "0002"),
+            ("A", "000A"),
+            ("ABCD", "ABCD"),
+            (1234, "1234"),
+            (12345, "1234"),
+        ]
+        for branch, final_branch in test_branches:
+            generated_cnpj = generate(branch=branch)
+            self.assertTrue(
+                re.search(
+                    rf"[0-9]{{8}}{final_branch}[0-9]{{2}}", generated_cnpj
+                ),
+                msg=(final_branch, generated_cnpj),
+            )
+
     def test_generate_alphanumeric(self):
         for _ in range(10_000):
             generated = generate(alphanumeric=True)
-            self.assertIs(validate(generated), True)
+            self.assertIs(validate(generated), True, msg=generated)
             self.assertIsNotNone(display(generated))
         self.assertIs(
             validate(generate(branch="1234", alphanumeric=True)), True
