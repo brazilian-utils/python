@@ -20,6 +20,16 @@ class TestFormatCurrency(TestCase):
     def test_value_decimal_replace_rounding(self):
         assert format_currency(-123236.7676) == "R$ -123.236,77"
 
+    def test_when_value_is_nan(self):
+        assert format_currency(float("nan")) is None
+        assert format_currency("nan") is None
+        assert format_currency(Decimal("nan")) is None
+
+    def test_when_value_is_infinite(self):
+        assert format_currency(float("inf")) is None
+        assert format_currency(float("-inf")) is None
+        assert format_currency("-inf") is None
+
     def test_when_value_is_not_a_valid_currency(self):
         assert format_currency("not a number") is None
         assert format_currency("09809,87") is None

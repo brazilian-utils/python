@@ -25,6 +25,8 @@ def format_currency(value: float | int | str | Decimal) -> str | None:
     """
     try:
         decimal_value = Decimal(value)
+        if decimal_value.is_nan() or decimal_value.is_infinite():
+            return None
         formatted_value = (
             f"R$ {decimal_value:,.2f}".replace(",", "_")
             .replace(".", ",")
