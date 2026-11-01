@@ -40,33 +40,42 @@ def is_valid_cnh(cnh: str) -> bool:
     first_verificator = digits[9]
     second_verificator = digits[10]
 
+    first_remainder = _calculate_first_verificator(digits)
+
     if not _check_first_verificator(
         digits, first_verificator
     ):  # checking the 10th digit
         return False
 
     return _check_second_verificator(
-        digits, second_verificator, first_verificator
+        digits, second_verificator, first_remainder
     )  # checking the 11th digit
+
+
+def _calculate_first_verificator(digits: list[int]) -> int:
+    """
+    Calculates the remainder of the division by 11 used to verify the
+    10th digit of the CNH.
+    """
+    total = 0
+    for i in range(9):
+        total += digits[i] * (9 - i)
+
+    return total % 11
 
 
 def _check_first_verificator(digits: list[int], first_verificator: int) -> bool:
     """
     Generates the first verification digit and uses it  to verify the 10th digit of the CNH
     """
-
-    sum = 0
-    for i in range(9):
-        sum += digits[i] * (9 - i)
-
-    sum = sum % 11
-    result = 0 if sum > 9 else sum
+    remainder = _calculate_first_verificator(digits)
+    result = 0 if remainder > 9 else remainder
 
     return result == first_verificator
 
 
 def _check_second_verificator(
-    digits: list[int], second_verificator: int, first_verificator: int
+    digits: list[int], second_verificator: int, first_remainder: int
 ) -> bool:
     """
     Generates the second verification  and uses it to verify the 11th digit of the CNH
@@ -77,7 +86,9 @@ def _check_second_verificator(
 
     result = sum % 11
 
-    if first_verificator > 9:
+    # When the remainder of the first digit is 10, that digit is printed as 0
+    # and the second digit is calculated with a discount of 2.
+    if first_remainder > 9:
         result = result + 9 if (result - 2) < 0 else result - 2
 
     if result > 9:
