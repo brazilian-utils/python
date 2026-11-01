@@ -130,7 +130,7 @@ def remove_international_dialing_code(phone_number: str) -> str:
     '+11994029275'
     """
 
-    pattern = r"\+?55"
+    pattern = r"^\\+?55"
 
     if (
         re.search(pattern, phone_number)
