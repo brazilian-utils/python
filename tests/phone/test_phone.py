@@ -107,6 +107,17 @@ class TestPhone(TestCase):
             remove_international_dialing_code("5511994029275"), "11994029275"
         )
 
+        # When "55" is part of the number, but is not the international
+        # code at the beginning, the phone number is returned unchanged
+        self.assertEqual(
+            remove_international_dialing_code("(55) 95512-3456"),
+            "(55) 95512-3456",
+        )
+        self.assertEqual(
+            remove_international_dialing_code("0415599402927"),
+            "0415599402927",
+        )
+
 
 if __name__ == "__main__":
     main()
