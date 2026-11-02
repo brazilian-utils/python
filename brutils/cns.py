@@ -43,22 +43,21 @@ def remove_symbols(cns: str) -> str:
 
 def format_cns(cns: str) -> str | None:
     """
-    Format a valid CNS (Cartão Nacional de Saúde) string with standard
-    visual aid symbols.
+    Return the correct four-character suffix string of a definitive CNS,
+    derived from its first eleven digits.
 
-    This function takes a valid numbers-only CNS string as input and adds
-    the standard visual grouping used on the physical Cartão SUS.
+    It is used by both `is_valid` and `_generate_definitive`, so validating
+    and generating a definitive CNS follow the same rule, which keeps them consistent.
 
     Args:
-        cns (str): A valid numbers-only CNS string.
+        base (str): The first eleven digits of a definitive CNS (starting with 1 or 2).
 
     Returns:
-        str: A formatted CNS string with standard visual aid symbols
-        or None if the input is invalid.
+        str: A four-character string with the segment ("000" or "001") and the check digit.
 
     Example:
-        >>> format_cns("898003263144970")
-        '898 0032 6314 4970'
+        >>> _definitive_suffix("16124337445")
+        '0004'
     """
 
     if not is_valid(cns):
@@ -69,6 +68,46 @@ def format_cns(cns: str) -> str | None:
 
 # OPERATIONS
 ############
+
+
+def _definitive_suffix(value: str) -> str:
+    """
+    Return the four-character suffix of a definitive CNS, derived from its
+    first eleven digits: the three-digit segment ("000", or "001" in the
+    special case) followed by the check digit.
+
+    It is used by both `is_valid` and `_generate_definitive`, so validating
+    and generating a definitive CNS follow the same rule.
+
+    Args:
+        base (str): The first eleven digits of a definitive CNS (starting
+            with 1 or 2).
+
+    Returns:
+        str: A four-character string with the segment and the check digit.
+
+    Example:
+        >>> _definitive_suffix("16124337445")
+        '0004'
+    """
+
+    soma = _weighted_sum(value)
+    resto = soma % 11
+    dv = 11 - resto
+
+    if dv == 11:
+        dv = 0
+        seq = "000"
+    elif dv == 10:
+        # Special case: recalculate with an offset of 2 and mark the
+        # sequence segment accordingly.
+        soma += 2
+        dv = 11 - (soma % 11)
+        seq = "001"
+    else:
+        seq = "000"
+
+    return f"{seq}{dv}"
 
 
 def is_valid(cns: str) -> bool:
@@ -102,7 +141,13 @@ def is_valid(cns: str) -> bool:
     if not (_DEFINITIVE_REGEX.match(cns) or _PROVISIONAL_REGEX.match(cns)):
         return False
 
-    return _weighted_sum(cns) % 11 == 0
+    if cns[0] == "1" or cns[0] == "2":
+        prefix = cns[:11]
+        suffix = cns[-4:]
+        verification = _definitive_suffix(prefix)
+        return verification == suffix
+    else:
+        return _weighted_sum(cns) % 11 == 0
 
 
 def generate(is_final: bool = True) -> str:
@@ -150,24 +195,8 @@ def _generate_definitive() -> str:
         str: A randomly generated valid definitive CNS number as a string.
     """
     base = str(randint(1, 2)) + str(randint(0, 9999999999)).zfill(10)
-
-    soma = _weighted_sum(base)
-    resto = soma % 11
-    dv = 11 - resto
-
-    if dv == 11:
-        dv = 0
-        seq = "000"
-    elif dv == 10:
-        # Special case: recalculate with an offset of 2 and mark the
-        # sequence segment accordingly.
-        soma += 2
-        dv = 11 - (soma % 11)
-        seq = "001"
-    else:
-        seq = "000"
-
-    return f"{base}{seq}{dv}"
+    final = _definitive_suffix(base)
+    return f"{base}{final}"
 
 
 def _generate_provisional() -> str:

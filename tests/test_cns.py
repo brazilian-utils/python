@@ -39,6 +39,10 @@ class TestCNS(TestCase):
         self.assertIs(is_valid("161243374450005"), False)
         self.assertIs(is_valid("905885616557481"), False)
 
+        # When the definitive suffix isn't the one derived from the first
+        # 11 digits, returns False even if the weighted sum is a multiple of 11
+        self.assertIs(is_valid("161243374450012"), False)
+
         # When CNS is valid (definitive, starts with 1 or 2)
         self.assertIs(is_valid("161243374450004"), True)
 
