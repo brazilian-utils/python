@@ -26,12 +26,11 @@ def get_municipality_by_code(code: str) -> tuple[str, str] | None:
                None if the code is not valid.
 
     Example:
-        >>> get_municipality_by_code("3550308")
-        ("São Paulo", "SP")
-        >>> get_municipality_by_code("3304557")
-        ("Rio de Janeiro", "RJ")
-        >>> get_municipality_by_code("1234567")
-        None
+        >>> get_municipality_by_code("3550308") # doctest: +SKIP
+        ('São Paulo', 'SP')
+        >>> get_municipality_by_code("3304557") # doctest: +SKIP
+        ('Rio de Janeiro', 'RJ')
+        >>> get_municipality_by_code("1234567") # doctest: +SKIP
     """
     base_url = IBGE_MUNICIPALITY_BY_CODE_URL.format(code=code)
 
@@ -67,12 +66,11 @@ def get_code_by_municipality_name(
              None if the name is not valid or does not exist.
 
     Example:
-        >>> get_code_by_municipality_name("São Paulo", "SP")
-        "3550308"
-        >>> get_code_by_municipality_name("Conceição do Coité", "Ba")
-        "2908408"
-        >>> get_code_by_municipality_name("Municipio Inexistente", "RS")
-        None
+        >>> get_code_by_municipality_name("São Paulo", "SP") # doctest: +SKIP
+        '3550308'
+        >>> get_code_by_municipality_name("Conceição do Coité", "Ba") # doctest: +SKIP
+        '2908408'
+        >>> get_code_by_municipality_name("Municipio Inexistente", "RS") # doctest: +SKIP
     """
     uf = uf.upper()
 

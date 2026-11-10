@@ -256,7 +256,7 @@ def generate(federative_union: str = "ZZ") -> str | None:
     }
 
     federative_union = federative_union.upper()
-    if federative_union in (UFs):
+    if federative_union in UFs:
         sequential_number = str(randint(0, 99999999)).zfill(8)
         uf_number = UFs[federative_union]
         if _is_federative_union_valid(uf_number):
