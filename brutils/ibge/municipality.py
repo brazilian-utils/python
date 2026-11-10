@@ -26,11 +26,11 @@ def get_municipality_by_code(code: str) -> tuple[str, str] | None:
                None if the code is not valid.
 
     Example:
-        >>> get_municipality_by_code("3550308")
+        >>> get_municipality_by_code("3550308") # doctest: +SKIP
         ('São Paulo', 'SP')
-        >>> get_municipality_by_code("3304557")
+        >>> get_municipality_by_code("3304557") # doctest: +SKIP
         ('Rio de Janeiro', 'RJ')
-        >>> get_municipality_by_code("1234567")
+        >>> get_municipality_by_code("1234567") # doctest: +SKIP
     """
     base_url = IBGE_MUNICIPALITY_BY_CODE_URL.format(code=code)
 
