@@ -67,7 +67,7 @@ def is_valid(cep: str) -> bool:
     Checks if a CEP (Postal Code) is valid.
 
     To be considered valid, the input must be a string containing exactly 8
-    digits.
+    ASCII digits (0-9).
     This function does not verify if the CEP is a real postal code; it only
     validates the format of the string.
 
@@ -89,7 +89,12 @@ def is_valid(cep: str) -> bool:
         https://en.wikipedia.org/wiki/Código_de_Endereçamento_Postal
     """
 
-    return isinstance(cep, str) and len(cep) == 8 and cep.isdigit()
+    return (
+        isinstance(cep, str)
+        and len(cep) == 8
+        and cep.isascii()
+        and cep.isdigit()
+    )
 
 
 def generate() -> str:

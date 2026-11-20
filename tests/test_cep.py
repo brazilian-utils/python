@@ -34,6 +34,11 @@ class TestCEP(TestCase):
         # When CEP does not contain only digits, returns False
         self.assertIs(is_valid("1234567-"), False)
 
+        # When CEP contains non-ASCII digits, returns False
+        self.assertIs(is_valid("²" * 8), False)
+        self.assertIs(is_valid("０１３１０２００"), False)
+        self.assertIs(is_valid("٠١٣١٠٢٠٠"), False)
+
         # When CEP is valid
         self.assertIs(is_valid("99999999"), True)
         self.assertIs(is_valid("88390000"), True)

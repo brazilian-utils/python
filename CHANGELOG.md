@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- `is_valid_cep` e `format_cep` aceitavam dígitos não ASCII, como `²` [#805](https://github.com/brazilian-utils/python/pull/805)
 - Cálculo do dígito verificador em `is_valid_legal_process` e `generate_legal_process`, que rejeitava números de processo reais e gerava números inválidos [#785](https://github.com/brazilian-utils/python/pull/785)
 
 ## [2.5.0] - 2026-06-30
