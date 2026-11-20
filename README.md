@@ -329,7 +329,7 @@ Exemplo:
 
 Verifica se um CEP (Código de Endereçamento Postal) brasileiro é válido.
 Para que um CEP seja considerado válido, a entrada deve ser uma string contendo
-exatamente 8 dígitos. Esta função não verifica se o CEP é um CEP real, pois
+exatamente 8 dígitos de 0 a 9. Esta função não verifica se o CEP é um CEP real, pois
 valida apenas o formato da string.
 
 Argumentos:

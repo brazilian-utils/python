@@ -330,7 +330,7 @@ Example:
 ### is_valid_cep
 
 Checks if a Brazilian CEP (Postal Code) is valid.
-To be considered valid, the input must be a string containing exactly 8 digits.
+To be considered valid, the input must be a string containing exactly 8 digits (0-9).
 This function does not verify if the CEP is a real postal code; it only
 validates the format of the string.
 
