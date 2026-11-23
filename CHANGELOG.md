@@ -9,10 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Utilitário `is_valid_cns` [#774](https://github.com/brazilian-utils/python/issues/774)
-- Utilitário `generate_cns` [#774](https://github.com/brazilian-utils/python/issues/774)
-- Utilitário `format_cns` [#774](https://github.com/brazilian-utils/python/issues/774)
-- Utilitário `remove_symbols_cns` [#774](https://github.com/brazilian-utils/python/issues/774)
+- Utilitário `is_valid_cns` [#775](https://github.com/brazilian-utils/python/pull/775)
+- Utilitário `generate_cns` [#775](https://github.com/brazilian-utils/python/pull/775)
+- Utilitário `format_cns` [#775](https://github.com/brazilian-utils/python/pull/775)
+- Utilitário `remove_symbols_cns` [#775](https://github.com/brazilian-utils/python/pull/775)
 
 ### Fixed
 
