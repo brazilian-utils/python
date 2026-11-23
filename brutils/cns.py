@@ -8,11 +8,11 @@ WEIGHTS = list(range(15, 0, -1))
 # Definitive CNS: starts with 1 or 2, followed by 10 digits (the 11-digit
 # block is derived from a PIS/PASEP-like base), then a fixed "00" segment,
 # a flag digit ("0" or "1") and the check digit.
-_DEFINITIVE_REGEX = re.compile(r"^[12]\d{10}00[01]\d$")
+_DEFINITIVE_REGEX = re.compile(r"^[12][0-9]{10}00[01][0-9]$")
 
 # Provisional CNS: starts with 7, 8 or 9, followed by 13 digits and a check
 # digit, all 15 digits taking part in the weighted sum.
-_PROVISIONAL_REGEX = re.compile(r"^[789]\d{14}$")
+_PROVISIONAL_REGEX = re.compile(r"^[789][0-9]{14}$")
 
 
 # FORMATTING
@@ -70,7 +70,7 @@ def format_cns(cns: str) -> str | None:
 ############
 
 
-def _definitive_suffix(value: str) -> str:
+def _definitive_suffix(base: str) -> str:
     """
     Return the four-character suffix of a definitive CNS, derived from its
     first eleven digits: the three-digit segment ("000", or "001" in the
@@ -91,7 +91,7 @@ def _definitive_suffix(value: str) -> str:
         '0004'
     """
 
-    soma = _weighted_sum(value)
+    soma = _weighted_sum(base)
     resto = soma % 11
     dv = 11 - resto
 
@@ -135,7 +135,11 @@ def is_valid(cns: str) -> bool:
         False
     """
 
-    if not isinstance(cns, str) or not cns.isdigit() or len(cns) != 15:
+    if (
+        not isinstance(cns, str)
+        or not all("0" <= digit <= "9" for digit in cns)
+        or len(cns) != 15
+    ):
         return False
 
     if not (_DEFINITIVE_REGEX.match(cns) or _PROVISIONAL_REGEX.match(cns)):

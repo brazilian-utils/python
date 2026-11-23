@@ -43,6 +43,9 @@ class TestCNS(TestCase):
         # 11 digits, returns False even if the weighted sum is a multiple of 11
         self.assertIs(is_valid("161243374450012"), False)
 
+        # When a number contains a digit from another alphabet, returns False
+        self.assertIs(is_valid("1\u0666124337445" + "0004"), False)
+
         # When CNS is valid (definitive, starts with 1 or 2)
         self.assertIs(is_valid("161243374450004"), True)
 
