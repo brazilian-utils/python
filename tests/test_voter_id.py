@@ -39,6 +39,16 @@ class TestIsValid(TestCase):
         self.assertIs(is_valid(invalid_characters), False)
         self.assertIs(is_valid(invalid_characters_space), False)
 
+    def test_non_ascii_digits(self):
+        # When voter id contains digits from other alphabets, returns False
+        self.assertIs(is_valid("٢17633460930"), False)
+        self.assertIs(is_valid("２１７６３３４６０９３０"), False)
+
+        # When voter id contains superscript digits, returns False instead
+        # of raising ValueError
+        self.assertIs(is_valid("21763346093" + "⁰"), False)
+        self.assertIs(is_valid("²17633460930"), False)
+
     def test_valid_special_case(self):
         # Test a valid edge case (SP & MG with 13 digits)
         valid_special = "3244567800167"

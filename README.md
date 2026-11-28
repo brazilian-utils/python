@@ -1123,7 +1123,7 @@ Referências:
 
 Argumentos:
 
-- voter_id (str): string representando o número do título de eleitor a ser verificado.
+- voter_id (str): string representando o número do título de eleitor a ser verificado (apenas dígitos de 0 a 9).
 
 Retorna:
 

@@ -11,15 +11,18 @@ def is_valid(voter_id: str) -> bool:
     - http://clubes.obmep.org.br/blog/a-matematica-nos-documentos-titulo-de-eleitor/
 
     Args:
-        voter_id(str): string representing the voter id to be verified.
+        voter_id(str): string representing the voter id to be verified
+            (ASCII digits 0-9 only).
 
     Returns:
         bool: True if the voter id is valid. False otherwise.
     """
 
-    # ensure voter_id only contains numerical characters and has a valid length
+    # ensure voter_id only contains ASCII numerical characters and has a
+    # valid length
     if (
         not isinstance(voter_id, str)
+        or not voter_id.isascii()
         or not voter_id.isdigit()
         or not _is_length_valid(voter_id)
     ):
