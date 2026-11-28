@@ -131,18 +131,36 @@ class TestIBGE(TestCase):
         result = get_municipality_by_code("3550308")
         self.assertEqual(result, ("São Paulo", "SP"))
 
+    @patch("brutils.ibge.municipality.urlopen")
     @patch("gzip.GzipFile.read", side_effect=OSError("Erro na descompressão"))
-    def test_get_municipality_by_code_gzip_error(self, mock_gzip_read):
+    def test_get_municipality_by_code_gzip_error(
+        self, mock_gzip_read, mock_urlopen
+    ):
         """Test gzip decompression error handling."""
+        valid_json = dumps(VALID_MUNICIPALITY_DATA["SAO_PAULO"])
+        compressed_data = gzip.compress(valid_json.encode("utf-8"))
+        mock_urlopen.return_value = self._create_mock_response(
+            compressed_data, "gzip"
+        )
+
         result = get_municipality_by_code("3550308")
         self.assertIsNone(result)
 
+    @patch("brutils.ibge.municipality.urlopen")
     @patch(
         "gzip.GzipFile.read",
         side_effect=Exception("Erro desconhecido na descompressão"),
     )
-    def test_get_municipality_by_code_gzip_generic_error(self, mock_gzip_read):
+    def test_get_municipality_by_code_gzip_generic_error(
+        self, mock_gzip_read, mock_urlopen
+    ):
         """Test generic gzip error handling."""
+        valid_json = dumps(VALID_MUNICIPALITY_DATA["SAO_PAULO"])
+        compressed_data = gzip.compress(valid_json.encode("utf-8"))
+        mock_urlopen.return_value = self._create_mock_response(
+            compressed_data, "gzip"
+        )
+
         result = get_municipality_by_code("3550308")
         self.assertIsNone(result)
 
