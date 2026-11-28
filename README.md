@@ -1480,7 +1480,7 @@ ela apenas valida o formato da string e o dígito verificador.
 
 Argumentos:
 
-- renavam (str): O RENAVAM a ser validado, uma string de 11 dígitos.
+- renavam (str): O RENAVAM a ser validado, uma string de 11 dígitos de 0 a 9.
 
 Retorna:
 

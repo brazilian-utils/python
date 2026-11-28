@@ -1483,7 +1483,7 @@ it only validates the string format and the verification digit.
 
 Arguments:
 
-- renavam (str): The RENAVAM to be validated, a string of 11 digits.
+- renavam (str): The RENAVAM to be validated, an 11-digit string of ASCII digits (0-9).
 
 Returns:
 

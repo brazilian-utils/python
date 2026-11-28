@@ -4,7 +4,7 @@ RENAVAM_DV_WEIGHTS = [2, 3, 4, 5, 6, 7, 8, 9, 2, 3]
 def _validate_renavam_format(renavam: str):
     if not isinstance(renavam, str):
         return False
-    if len(renavam) != 11 or not renavam.isdigit():
+    if len(renavam) != 11 or not renavam.isascii() or not renavam.isdigit():
         return False
     if len(set(renavam)) == 1:
         return False

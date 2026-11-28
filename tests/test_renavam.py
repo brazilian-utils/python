@@ -16,3 +16,12 @@ class TestRENAVAM(TestCase):
         self.assertFalse(is_valid_renavam("12345678901!"))
         self.assertFalse(is_valid_renavam("00000000000"))
         self.assertFalse(is_valid_renavam("11111111111"))
+
+        # When RENAVAM contains digits from other alphabets, returns False
+        self.assertFalse(is_valid_renavam("٨6769597308"))
+        self.assertFalse(is_valid_renavam("８６７６９５９７３０８"))
+
+        # When RENAVAM contains superscript digits, returns False instead
+        # of raising ValueError
+        self.assertFalse(is_valid_renavam("8676959730" + "²"))
+        self.assertFalse(is_valid_renavam("⁸6769597302"))
