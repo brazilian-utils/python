@@ -221,5 +221,5 @@ def _is_valid_mercosul(license_plate: str) -> bool:
         return False
 
     license_plate = license_plate.upper().strip()
-    pattern = re.compile(r"^[A-Z]{3}\d[A-Z]\d{2}$")
+    pattern = re.compile(r"^[A-Z]{3}\d[A-Z]\d{2}$", re.ASCII)
     return re.match(pattern, license_plate) is not None
