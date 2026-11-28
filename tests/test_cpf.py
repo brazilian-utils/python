@@ -31,10 +31,18 @@ class TestCPF(TestCase):
         self.assertIsNone(display("0000000000a"))
         self.assertIsNone(display("000000000000"))
 
+        # When CPF contains non-ASCII digits, returns None
+        self.assertIsNone(display("52٩٩8224725"))
+        self.assertIsNone(display("0000000001¹"))
+
     def test_validate(self):
         self.assertIs(validate("52513127765"), True)
         self.assertIs(validate("52599927765"), True)
         self.assertIs(validate("00000000000"), False)
+
+        # When CPF contains non-ASCII digits, returns False
+        self.assertIs(validate("525٩٩٩27765"), False)
+        self.assertIs(validate("5251312776" + "⁵"), False)
 
     def test_is_valid(self):
         # When cpf is not string, returns False
@@ -62,6 +70,15 @@ class TestCPF(TestCase):
         # When rest_2 is gte 2 and the 11th digit is not (11 - rest), returns
         # False
         self.assertIs(is_valid("11144477732"), False)
+
+        # When CPF contains digits from other alphabets, returns False
+        self.assertIs(is_valid("52٩٩8224725"), False)
+        self.assertIs(is_valid("１１１４４４７７７３５"), False)
+
+        # When CPF contains superscript digits, returns False instead of
+        # raising ValueError
+        self.assertIs(is_valid("1114447773" + "⁵"), False)
+        self.assertIs(is_valid("²" * 11), False)
 
         # When cpf is valid
         self.assertIs(is_valid("11144477735"), True)
