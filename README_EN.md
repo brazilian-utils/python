@@ -530,7 +530,7 @@ Args:
 
 - phone_number:
   - the phone number to be validated
-  - digits only, no symbols
+  - ASCII digits (0-9) only, no symbols
   - without the country code
   - should include the area code (DDD) with two digits
   - example: '+55 48 9999 9999' should be used as '4899999999'

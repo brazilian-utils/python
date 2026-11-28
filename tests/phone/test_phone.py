@@ -12,6 +12,25 @@ from brutils.phone import (
 
 
 class TestPhone(TestCase):
+    def test_is_valid(self):
+        # When the phone number is valid
+        self.assertIs(is_valid("11994029275"), True)
+        self.assertIs(is_valid("11994029275", type="mobile"), True)
+        self.assertIs(is_valid("1938814933"), True)
+        self.assertIs(is_valid("1938814933", type="landline"), True)
+
+        # When the phone number contains non-ASCII digits, returns False
+        self.assertIs(is_valid("119" + "٩" * 8), False)
+        self.assertIs(is_valid("119" + "٩" * 8, type="mobile"), False)
+        self.assertIs(is_valid("113" + "٩" * 7), False)
+        self.assertIs(is_valid("113" + "٩" * 7, type="landline"), False)
+        self.assertIs(is_valid("１１９９４０２９２７５"), False)
+
+        # When the phone number contains superscript digits, returns False
+        self.assertIs(is_valid("1199402927" + "⁵"), False)
+        self.assertIs(is_valid("1199402927" + "⁵", type="mobile"), False)
+        self.assertIs(is_valid("193881493" + "³", type="landline"), False)
+
     def test_remove_symbols_phone(self):
         # When the string empty, it returns an empty string
         self.assertEqual(remove_symbols_phone(""), "")

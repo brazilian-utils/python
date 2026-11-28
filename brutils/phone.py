@@ -41,7 +41,7 @@ def is_valid(phone_number: str, type: str = None) -> bool:
 
     Args:
         phone_number (str): The phone number to validate.
-                            Only digits, without country code.
+                            Only ASCII digits (0-9), without country code.
                             It should include two digits DDD.
         type (str): "mobile" or "landline".
                     If not specified, checks for one or another.
@@ -148,14 +148,14 @@ def _is_valid_mobile(phone_number: str) -> bool:
 
     Args:
         phone_number (str): The mobile number to validate.
-                            Only digits, without country code.
+                            Only ASCII digits (0-9), without country code.
                             It should include two digits DDD.
 
     Returns:
         bool: True if the phone number is valid. False otherwise.
     """
 
-    pattern = re.compile(r"^[1-9][1-9][9]\d{8}$")
+    pattern = re.compile(r"^[1-9][1-9][9]\d{8}$", re.ASCII)
     return (
         isinstance(phone_number, str)
         and re.match(pattern, phone_number) is not None
@@ -169,14 +169,14 @@ def _is_valid_landline(phone_number: str) -> bool:
 
     Args:
         phone_number (str): The landline number to validate.
-                            Only digits, without country code.
+                            Only ASCII digits (0-9), without country code.
                             It should include two digits DDD.
 
     Returns:
         bool: True if the phone number is valid. False otherwise.
     """
 
-    pattern = re.compile(r"^[1-9][1-9][2-5]\d{7}$")
+    pattern = re.compile(r"^[1-9][1-9][2-5]\d{7}$", re.ASCII)
     return (
         isinstance(phone_number, str)
         and re.match(pattern, phone_number) is not None
