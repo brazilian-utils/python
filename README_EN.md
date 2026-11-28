@@ -1125,7 +1125,7 @@ References:
 
 Args:
 
-- voter_id(str): string representing the voter id to be verified.
+- voter_id(str): string representing the voter id to be verified (ASCII digits 0-9 only).
 
 Returns:
 
