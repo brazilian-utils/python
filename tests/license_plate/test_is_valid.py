@@ -145,6 +145,11 @@ class TestIsValidMercosul(TestCase):
         # When license plate has separator, returns false
         self.assertIs(_is_valid_mercosul("ABC-1D23"), False)
 
+        # When license plate contains digits from other alphabets,
+        # returns False
+        self.assertIs(_is_valid_mercosul("ABC٤E٦٧"), False)
+        self.assertIs(_is_valid_mercosul("ABC４E６７"), False)
+
         # When license plate is valid
         self.assertIs(_is_valid_mercosul("ABC4E67"), True)
         self.assertIs(_is_valid_mercosul("AAA1A11"), True)
