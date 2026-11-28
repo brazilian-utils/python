@@ -130,7 +130,7 @@ ela apenas valida o formato da string.
 
 Argumentos:
 
-- cpf (str): O CPF a ser validado, uma string de 11 dígitos
+- cpf (str): O CPF a ser validado, uma string de 11 dígitos de 0 a 9
 
 Retorna:
 

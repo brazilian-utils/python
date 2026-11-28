@@ -130,7 +130,7 @@ validates the format of the string.
 
 Args:
 
-- cpf (str): The CPF to be validated, a 11-digit string
+- cpf (str): The CPF to be validated, an 11-digit string of ASCII digits (0-9)
 
 Returns:
 

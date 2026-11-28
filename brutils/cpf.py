@@ -71,7 +71,12 @@ def display(cpf: str) -> str:
        backward compatibility.
     """
 
-    if not cpf.isdigit() or len(cpf) != 11 or len(set(cpf)) == 1:
+    if (
+        not cpf.isascii()
+        or not cpf.isdigit()
+        or len(cpf) != 11
+        or len(set(cpf)) == 1
+    ):
         return None
 
     return "{}.{}.{}-{}".format(cpf[:3], cpf[3:6], cpf[6:9], cpf[9:])
@@ -133,7 +138,12 @@ def validate(cpf: str) -> bool:
        backward compatibility.
     """
 
-    if not cpf.isdigit() or len(cpf) != 11 or len(set(cpf)) == 1:
+    if (
+        not cpf.isascii()
+        or not cpf.isdigit()
+        or len(cpf) != 11
+        or len(set(cpf)) == 1
+    ):
         return False
 
     return all(_hashdigit(cpf, i + 10) == int(v) for i, v in enumerate(cpf[9:]))
@@ -148,7 +158,8 @@ def is_valid(cpf: str) -> bool:
     validates the format of the string.
 
     Args:
-        cpf (str): The CPF to be validated, a 11-digit string
+        cpf (str): The CPF to be validated, an 11-digit string of
+                   ASCII digits (0-9)
 
     Returns:
         bool: True if the checksum digits match the base number,
