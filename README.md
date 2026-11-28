@@ -510,7 +510,7 @@ Argumentos:
 
 - phone_number (str):
   - o número de telefone a ser validado
-  - apenas dígitos, sem símbolos
+  - apenas dígitos de 0 a 9, sem símbolos
   - sem o código do país
   - deve incluir o número de DDD com dois dígitos
   - exemplo: '+55 48 9999 9999' deve ser utilizado como '4899999999'
