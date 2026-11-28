@@ -66,7 +66,7 @@ def is_valid(pis: str) -> bool:
     given `PIS` match its base number.
 
     Args:
-        pis (str): PIS number as a string of proper length.
+        pis (str): PIS number as an 11-digit string of ASCII digits (0-9).
 
     Returns:
         bool: True if PIS is valid, False otherwise.
@@ -82,6 +82,7 @@ def is_valid(pis: str) -> bool:
     return (
         isinstance(pis, str)
         and len(pis) == 11
+        and pis.isascii()
         and pis.isdigit()
         and pis[-1] == str(_checksum(pis[:-1]))
     )

@@ -915,7 +915,7 @@ References:
 
 Args:
 
-- pis (str): PIS number as a string with the proper length.
+- pis (str): PIS number as an 11-digit string of ASCII digits (0-9).
 
 Returns:
 

@@ -915,7 +915,7 @@ Referências:
 
 Argumentos:
 
-- pis (str): Número PIS como uma string com o comprimento apropriado.
+- pis (str): Número PIS como uma string de 11 dígitos de 0 a 9.
 
 Retorna:
 
