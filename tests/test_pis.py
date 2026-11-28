@@ -25,6 +25,15 @@ class TestPIS(TestCase):
         self.assertIs(is_valid("123pis"), False)
         self.assertIs(is_valid("123456789ab"), False)
 
+        # When PIS contains digits from other alphabets, returns False
+        self.assertIs(is_valid("١2038619494"), False)
+        self.assertIs(is_valid("１２０３８６１９４９４"), False)
+
+        # When PIS contains superscript digits, returns False instead of
+        # raising ValueError
+        self.assertIs(is_valid("1203861949" + "⁴"), False)
+        self.assertIs(is_valid("²" * 11), False)
+
         # When checksum digit doesn't match last digit, returns False
         self.assertIs(is_valid("11111111111"), False)
         self.assertIs(is_valid("11111111215"), False)
